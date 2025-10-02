@@ -4,98 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hannah Susan Mathew</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      background: #f9f9f9;
-    }
+  <style>
+    /* Reset & body */
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; display: flex; background: #f9f9f9; color: #333; }
 
     /* Sidebar */
     .sidebar {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 200px; /* reduced */
+      top: 0; left: 0;
+      width: 220px;
       height: 100%;
-      background: #333;
+      background: #2c3e50;
       color: white;
       padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       overflow-y: auto;
-      text-align: center;
+      transition: width 0.3s;
     }
 
     .sidebar img {
-      width: 110px;
-      height: 110px;
+      width: 120px; height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       border: 3px solid #fff;
       transition: transform 0.3s ease;
     }
-
-    .sidebar img:hover {
-      transform: scale(1.05);
-    }
+    .sidebar img:hover { transform: scale(1.05); }
 
     .sidebar a {
       display: block;
       margin: 12px 0;
       text-decoration: none;
       color: white;
-      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
+      position: relative;
+      padding-left: 10px;
       transition: color 0.3s ease, transform 0.2s ease;
     }
-
+    .sidebar a::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 5px; height: 5px;
+      background: #ffcc00;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
     .sidebar a:hover {
       color: #ffcc00;
       transform: translateX(5px);
     }
+    .sidebar a:hover::before { opacity: 1; }
 
     /* Content */
     .content {
-      margin-left: 230px; /* keeps space from sidebar */
-      padding: 40px;      /* adds breathing room */
+      margin-left: 240px;
+      padding: 50px 40px;
       max-width: 900px;
+      transition: margin-left 0.3s;
     }
 
-    section {
-      margin-bottom: 60px;
-    }
+    section { margin-bottom: 80px; }
+    h1 { font-size: 2rem; margin-bottom: 15px; }
+    h2 { font-size: 1.6rem; margin-bottom: 15px; color: #2c3e50; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
+    p { line-height: 1.6; }
 
-    h1, h2 {
-      font-family: 'Montserrat', sans-serif;
-    }
+    /* Smooth scroll active link highlight */
+    .active-link { color: #ffcc00; }
 
-    /* Mobile responsiveness */
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Mobile */
     @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .content {
-        margin-left: 0;
-        padding: 20px;
-      }
+      body { flex-direction: column; }
+      .sidebar { position: relative; width: 100%; height: auto; flex-direction: row; justify-content: space-around; padding: 15px 10px; }
+      .sidebar img { display: none; }
+      .content { margin-left: 0; padding: 20px; }
     }
   </style>
 </head>
 <body>
+
   <div class="sidebar">
     <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
     <a href="#about">About</a>
@@ -106,49 +112,71 @@
   </div>
 
   <div class="content">
-    <section id="about">
+    <section id="about" class="reveal">
       <h1>About Me</h1>
-      <p>
-        A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, 
-        and cloud tools to help businesses make smarter decisions. ✨
-      </p>
+      <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
     </section>
 
-    <section id="experience">
+    <section id="experience" class="reveal">
       <h2>Experience</h2>
-      <p>
-        <strong>Data Analyst at Accenture</strong> (Dec 2022 – Present) <br />
+      <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present) <br />
         - Real-time KPI dashboard creation in Tableau. <br />
         - Churn analysis for a telecom operator. <br />
         - Automation of data workflows in AWS & PySpark.
       </p>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2>Projects</h2>
-      <p>
-        - Telecom Churn Prediction using ML models. <br />
+      <p>- Telecom Churn Prediction using ML models. <br />
         - Airline Passenger Satisfaction (published IEEE paper). <br />
         - Sentiment Analysis on political speeches.
       </p>
     </section>
 
-    <section id="education">
+    <section id="education" class="reveal">
       <h2>Education</h2>
-      <p>
-        - M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences, 2022. <br />
+      <p>- M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences, 2022. <br />
         - B.Sc. in Mathematics, Mar Thoma College, 2020.
       </p>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
       <h2>Contact</h2>
-      <p>
-        📧 Email: hannahsusan.mathew@example.com <br />
+      <p>📧 Email: hannahsusan.mathew@example.com <br />
         🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a> <br />
         💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a>
       </p>
     </section>
   </div>
+
+  <!-- Inline JS for smooth scrolling + reveal on scroll -->
+  <script>
+    const links = document.querySelectorAll('.sidebar a');
+    const sections = document.querySelectorAll('section');
+
+    function setActiveLink() {
+      let index = sections.length;
+      while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+      links.forEach(link => link.classList.remove('active-link'));
+      links[index].classList.add('active-link');
+    }
+
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink);
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(top < windowHeight - 100) el.classList.add('active');
+      });
+    }
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll);
+  </script>
+
 </body>
 </html>
