@@ -1,221 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hannah Susan Mathew</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden; /* prevent horizontal scroll */
-    margin: 0;
-  }
-
-  body { display: flex; }
-
-  /* Sidebar / Topbar */
-  .sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 220px; height: 100%;
-    background: #2c3e50;
-    color: white;
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-    z-index: 10;
-    transition: background 0.5s;
-  }
-
-  .sidebar img {
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 25px;
-    border: 3px solid #fff;
-  }
-
-  .sidebar a {
-    display: block;
-    margin: 12px 0;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.3s;
-  }
-
-  .sidebar a.active-link { color: #ffcc00; }
-
-  /* Content */
-  .content {
-    margin-left: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory; /* enable snap scrolling */
-    transition: background 0.5s;
-  }
-
-  /* Desktop vertical sidebar */
-  @media (min-width: 769px) {
-    .content {
-      margin-left: 240px; 
-      width: auto; 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  }
 
-  section {
-    min-height: 100vh;
-    padding: 50px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    color: #fff;
-    scroll-snap-align: start; /* snap each section */
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      overflow: hidden; /* prevent free scrollbars */
+    }
 
-  section.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  h1, h2 { margin-bottom: 15px; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.6rem; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
-
-  /* Section colors */
-  #about { background: #1abc9c; }
-  #experience { background: #3498db; }
-  #projects { background: #9b59b6; }
-  #education { background: #e67e22; }
-  #contact { background: #e74c3c; }
-
-  p { line-height: 1.6; }
-
-  /* Mobile landscape */
-  @media (max-width: 768px) and (orientation: landscape) {
-    body { flex-direction: column; }
-    .sidebar { position: fixed; width: 220px; height: 100%; flex-direction: column; justify-content: center; }
-    .content { margin-left: 240px; width: calc(100% - 240px); }
-  }
-
-  /* Portrait mobile: topbar */
-  @media (orientation: portrait) {
-    body { flex-direction: column; }
+    /* Sidebar */
     .sidebar {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 70px;
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 0 10px;
-      background: #2c3e50;
-      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
     }
-    .sidebar img { display: none; }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      color: #ff4757;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #bbb;
+      margin: 12px 0;
+      transition: color 0.3s;
+    }
+
+    .sidebar a.active, .sidebar a:hover {
+      color: #ff4757;
+    }
+
+    /* Content */
     .content {
-      margin-left: 0;
-      margin-top: 70px;
-      width: 100%;
-      height: calc(100vh - 70px);
-      scroll-snap-type: y mandatory;
+      margin-left: 240px;
+      height: 100vh;
+      overflow: hidden; /* hide default scrolling */
+      scroll-behavior: smooth;
+      transition: background 0.5s;
     }
-  }
-</style>
+
+    section {
+      min-height: 100vh; /* fills viewport without adding extra space */
+      width: 100%;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section:nth-child(1) { background: #1e272e; }
+    section:nth-child(2) { background: #2f3542; }
+    section:nth-child(3) { background: #57606f; }
+    section:nth-child(4) { background: #747d8c; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .sidebar {
+        flex-direction: row;
+        height: 70px;
+        width: 100%;
+      }
+
+      .sidebar h2 {
+        margin: 0 15px;
+      }
+
+      .sidebar a {
+        margin: 0 10px;
+      }
+
+      .content {
+        margin-left: 0;
+        margin-top: 70px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="sidebar">
+    <h2>My Portfolio</h2>
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
 
-<div class="sidebar" id="sidebar">
-  <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
-  <a href="#about">About</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#education">Education</a>
-  <a href="#contact">Contact</a>
-</div>
+  <div class="content">
+    <section id="home" class="active">
+      <h1>Home</h1>
+      <p>Welcome to my portfolio website!</p>
+    </section>
+    <section id="about">
+      <h1>About</h1>
+      <p>Here’s some information about me.</p>
+    </section>
+    <section id="projects">
+      <h1>Projects</h1>
+      <p>Here are my projects.</p>
+    </section>
+    <section id="contact">
+      <h1>Contact</h1>
+      <p>Get in touch with me.</p>
+    </section>
+  </div>
 
-<div class="content" id="content">
-  <section id="about">
-    <h1>About Me</h1>
-    <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
-  </section>
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    let currentIndex = 0;
+    let isScrolling = false;
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present) <br />
-      - Real-time KPI dashboard creation in Tableau. <br />
-      - Churn analysis for a telecom operator. <br />
-      - Automation of data workflows in AWS & PySpark.
-    </p>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>- Telecom Churn Prediction using ML models. <br />
-      - Airline Passenger Satisfaction (published IEEE paper). <br />
-      - Sentiment Analysis on political speeches.
-    </p>
-  </section>
-
-  <section id="education">
-    <h2>Education</h2>
-    <p>- M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences, 2022. <br />
-      - B.Sc. in Mathematics, Mar Thoma College, 2020.
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>📧 Email: hannahsusan.mathew@example.com <br />
-      🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a> <br />
-      💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a>
-    </p>
-  </section>
-</div>
-
-<script>
-const sections = document.querySelectorAll('.content section');
-const links = document.querySelectorAll('.sidebar a');
-const sidebar = document.getElementById('sidebar');
-
-function activateSection(index) {
-  sections.forEach((sec) => sec.classList.remove('active'));
-  sections[index].classList.add('active');
-
-  links.forEach(a => a.classList.remove('active-link'));
-  links[index].classList.add('active-link');
-
-  // Change sidebar / topbar background
-  const bgColor = sections[index].style.background;
-  sidebar.style.background = bgColor;
-}
-
-// Track which section is visible
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const index = Array.from(sections).indexOf(entry.target);
-      activateSection(index);
+    function scrollToSection(index) {
+      isScrolling = true;
+      sections[index].scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        isScrolling = false;
+        updateActive();
+      }, 800);
     }
-  });
-}, { threshold: 0.5 });
 
-sections.forEach(sec => observer.observe(sec));
-</script>
+    function updateActive() {
+      sections.forEach((sec, i) => {
+        sec.classList.toggle("active", i === currentIndex);
+        navLinks[i].classList.toggle("active", i === currentIndex);
+      });
+    }
 
+    // Wheel scroll → strict slide feel
+    window.addEventListener("wheel", (e) => {
+      if (isScrolling) return;
+      if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+        currentIndex++;
+        scrollToSection(currentIndex);
+      } else if (e.deltaY < 0 && currentIndex > 0) {
+        currentIndex--;
+        scrollToSection(currentIndex);
+      }
+    });
+
+    // Sidebar nav click
+    navLinks.forEach((link, i) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentIndex = i;
+        scrollToSection(currentIndex);
+      });
+    });
+
+    // Keyboard arrow navigation
+    window.addEventListener("keydown", (e) => {
+      if (isScrolling) return;
+      if (e.key === "ArrowDown" && currentIndex < sections.length - 1) {
+        currentIndex++;
+        scrollToSection(currentIndex);
+      } else if (e.key === "ArrowUp" && currentIndex > 0) {
+        currentIndex--;
+        scrollToSection(currentIndex);
+      }
+    });
+  </script>
 </body>
 </html>
