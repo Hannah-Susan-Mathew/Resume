@@ -9,7 +9,14 @@
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; font-family: 'Montserrat', sans-serif; overflow: hidden; }
+
+  html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden; /* prevent horizontal scroll */
+    overflow-y: hidden;
+    margin: 0;
+  }
 
   body { display: flex; }
 
@@ -51,12 +58,20 @@
 
   /* Content */
   .content {
-    margin-left: 240px;
-    width: calc(100% - 240px);
+    margin-left: 0; /* reset default */
+    width: 100%; /* full width */
     height: 100vh;
     overflow-y: auto;
     scroll-behavior: smooth;
     transition: background 0.5s;
+  }
+
+  /* Desktop vertical sidebar */
+  @media (min-width: 769px) {
+    .content {
+      margin-left: 240px; /* sidebar width */
+      width: auto; /* take remaining space */
+    }
   }
 
   section {
