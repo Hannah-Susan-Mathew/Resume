@@ -59,11 +59,10 @@
   .content {
     margin-left: 0; 
     width: 100%; 
-    height: 100vh;           /* make content fill viewport height */
+    height: 100%; /* keep your original behavior */
     overflow-y: auto;
     scroll-behavior: smooth;
-    /* scroll-snap kept for extra niceness, but strict snapping is enforced by JS wheel logic */
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory; /* enable snap scrolling (kept) */
     transition: background 0.5s;
   }
 
@@ -89,6 +88,7 @@
     scroll-snap-align: start; /* snap each section */
   }
 
+  /* Make sure the first section is visible immediately */
   section.active {
     opacity: 1;
     transform: translateY(0);
@@ -151,7 +151,8 @@
 </div>
 
 <div class="content" id="content">
-  <section id="about">
+  <!-- keep first section active in markup so it is visible even if JS fails -->
+  <section id="about" class="active">
     <h1>About Me</h1>
     <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
   </section>
@@ -190,9 +191,87 @@
 </div>
 
 <script>
-const sections = document.querySelectorAll('.content section');
-const links = document.querySelectorAll('.sidebar a');
-const sidebar = document.getElementById('sidebar');
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const sections = document.querySelectorAll('.content section');
+    const links = document.querySelectorAll('.sidebar a');
+    const sidebar = document.getElementById('sidebar');
 
-let currentIndex = 0;
-let isScrolling
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    function activateSection(index) {
+      if (index < 0) index = 0;
+      if (index > sections.length - 1) index = sections.length - 1;
+
+      sections.forEach((sec, i) => sec.classList.toggle('active', i === index));
+      links.forEach(a => a.classList.remove('active-link'));
+      if (links[index]) links[index].classList.add('active-link');
+
+      currentIndex = index;
+
+      // use computed style to get color set in CSS
+      const bgColor = window.getComputedStyle(sections[index]).backgroundColor;
+      if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)') sidebar.style.background = bgColor;
+    }
+
+    function scrollToSection(index) {
+      if (index < 0 || index > sections.length - 1) return;
+      if (isScrolling) return;
+      isScrolling = true;
+      sections[index].scrollIntoView({ behavior: 'smooth' });
+      activateSection(index);
+      setTimeout(() => { isScrolling = false; }, 800);
+    }
+
+    // Ensure initial state
+    activateSection(0);
+
+    // Wheel (strict slide deck: 1 wheel = 1 section)
+    window.addEventListener('wheel', e => {
+      if (isScrolling) return;
+      if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+        scrollToSection(currentIndex + 1);
+      } else if (e.deltaY < 0 && currentIndex > 0) {
+        scrollToSection(currentIndex - 1);
+      }
+    }, { passive: false });
+
+    // Sidebar clicks
+    links.forEach((link, idx) => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        scrollToSection(idx);
+      });
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', e => {
+      if (isScrolling) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        if (currentIndex < sections.length - 1) scrollToSection(currentIndex + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        if (currentIndex > 0) scrollToSection(currentIndex - 1);
+      }
+    });
+
+    // IntersectionObserver to update active when user uses native scroll (touchpad, scrollbar drag)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isScrolling) {
+          const index = Array.from(sections).indexOf(entry.target);
+          if (index !== -1) activateSection(index);
+        }
+      });
+    }, { threshold: 0.55 });
+
+    sections.forEach(sec => observer.observe(sec));
+  } catch (err) {
+    // if anything unexpected happens, print to console so you can see it
+    console.error('Init error:', err);
+  }
+});
+</script>
+
+</body>
+</html>
