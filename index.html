@@ -21,10 +21,15 @@
             left: 0;
             overflow-y: auto;
             padding-top: 20px;
-        }
-        nav h2 {
             text-align: center;
+        }
+        nav img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 20px;
+            border: 3px solid #fff;
         }
         nav a {
             display: block;
@@ -58,10 +63,11 @@
                 width: 100%;
                 height: auto;
                 position: relative;
+                padding-bottom: 10px;
             }
-            nav h2 {
-                margin: 0;
-                padding: 10px;
+            nav img {
+                width: 90px;
+                height: 90px;
             }
             nav a {
                 padding: 10px;
@@ -76,7 +82,7 @@
 </head>
 <body>
     <nav>
-        <h2>Navigation</h2>
+        <img src="profile.jpg" alt="Profile Picture">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
