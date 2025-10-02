@@ -57,24 +57,25 @@
 
   /* Content */
   .content {
-    margin-left: 0; /* reset default */
-    width: 100%; /* full width */
-    height: 100%; /* let sections control height */
+    margin-left: 0; 
+    width: 100%; 
+    height: 100%; 
     overflow-y: auto;
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory; /* enable snap scrolling */
     transition: background 0.5s;
   }
 
   /* Desktop vertical sidebar */
   @media (min-width: 769px) {
     .content {
-      margin-left: 240px; /* sidebar width */
-      width: auto; /* take remaining space */
+      margin-left: 240px; 
+      width: auto; 
     }
   }
 
   section {
-    min-height: 100vh; /* instead of fixed height */
+    min-height: 100vh;
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
@@ -83,6 +84,7 @@
     transform: translateY(40px);
     transition: opacity 0.8s ease, transform 0.8s ease;
     color: #fff;
+    scroll-snap-align: start; /* snap each section */
   }
 
   section.active {
@@ -103,7 +105,7 @@
 
   p { line-height: 1.6; }
 
-  /* Mobile landscape fallback */
+  /* Mobile landscape */
   @media (max-width: 768px) and (orientation: landscape) {
     body { flex-direction: column; }
     .sidebar { position: fixed; width: 220px; height: 100%; flex-direction: column; justify-content: center; }
@@ -130,6 +132,7 @@
       margin-top: 70px;
       width: 100%;
       height: calc(100vh - 70px);
+      scroll-snap-type: y mandatory;
     }
   }
 </style>
@@ -188,59 +191,30 @@
 const sections = document.querySelectorAll('.content section');
 const links = document.querySelectorAll('.sidebar a');
 const sidebar = document.getElementById('sidebar');
-let currentIndex = 0;
-let isScrolling = false;
 
 function activateSection(index) {
-  sections.forEach((sec, i) => sec.classList.remove('active'));
+  sections.forEach((sec) => sec.classList.remove('active'));
   sections[index].classList.add('active');
 
   links.forEach(a => a.classList.remove('active-link'));
   links[index].classList.add('active-link');
 
-  // Change sidebar / topbar background to match section
+  // Change sidebar / topbar background
   const bgColor = sections[index].style.background;
   sidebar.style.background = bgColor;
 }
 
-function scrollToSection(index) {
-  if(isScrolling) return;
-  isScrolling = true;
-  currentIndex = index;
-  sections[index].scrollIntoView({ behavior: 'smooth' });
-  activateSection(index);
-  setTimeout(() => isScrolling = false, 800);
-}
-
-// Initialize first section
-scrollToSection(0);
-
-// Mouse wheel
-window.addEventListener('wheel', e => {
-  if(isScrolling) return;
-  if(e.deltaY > 0 && currentIndex < sections.length - 1) currentIndex++;
-  else if(e.deltaY < 0 && currentIndex > 0) currentIndex--;
-  scrollToSection(currentIndex);
-});
-
-// Sidebar clicks
-links.forEach((link, idx) => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    scrollToSection(idx);
+// Track which section is visible
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = Array.from(sections).indexOf(entry.target);
+      activateSection(index);
+    }
   });
-});
+}, { threshold: 0.5 });
 
-// Touch swipe for mobile
-let touchStartY = 0;
-window.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].clientY; });
-window.addEventListener('touchend', e => {
-  if(isScrolling) return;
-  let touchEndY = e.changedTouches[0].clientY;
-  if(touchStartY - touchEndY > 50 && currentIndex < sections.length - 1) currentIndex++;
-  else if(touchEndY - touchStartY > 50 && currentIndex > 0) currentIndex--;
-  scrollToSection(currentIndex);
-});
+sections.forEach(sec => observer.observe(sec));
 </script>
 
 </body>
