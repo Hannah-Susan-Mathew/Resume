@@ -13,7 +13,7 @@
 
   body { display: flex; }
 
-  /* Sidebar */
+  /* Sidebar / Topbar */
   .sidebar {
     position: fixed;
     top: 0; left: 0;
@@ -24,7 +24,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* vertical center */
+    justify-content: center; 
+    z-index: 10;
+    transition: background 0.5s;
   }
 
   .sidebar img {
@@ -52,8 +54,9 @@
     margin-left: 240px;
     width: calc(100% - 240px);
     height: 100vh;
-    overflow-y: auto; /* allow scrolling */
+    overflow-y: auto;
     scroll-behavior: smooth;
+    transition: background 0.5s;
   }
 
   section {
@@ -65,6 +68,7 @@
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease, transform 0.8s ease;
+    color: #fff;
   }
 
   section.active {
@@ -72,22 +76,53 @@
     transform: translateY(0);
   }
 
-  h1 { font-size: 2rem; margin-bottom: 15px; }
-  h2 { font-size: 1.6rem; margin-bottom: 15px; color: #2c3e50; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
+  h1, h2 { margin-bottom: 15px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
+
+  /* Section colors */
+  #about { background: #1abc9c; }
+  #experience { background: #3498db; }
+  #projects { background: #9b59b6; }
+  #education { background: #e67e22; }
+  #contact { background: #e74c3c; }
+
   p { line-height: 1.6; }
 
-  /* Mobile */
-  @media (max-width: 768px) {
+  /* Mobile landscape fallback */
+  @media (max-width: 768px) and (orientation: landscape) {
     body { flex-direction: column; }
-    .sidebar { position: relative; width: 100%; height: auto; flex-direction: row; justify-content: space-around; padding: 15px 10px; }
+    .sidebar { position: fixed; width: 220px; height: 100%; flex-direction: column; justify-content: center; }
+    .content { margin-left: 240px; width: calc(100% - 240px); }
+  }
+
+  /* Portrait mobile: topbar */
+  @media (orientation: portrait) {
+    body { flex-direction: column; }
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 70px;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 0 10px;
+      background: #2c3e50;
+      z-index: 10;
+    }
     .sidebar img { display: none; }
-    .content { margin-left: 0; width: 100%; height: 100vh; overflow-y: auto; }
+    .content {
+      margin-left: 0;
+      margin-top: 70px;
+      width: 100%;
+      height: calc(100vh - 70px);
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
   <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
   <a href="#about">About</a>
   <a href="#experience">Experience</a>
@@ -136,57 +171,62 @@
 </div>
 
 <script>
-  const sections = document.querySelectorAll('.content section');
-  const links = document.querySelectorAll('.sidebar a');
-  let currentIndex = 0;
-  let isScrolling = false;
+const sections = document.querySelectorAll('.content section');
+const links = document.querySelectorAll('.sidebar a');
+const sidebar = document.getElementById('sidebar');
+let currentIndex = 0;
+let isScrolling = false;
 
-  function activateSection(index) {
-    sections.forEach((sec, i) => sec.classList.remove('active'));
-    sections[index].classList.add('active');
+function activateSection(index) {
+  sections.forEach((sec, i) => sec.classList.remove('active'));
+  sections[index].classList.add('active');
 
-    links.forEach(a => a.classList.remove('active-link'));
-    links[index].classList.add('active-link');
-  }
+  links.forEach(a => a.classList.remove('active-link'));
+  links[index].classList.add('active-link');
 
-  function scrollToSection(index) {
-    if(isScrolling) return;
-    isScrolling = true;
-    currentIndex = index;
-    sections[index].scrollIntoView({ behavior: 'smooth' });
-    activateSection(index);
-    setTimeout(() => isScrolling = false, 800);
-  }
+  // Change sidebar / topbar background to match section
+  const bgColor = sections[index].style.background;
+  sidebar.style.background = bgColor;
+}
 
-  // Initialize first section
-  scrollToSection(0);
+function scrollToSection(index) {
+  if(isScrolling) return;
+  isScrolling = true;
+  currentIndex = index;
+  sections[index].scrollIntoView({ behavior: 'smooth' });
+  activateSection(index);
+  setTimeout(() => isScrolling = false, 800);
+}
 
-  // Mouse wheel
-  window.addEventListener('wheel', e => {
-    if(isScrolling) return;
-    if(e.deltaY > 0 && currentIndex < sections.length - 1) currentIndex++;
-    else if(e.deltaY < 0 && currentIndex > 0) currentIndex--;
-    scrollToSection(currentIndex);
+// Initialize first section
+scrollToSection(0);
+
+// Mouse wheel
+window.addEventListener('wheel', e => {
+  if(isScrolling) return;
+  if(e.deltaY > 0 && currentIndex < sections.length - 1) currentIndex++;
+  else if(e.deltaY < 0 && currentIndex > 0) currentIndex--;
+  scrollToSection(currentIndex);
+});
+
+// Sidebar clicks
+links.forEach((link, idx) => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    scrollToSection(idx);
   });
+});
 
-  // Sidebar clicks
-  links.forEach((link, idx) => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      scrollToSection(idx);
-    });
-  });
-
-  // Touch swipe for mobile
-  let touchStartY = 0;
-  window.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].clientY; });
-  window.addEventListener('touchend', e => {
-    if(isScrolling) return;
-    let touchEndY = e.changedTouches[0].clientY;
-    if(touchStartY - touchEndY > 50 && currentIndex < sections.length - 1) currentIndex++;
-    else if(touchEndY - touchStartY > 50 && currentIndex > 0) currentIndex--;
-    scrollToSection(currentIndex);
-  });
+// Touch swipe for mobile
+let touchStartY = 0;
+window.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].clientY; });
+window.addEventListener('touchend', e => {
+  if(isScrolling) return;
+  let touchEndY = e.changedTouches[0].clientY;
+  if(touchStartY - touchEndY > 50 && currentIndex < sections.length - 1) currentIndex++;
+  else if(touchEndY - touchStartY > 50 && currentIndex > 0) currentIndex--;
+  scrollToSection(currentIndex);
+});
 </script>
 
 </body>
