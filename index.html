@@ -19,18 +19,18 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 250px;
+      width: 200px; /* reduced */
       height: 100%;
       background: #333;
       color: white;
-      padding: 20px;
+      padding: 20px 10px;
       overflow-y: auto;
       text-align: center;
     }
 
     .sidebar img {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
@@ -44,12 +44,12 @@
 
     .sidebar a {
       display: block;
-      margin: 10px 0;
+      margin: 12px 0;
       text-decoration: none;
       color: white;
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: color 0.3s ease, transform 0.2s ease;
     }
 
@@ -60,13 +60,13 @@
 
     /* Content */
     .content {
-      margin-left: 270px;
-      padding: 20px;
+      margin-left: 230px; /* keeps space from sidebar */
+      padding: 40px;      /* adds breathing room */
       max-width: 900px;
     }
 
     section {
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
 
     h1, h2 {
@@ -90,6 +90,7 @@
 
       .content {
         margin-left: 0;
+        padding: 20px;
       }
     }
   </style>
@@ -108,7 +109,8 @@
     <section id="about">
       <h1>About Me</h1>
       <p>
-        A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨
+        A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, 
+        and cloud tools to help businesses make smarter decisions. ✨
       </p>
     </section>
 
