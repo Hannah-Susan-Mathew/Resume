@@ -14,17 +14,17 @@
     /* Setting Open Sans as the base font for the entire body */
     html, body { 
         height: 100%; 
-        font-family: 'Open Sans', sans-serif; /* KEY CHANGE: Body font changed to Open Sans */
+        font-family: 'Open Sans', sans-serif;
         overflow-x: hidden; 
         margin: 0; 
     }
     body { display: flex; }
 
-    /* Sidebar */
+    /* --- SIDEBAR (DESKTOP DEFAULT) --- */
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #332830; /* Raisin black - Darkest shade */
+      background: #332830;
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -40,7 +40,7 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 25px;
-      border: 5px solid #A1ABB0; /* Cadet Gray for border contrast */
+      border: 5px solid #A1ABB0;
     }
     .sidebar a {
       display: block; margin: 12px 0;
@@ -49,27 +49,68 @@
       font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
-      font-family: 'Montserrat', sans-serif; /* Headings font retained */
+      font-family: 'Montserrat', sans-serif;
+      white-space: nowrap;
     }
-    /* Active link color set to the lightest shade (Cadet Gray) and bolded for visibility */
     .sidebar a.active-link { 
       color: #A1ABB0; 
       font-weight: 700; 
     } 
 
-    /* Content container */
+    /* --- CONTENT CONTAINER (DESKTOP DEFAULT) --- */
     .content {
       margin-left: 0; width: 100%; height: 100%;
       overflow-y: auto; scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
-      transition: background 0.5s;
+      transition: margin-left 0.3s, width 0.3s;
     }
     
-    /* Responsive rule for wider screens (769px+) */
+    /* --- DESKTOP/LANDSCAPE VIEW (>768px) --- */
     @media (min-width: 769px) {
       .content { 
         margin-left: 220px; 
         width: calc(100% - 220px); 
+      }
+      section {
+          padding: 50px 40px;
+      }
+
+      /* ABOUT SECTION DESKTOP LAYOUT */
+      #about {
+          flex-direction: row; /* Arrange items in a row */
+          justify-content: center;
+          align-items: center; /* Vertically center main items */
+          gap: 50px; /* Space between the two columns */
+          padding-top: 50px; /* Adjust padding if needed for desktop */
+      }
+      #about-left-column { /* New container for name, contact, social */
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 40%; /* Allocate width for the left column */
+          min-width: 300px; /* Ensure a minimum width */
+          max-width: 500px; /* Prevent it from getting too wide */
+      }
+      #about-header {
+          width: 100%; /* Make header take full width of its column */
+          text-align: left; /* Align text left */
+      }
+      #about-card {
+          width: 60%; /* Allocate width for the right column */
+          max-width: 700px; /* Prevent it from getting too wide */
+          min-width: 400px;
+          padding: 40px;
+      }
+      #social-links {
+          justify-content: flex-start; /* Align social links to the left */
+      }
+
+      /* Reverting general card and header size to desktop default */
+      .card {
+          padding: 30px;
+      }
+      #about-card p {
+          font-size: 1.1rem;
       }
     }
 
@@ -77,7 +118,7 @@
     section {
       min-height: 100vh;
       box-sizing: border-box;
-      padding: 50px 40px;
+      padding: 50px 40px; 
       display: flex;
       flex-direction: column; 
       justify-content: center;
@@ -95,8 +136,6 @@
     #about { 
         background: #332830; 
         color: #FFFFFF; 
-        flex-direction: column; 
-        align-items: flex-start;
         gap: 25px;
         padding-top: 100px;
     } 
@@ -107,22 +146,15 @@
     #awards { background: #6D5A7B; color: #FFFFFF; } 
     #contact { background: #776D8A; color: #FFFFFF; } 
     
-    /* CARD STYLING */
+    /* CARD STYLING (Shared/Desktop Defaults) */
     .card {
       background: #3C2F3E; 
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 70%;
-      min-width: 500px;
     }
 
-    /* ABOUT SECTION SPECIFIC LAYOUT */
-
-    #about-header {
-        width: 70%;
-    }
-
+    /* ABOUT SECTION HEADINGS (Shared/Desktop Defaults) */
     #about h1 {
         font-size: 4rem; 
         font-weight: 700;
@@ -130,7 +162,6 @@
         margin-bottom: 0px; 
         color: white; 
     }
-    
     #about-header h2 {
         font-size: 2rem; 
         font-weight: 600;
@@ -140,14 +171,20 @@
         border-bottom: none;
         display: block;
     }
-
     #about-contact-summary {
         display: flex;
         gap: 30px;
         font-size: 1.1rem;
         color: #A1ABB0; 
         margin-bottom: 0;
+        align-items: center; /* Vertically align icon and text */
     }
+    #about-contact-summary span {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Space between icon and text */
+    }
+
 
     /* SOCIAL LINKS STYLING */
     #social-links {
@@ -173,43 +210,40 @@
         transform: translateY(-3px);
     }
 
-    #about-card {
-      background: #3C2F3E; 
-      padding: 40px;
-    }
-    
-    #about-card p {
-        font-size: 1.1rem;
-        margin-bottom: 0;
-    }
-
-
     /* TEXT STYLING for other sections */
     h1, h2 { 
-      font-family: 'Montserrat', sans-serif; /* Headings font retained */
+      font-family: 'Montserrat', sans-serif;
       margin-bottom: 15px; 
     }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
-
     p, ul { line-height: 1.6; }
-    
-    /* Ensure bold and italics work well across all text */
     strong { font-weight: 700; }
     em { font-style: italic; }
 
 
-    /* Mobile / responsive tweaks */
+    /* --- MOBILE / PORTRAIT-SPECIFIC TWEAKS (Max-width 768px) --- */
     @media (max-width: 768px) {
-      /* General mobile stack */
-      #about {
+      
+      /* --- GLOBAL MOBILE LAYOUT --- */
+      section {
+        padding: 50px 20px;
         align-items: center;
-        padding-top: 50px; 
       }
       .card, #about-header {
-        width: 100%;
+        width: 100%; /* Maximize card width within section padding */
         min-width: unset;
-        max-width: 90%;
-        padding: 20px;
+        max-width: unset;
+        box-sizing: border-box;
+      }
+      #about {
+        padding-top: 50px;
+        flex-direction: column; /* Stack elements vertically for mobile */
+        align-items: center; /* Center content horizontally */
+        gap: 25px; /* Space between stacked elements */
+      }
+      #about-left-column { /* Ensure this new container also stacks */
+          width: 100%;
+          align-items: center;
       }
       #about-header {
         text-align: center;
@@ -220,31 +254,108 @@
       #about-header h2 {
         font-size: 1.5rem;
       }
+      #about-card {
+        padding: 30px; 
+        order: 4; /* KEY FIX: Place about card below everything else on mobile */
+      }
+      #about-card p {
+        font-size: 1rem;
+      }
       #about-contact-summary {
         flex-direction: column;
         gap: 5px;
         margin-bottom: 10px;
+        text-align: center; /* Center text if stacked */
       }
       #social-links {
         justify-content: center;
         width: 100%;
+        order: 3; /* Place social links after contact summary */
       }
-      .content { margin-top: 70px; }
-      
+      #about-header {
+          order: 1;
+      }
+      #about-contact-summary {
+          order: 2;
+      }
+
+      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top Bar) --- */
       @media (orientation: portrait) {
-          /* Specific mobile portrait adjustments */
           .sidebar {
-            flex-direction: row; justify-content: space-around;
-            width: 100%; height: 70px;
+            position: fixed; top: 0; left: 0;
+            flex-direction: row; 
+            justify-content: space-around;
+            width: 100%; 
+            height: 60px;
             padding: 0 10px;
+            overflow-x: auto;
           }
-          .sidebar img { display: none; }
-          .content { margin-top: 70px; }
+          .sidebar img { 
+            display: none;
+          }
+          .sidebar a {
+            margin: 0;
+            padding: 0 10px;
+            line-height: 60px;
+            font-size: 0.9rem;
+          }
+          .content { 
+            margin-top: 60px;
+            margin-left: 0;
+          }
+          #about {
+            padding-top: 30px;
+          }
       }
-    }
-    @media (max-width: 768px) and (orientation: landscape) {
-      /* Specific mobile landscape adjustments */
-      .content { margin-left: 240px; width: calc(100% - 240px); }
+      
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav) --- */
+      @media (orientation: landscape) {
+         .sidebar {
+            width: 120px;
+            padding: 10px 5px;
+         }
+         .sidebar img {
+            width: 80px; height: 80px;
+            margin-bottom: 15px;
+         }
+         .sidebar a { font-size: 0.9rem; margin: 8px 0; }
+         .content { 
+            margin-left: 120px; 
+            width: calc(100% - 120px); 
+         }
+         /* For landscape, about section should behave like desktop's row layout */
+         #about {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+         }
+         #about-left-column {
+             width: 40%;
+             min-width: unset; /* Remove min-width for smaller landscape screens */
+             max-width: unset;
+             align-items: flex-start;
+         }
+         #about-header {
+             text-align: left;
+         }
+         #about-card {
+             width: 60%;
+             max-width: unset; /* Remove max-width for smaller landscape screens */
+             min-width: unset;
+             order: unset; /* Revert order */
+         }
+         #social-links {
+             justify-content: flex-start;
+             order: unset; /* Revert order */
+         }
+         #about-header {
+            order: unset;
+         }
+         #about-contact-summary {
+            order: unset;
+         }
+      }
     }
   </style>
 </head>
@@ -265,26 +376,27 @@
 
     <section id="about" class="active">
         
-        <div id="about-header">
-            <h1>Hannah Susan Mathew</h1>
-            <h2>Data Analyst</h2>
-            <p id="about-contact-summary">
-                <span>Bangalore, Karnataka, India - 560001</span> 
-                | 
-                <span>+91 99999 99999</span>
-            </p>
+        <div id="about-left-column"> <div id="about-header">
+                <h1>Hannah Susan Mathew</h1>
+                <h2>Data Analyst</h2>
+                <p id="about-contact-summary">
+                    <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001</span> 
+                    | 
+                    <span><i class="fas fa-phone"></i> +91 99999 99999</span>
+                </p>
+            </div>
+            
+            <div id="social-links">
+                <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
 
         <div class="card" id="about-card">
             <p>
                 <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
             </p>
-        </div>
-        
-        <div id="social-links">
-            <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         
     </section>
@@ -371,18 +483,17 @@
       let currentIndex = 0;
       let isScrolling = false;
       
-      // MAPPING FOR SIDEBAR (Darker Background for Contrast)
+      // Color maps remain the same as previous iterations
       const sidebarColorMap = {
-        'about': '#332830',      // Raisin black
-        'skills': '#3C2F3E',     // Adjusted dark purple for contrast
-        'experience': '#45364B', // English Violet
-        'education': '#543E5B',  // English Violet lighter
-        'projects': '#62466B',   // English Violet
-        'awards': '#6D5A7B',     // Chinese Violet
-        'contact': '#776D8A'     // Chinese Violet
+        'about': '#332830',
+        'skills': '#3C2F3E',
+        'experience': '#45364B',
+        'education': '#543E5B',
+        'projects': '#62466B',
+        'awards': '#6D5A7B',
+        'contact': '#776D8A'
       };
 
-      // MAPPING FOR CARD (Lighter Background for Card)
       const cardColorMap = {
         'about': '#3C2F3E',
         'skills': '#45364B',
@@ -390,10 +501,9 @@
         'education': '#62466B',
         'projects': '#6D5A7B',
         'awards': '#776D8A',
-        'contact': '#828099' // Slightly lighter shade
+        'contact': '#828099'
       };
       
-      // MAPPING FOR TEXT COLOR (White text for dark cards)
       const cardTextColorMap = {
         'about': '#FFFFFF',
         'skills': '#FFFFFF',
@@ -404,7 +514,6 @@
         'contact': '#FFFFFF' 
       };
       
-      // MAPPING FOR SECTION BACKGROUND (Section color will match the sidebar map for the "sunken" effect)
       const sectionBgMap = {
         'about': '#332830',
         'skills': '#3C2F3E',
