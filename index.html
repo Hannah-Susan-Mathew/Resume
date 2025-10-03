@@ -15,7 +15,8 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #2c3e50; color: white;
+      background: #0E1627; /* Updated to Navy */
+      color: white;
       padding: 20px 10px;
       display: flex;
       flex-direction: column;
@@ -36,9 +37,9 @@
       text-decoration: none; color: white;
       font-weight: 600; font-size: 0.95rem;
       transition: color 0.3s;
-      text-transform: uppercase; /* ADJUSTMENT 3: Make sidebar links uppercase */
+      text-transform: uppercase;
     }
-    .sidebar a.active-link { color: #ffcc00; }
+    .sidebar a.active-link { color: #F4E1E0; } /* Updated to Blush for active link, or a contrasting color from the palette */
 
     /* Content container */
     .content {
@@ -61,7 +62,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      color: #fff;
+      color: white; /* Changed text color to white for better contrast with the new backgrounds */
       scroll-snap-align: start;
     }
     section.active {
@@ -71,16 +72,16 @@
 
     h1, h2 { margin-bottom: 15px; }
     h1 { font-size: 2rem; }
-    h2 { font-size: 1.6rem; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
+    h2 { font-size: 1.6rem; border-bottom: 2px solid #F4E1E0; /* Using Blush for the border */ display: inline-block; padding-bottom: 3px; }
 
-    /* Section background colors (Updated to use #skills instead of #technologies) */
-    #about { background: #1abc9c; }
-    #skills { background: #16a085; } /* ADJUSTMENT 1: Renamed from #technologies */
-    #experience { background: #3498db; }
-    #education { background: #e67e22; } /* ADJUSTMENT 2: Kept original color, position moved */
-    #projects { background: #9b59b6; }
-    #awards { background: #f39c12; } 
-    #contact { background: #e74c3c; }
+    /* Section background colors - Mapped to the provided palette */
+    #about { background: #0E1627; } /* Navy */
+    #skills { background: #BD8E89; } /* Mauve */
+    #experience { background: #7F6269; } /* Prune */
+    #education { background: #E5C5C1; } /* Pink */
+    #projects { background: #BD8E89; } /* Mauve */
+    #awards { background: #F4E1E0; } /* Blush */
+    #contact { background: #7F6269; } /* Prune */
 
     p, ul { line-height: 1.6; }
 
@@ -100,7 +101,7 @@
         width: 100%; height: 70px;
         flex-direction: row; justify-content: space-around;
         padding: 0 10px;
-        background: #2c3e50;
+        background: #0E1627; /* Updated to Navy */
         z-index: 10;
       }
       .sidebar img { display: none; }
@@ -118,8 +119,10 @@
   <div class="sidebar" id="sidebar">
     <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
     <a href="#about">About</a>
-    <a href="#skills">Skills</a> <a href="#experience">Experience</a>
-    <a href="#education">Education</a> <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
     <a href="#awards">Awards</a>
     <a href="#contact">Contact</a>
   </div>
@@ -139,13 +142,16 @@
       </ul>
     </section>
 
-    <section id="skills"> <h2>Skills</h2> <p>Languages, libraries, platforms, and soft skills I use:</p>
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>Languages, libraries, platforms, and soft skills I use:</p>
       <ul>
         <li>**Programming:** Python, R, Scala, SQL, Bash</li>
         <li>**Libraries:** Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
         <li>**Cloud/Big Data:** AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
         <li>**Tools/Visualization:** Tableau, Power BI, Git, Jupyter, VS Code</li>
-        <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li> </ul>
+        <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
+      </ul>
     </section>
 
     <section id="experience">
@@ -159,7 +165,7 @@
         <li>Implemented churn models with high precision</li>
       </ul>
     </section>
-    
+
     <section id="education">
       <h2>Education & Certifications</h2>
       <ul>
@@ -170,6 +176,7 @@
         <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
       </ul>
     </section>
+
     <section id="projects">
       <h2>Projects</h2>
       <ul>
@@ -178,7 +185,7 @@
         <li>Sentiment Analysis on political speeches</li>
       </ul>
     </section>
-    
+
     <section id="awards">
       <h2>Awards & Achievements</h2>
       <ul>
@@ -244,7 +251,7 @@
       links.forEach((link, idx) => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          scrollToSection(idx); 
+          scrollToSection(idx);
         });
       });
 
