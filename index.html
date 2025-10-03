@@ -11,7 +11,6 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    /* Setting Open Sans as the base font for the entire body */
     html, body { 
         height: 100%; 
         font-family: 'Open Sans', sans-serif;
@@ -50,7 +49,7 @@
       transition: color 0.3s;
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif;
-      white-space: nowrap; /* Prevent menu items from wrapping */
+      white-space: nowrap; 
     }
     .sidebar a.active-link { 
       color: #A1ABB0; 
@@ -62,7 +61,7 @@
       margin-left: 0; width: 100%; height: 100%;
       overflow-y: auto; scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
-      transition: margin-left 0.3s, width 0.3s; /* Transition for desktop margin change */
+      transition: margin-left 0.3s, width 0.3s;
     }
     
     /* Responsive rule for wider screens (769px+) */
@@ -98,7 +97,7 @@
         flex-direction: column; 
         align-items: flex-start;
         gap: 25px;
-        padding-top: 100px; /* Desktop padding */
+        padding-top: 100px; 
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } 
     #experience { background: #45364B; color: #FFFFFF; } 
@@ -121,6 +120,17 @@
 
     #about-header {
         width: 70%;
+        /* --- KEY CHANGES HERE FOR LAYOUT --- */
+        display: flex; /* Enable flexbox */
+        flex-wrap: wrap; /* Allow items to wrap if space is limited */
+        justify-content: space-between; /* Push contact info to left, social links to right */
+        align-items: flex-end; /* Align items to the bottom if they have different heights */
+    }
+
+    #about-main-info { /* New div to group name and title */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; /* Space between name/title and contact/social */
     }
 
     #about h1 {
@@ -139,6 +149,13 @@
         margin-bottom: 10px; 
         border-bottom: none;
         display: block;
+    }
+
+    #about-contact-social { /* New div to group contact and social links */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Align social links to the right */
+        gap: 10px; /* Space between contact summary and social links */
     }
 
     #about-contact-summary {
@@ -193,7 +210,6 @@
 
     p, ul { line-height: 1.6; }
     
-    /* Ensure bold and italics work well */
     strong { font-weight: 700; }
     em { font-style: italic; }
 
@@ -201,30 +217,42 @@
     /* --- MOBILE / RESPONSIVE TWEAKS (Max-width 768px) --- */
     @media (max-width: 768px) {
       
-      /* --- GLOBAL MOBILE CARD/HEADER SIZING --- */
       .card, #about-header {
         width: 100%;
         min-width: unset;
-        max-width: 90%; /* Use a max-width to keep some padding from edge */
+        max-width: 90%; 
         padding: 20px;
       }
       #about {
         align-items: center;
         padding-top: 50px; 
       }
+      
+      /* Reset desktop flex properties for mobile header */
       #about-header {
-        text-align: center;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 15px; /* Space between name block and contact/social */
       }
-      #about h1 {
-        font-size: 2.5rem;
+      #about-main-info { /* Ensure name and title are centered */
+          align-items: center;
+          margin-bottom: 0; /* No extra margin here */
+      }
+      #about-header h1 {
+          font-size: 2.5rem;
       }
       #about-header h2 {
-        font-size: 1.5rem;
+          font-size: 1.5rem;
+      }
+      #about-contact-social {
+          align-items: center; /* Center contact info and social links on mobile */
+          gap: 10px;
       }
       #about-contact-summary {
         flex-direction: column;
         gap: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 0;
       }
       #social-links {
         justify-content: center;
@@ -234,37 +262,36 @@
       /* --- PORTRAIT-SPECIFIC NAVIGATION FIX --- */
       @media (orientation: portrait) {
           .sidebar {
-            /* Transform vertical sidebar into a fixed horizontal top nav */
             position: fixed; top: 0; left: 0;
             flex-direction: row; 
             justify-content: space-around;
             width: 100%; 
-            height: 60px; /* Reduced height for top bar */
+            height: 60px; 
             padding: 0 10px;
-            overflow-x: auto; /* Allow scrolling if links exceed width */
+            overflow-x: auto; 
           }
           .sidebar img { 
-            display: none; /* Hide profile image in mobile top bar */
+            display: none; 
           }
           .sidebar a {
             margin: 0;
             padding: 0 10px;
-            line-height: 60px; /* Vertically center text in the bar */
-            font-size: 0.9rem; /* Smaller font for menu items */
+            line-height: 60px; 
+            font-size: 0.9rem; 
           }
           .content { 
-            margin-top: 60px; /* Push content down below the fixed top nav */
-            margin-left: 0; /* Ensure content starts at left edge */
+            margin-top: 60px; 
+            margin-left: 0;
           }
           #about {
-            padding-top: 30px; /* Adjust padding since the top bar is now covering the original top space */
+            padding-top: 30px; 
           }
       }
       
       /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Keep vertical nav, but smaller) --- */
       @media (orientation: landscape) {
          .sidebar {
-            width: 120px; /* Narrower sidebar for landscape */
+            width: 120px; 
             padding: 10px 5px;
          }
          .sidebar img {
@@ -298,25 +325,26 @@
     <section id="about" class="active">
         
         <div id="about-header">
-            <h1>Hannah Susan Mathew</h1>
-            <h2>Data Analyst</h2>
-            <p id="about-contact-summary">
-                <span>Bangalore, Karnataka, India - 560001</span> 
-                | 
-                <span>+91 99999 99999</span>
-            </p>
+            <div id="about-main-info"> <h1>Hannah Susan Mathew</h1>
+                <h2>Data Analyst</h2>
+            </div>
+            <div id="about-contact-social"> <p id="about-contact-summary">
+                    <span>Bangalore, Karnataka, India - 560001</span> 
+                    | 
+                    <span>+91 99999 99999</span>
+                </p>
+                <div id="social-links">
+                    <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
         </div>
 
         <div class="card" id="about-card">
             <p>
                 <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
             </p>
-        </div>
-        
-        <div id="social-links">
-            <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         
     </section>
