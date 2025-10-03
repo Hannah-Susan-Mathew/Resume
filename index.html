@@ -11,6 +11,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Setting Open Sans as the base font for the entire body */
     html, body { 
         height: 100%; 
         font-family: 'Open Sans', sans-serif;
@@ -43,19 +44,17 @@
     }
     .sidebar a {
       display: block; margin: 12px 0;
-      text-decoration: none; 
-      color: #A1ABB0; /* Cadet Gray - DEFAULT/INACTIVE LINK COLOR */
+      text-decoration: none; color: white;
       font-weight: 600; 
-      font-size: 1.1rem; /* Base font size */
+      font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif;
-      white-space: nowrap; 
+      white-space: nowrap;
     }
     .sidebar a.active-link { 
-      color: white; /* White - ACTIVE LINK COLOR */
+      color: #A1ABB0; 
       font-weight: 700; 
-      font-size: 1.2rem; /* Increased font size for active link */
     } 
 
     /* Content container */
@@ -72,16 +71,13 @@
         margin-left: 220px; 
         width: calc(100% - 220px); 
       }
-      #social-links {
-          margin-top: 5px; 
-      }
     }
 
     /* SECTION STYLING */
     section {
       min-height: 100vh;
       box-sizing: border-box;
-      padding: 50px 40px;
+      padding: 50px 40px; /* Desktop padding */
       display: flex;
       flex-direction: column; 
       justify-content: center;
@@ -99,14 +95,10 @@
     #about { 
         background: #332830; 
         color: #FFFFFF; 
-        display: flex; 
-        flex-direction: row; 
-        /* CRITICAL: Center content vertically */
-        align-items: center; 
-        justify-content: center; 
-        gap: 40px; 
-        padding: 50px 40px; 
-        min-height: 100vh;
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 25px;
+        padding-top: 100px;
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } 
     #experience { background: #45364B; color: #FFFFFF; } 
@@ -121,28 +113,14 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 60%; 
-      max-width: 700px;
-      min-width: 500px; 
+      width: 70%; 
+      min-width: 500px;
     }
-    
+
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        width: 40%; 
-        max-width: 500px; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-    }
-    
-    /* Contact and Social Links Container */
-    #contact-social-bar {
-        display: flex;
-        align-items: center; 
-        margin-top: 10px; 
-        flex-wrap: wrap; 
-        gap: 15px; 
+        width: 70%;
     }
 
     #about h1 {
@@ -158,49 +136,35 @@
         font-weight: 600;
         color: #A1ABB0; 
         margin-top: 5px;
-        margin-bottom: 0px; 
+        margin-bottom: 10px; 
         border-bottom: none;
         display: block;
     }
 
     #about-contact-summary {
         display: flex;
-        gap: 30px; 
-        margin-right: 40px; 
+        gap: 30px;
         font-size: 1.1rem;
         color: #A1ABB0; 
-        line-height: 1; 
-        /* INCREASED SPACE */
-        margin-bottom: 20px; 
+        margin-bottom: 0;
     }
-    #about-contact-summary span {
-        white-space: nowrap; 
-    }
-    
-    /* ICON STYLING */
-    #about-contact-summary i {
-        margin-right: 5px;
-        color: #A1ABB0; 
-    }
-
 
     /* SOCIAL LINKS STYLING */
     #social-links {
         display: flex;
-        gap: 20px; 
+        gap: 15px;
         margin-bottom: 0;
     }
     #social-links a {
         display: flex;
         justify-content: center;
         align-items: center;
-        /* INCREASED SIZE */
-        width: 50px; 
+        width: 50px;
         height: 50px;
         border-radius: 50%;
         background-color: #543E5B; 
         color: #FFFFFF;
-        font-size: 1.5rem; /* INCREASED FONT SIZE */
+        font-size: 1.5rem;
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
@@ -211,11 +175,11 @@
 
     #about-card {
       background: #3C2F3E; 
-      padding: 40px;
+      padding: 40px; /* Desktop padding */
     }
     
     #about-card p {
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Desktop font size */
         margin-bottom: 0;
     }
 
@@ -229,6 +193,7 @@
 
     p, ul { line-height: 1.6; }
     
+    /* Ensure bold and italics work well */
     strong { font-weight: 700; }
     em { font-style: italic; }
 
@@ -236,88 +201,81 @@
     /* --- MOBILE / RESPONSIVE TWEAKS (Max-width 768px) --- */
     @media (max-width: 768px) {
       
-      .card, #about-header {
-        width: 100%;
-        min-width: unset;
-        max-width: 90%; 
-        padding: 20px;
+      /* --- GLOBAL MOBILE CARD/HEADER SIZING FIX --- */
+      section {
+        padding: 50px 20px; /* Increased overall horizontal padding for breathing room */
       }
+      .card, #about-header {
+        width: 100%; /* Take up the full width allowed by the section padding */
+        min-width: unset;
+        max-width: unset; /* Remove max-width restriction */
+        box-sizing: border-box; /* Include padding in the width calculation */
+        padding: 25px; /* Slightly reduced internal card padding from 30px/40px to 25px */
+      }
+      #about-card {
+        padding: 30px; /* Keep about card slightly larger padding */
+      }
+      #about-card p {
+        font-size: 1rem; /* KEY CHANGE: Smaller font size for mobile text */
+      }
+
+      /* --- GENERAL MOBILE STYLES --- */
       #about {
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
+        align-items: center;
         padding-top: 50px; 
       }
-      
-      /* Reset desktop properties for mobile header */
       #about-header {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          gap: 15px; 
+        text-align: center;
       }
-      
-      /* Mobile adjustment for the single bar */
-      #contact-social-bar {
-          flex-direction: column; 
-          gap: 10px; 
-      }
-      
-      #about-header h1 {
-          font-size: 2.5rem;
+      #about h1 {
+        font-size: 2.5rem;
       }
       #about-header h2 {
-          font-size: 1.5rem;
+        font-size: 1.5rem;
       }
       #about-contact-summary {
-        margin-right: 0; 
-        margin-bottom: 0; /* Handled by flex gap on mobile */
-        flex-direction: column; 
+        flex-direction: column;
         gap: 5px;
+        margin-bottom: 10px;
       }
       #social-links {
         justify-content: center;
         width: 100%;
       }
       
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top bar) --- */
+      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX --- */
       @media (orientation: portrait) {
           .sidebar {
             position: fixed; top: 0; left: 0;
             flex-direction: row; 
             justify-content: space-around;
             width: 100%; 
-            height: 60px; 
+            height: 60px;
             padding: 0 10px;
-            overflow-x: auto; 
+            overflow-x: auto;
           }
           .sidebar img { 
-            display: none; 
+            display: none;
           }
           .sidebar a {
             margin: 0;
             padding: 0 10px;
-            line-height: 60px; 
-            font-size: 0.9rem; 
+            line-height: 60px;
+            font-size: 0.9rem;
           }
-          .sidebar a.active-link { 
-            color: white; 
-            font-weight: 700; 
-            font-size: 1rem; 
-          } 
           .content { 
-            margin-top: 60px; 
+            margin-top: 60px;
             margin-left: 0;
           }
           #about {
-            padding-top: 30px; 
+            padding-top: 30px;
           }
       }
       
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow vertical nav) --- */
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Keep vertical nav, but smaller) --- */
       @media (orientation: landscape) {
          .sidebar {
-            width: 120px; 
+            width: 120px;
             padding: 10px 5px;
          }
          .sidebar img {
@@ -353,24 +311,23 @@
         <div id="about-header">
             <h1>Hannah Susan Mathew</h1>
             <h2>Data Analyst</h2>
-            
-            <div id="contact-social-bar">
-                <p id="about-contact-summary">
-                    <span><i class="fas fa-map-marker-alt"></i>Bangalore, Karnataka, India - 560001</span> 
-                    <span><i class="fas fa-phone-alt"></i>+91 99999 99999</span>
-                </p>
-                <div id="social-links">
-                    <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
+            <p id="about-contact-summary">
+                <span>Bangalore, Karnataka, India - 560001</span> 
+                | 
+                <span>+91 99999 99999</span>
+            </p>
         </div>
 
         <div class="card" id="about-card">
             <p>
                 <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
             </p>
+        </div>
+        
+        <div id="social-links">
+            <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         
     </section>
@@ -457,6 +414,7 @@
       let currentIndex = 0;
       let isScrolling = false;
       
+      // Color maps remain the same as previous iterations
       const sidebarColorMap = {
         'about': '#332830',
         'skills': '#3C2F3E',
@@ -499,12 +457,15 @@
 
 
       function applySectionStyles(sectionId, index) {
+        // 1. Update Sidebar Background
         if (sidebarColorMap[sectionId]) {
           sidebar.style.background = sidebarColorMap[sectionId];
         }
 
+        // 2. Update Section Background
         sections[index].style.backgroundColor = sectionBgMap[sectionId];
         
+        // 3. Update Card Colors
         const cardElement = document.getElementById(sectionId + '-card');
         if (cardElement && cardColorMap[sectionId]) {
             cardElement.style.backgroundColor = cardColorMap[sectionId];
@@ -535,6 +496,7 @@
         setTimeout(() => { isScrolling = false; }, 800);
       }
 
+      // Initial activation and styling
       activateSection(0);
 
       window.addEventListener('wheel', e => {
