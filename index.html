@@ -1,1219 +1,612 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Hannah Susan Mathew</title>
-
-  
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
-  
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
-
-  <style>
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* Setting Open Sans as the base font for the entire body */
-
-    html, body { 
-
-        height: 100%; 
-
-        font-family: 'Open Sans', sans-serif;
-
-        overflow-x: hidden; 
-
-        margin: 0; 
-
-    }
-
-    body { display: flex; }
-
-
-
-    /* --- SIDEBAR (DESKTOP DEFAULT) --- */
-
-    .sidebar {
-
-      position: fixed; top: 0; left: 0;
-
-      width: 220px; height: 100%;
-
-      background: #332830;
-
-      color: white;
-
-      padding: 20px 10px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      justify-content: center;
-
-      z-index: 10;
-
-      transition: background 0.5s;
-
-    }
-
-    .sidebar img {
-
-      width: 150px;
-
-      height: 150px;
-
-      border-radius: 50%;
-
-      object-fit: cover;
-
-      margin-bottom: 25px;
-
-      border: 5px solid #A1ABB0;
-
-    }
-
-    .sidebar a {
-
-      display: block; margin: 12px 0;
-
-      text-decoration: none; color: white;
-
-      font-weight: 600; 
-
-      font-size: 1.1rem; 
-
-      transition: color 0.3s;
-
-      text-transform: uppercase; 
-
-      font-family: 'Montserrat', sans-serif;
-
-      white-space: nowrap;
-
-    }
-
-    .sidebar a.active-link { 
-
-      color: #A1ABB0; 
-
-      font-weight: 700; 
-
-    } 
-
-
-
-    /* --- CONTENT CONTAINER (DESKTOP DEFAULT) --- */
-
-    .content {
-
-      margin-left: 0; width: 100%; height: 100%;
-
-      overflow-y: auto; scroll-behavior: smooth;
-
-      scroll-snap-type: y mandatory;
-
-      transition: margin-left 0.3s, width 0.3s;
-
-    }
-
-    
-
-    /* --- DESKTOP/LANDSCAPE VIEW (>768px) --- */
-
-    @media (min-width: 769px) {
-
-      .content { 
-
-        margin-left: 220px; 
-
-        width: calc(100% - 220px); 
-
-      }
-
-      section {
-
-          padding: 50px 40px;
-
-      }
-
-
-
-      /* ABOUT SECTION DESKTOP LAYOUT */
-
-      #about {
-
-          flex-direction: row; /* Arrange items in a row */
-
-          justify-content: center;
-
-          align-items: center; /* Vertically center main items */
-
-          gap: 50px; /* Space between the two columns */
-
-          padding-top: 50px; /* Adjust padding if needed for desktop */
-
-      }
-
-      #about-left-column { /* New container for name, contact, social */
-
-          display: flex;
-
-          flex-direction: column;
-
-          align-items: flex-start;
-
-          width: 40%; /* Allocate width for the left column */
-
-          min-width: 300px; /* Ensure a minimum width */
-
-          max-width: 500px; /* Prevent it from getting too wide */
-
-      }
-
-      #about-header {
-
-          width: 100%; /* Make header take full width of its column */
-
-          text-align: left; /* Align text left */
-
-      }
-
-      #about-card {
-
-          width: 60%; /* Allocate width for the right column */
-
-          max-width: 700px; /* Prevent it from getting too wide */
-
-          min-width: 400px;
-
-          padding: 40px;
-
-      }
-
-      #social-links {
-
-          justify-content: flex-start; /* Align social links to the left */
-
-      }
-
-
-
-      /* Reverting general card and header size to desktop default */
-
-      .card {
-
-          padding: 30px;
-
-      }
-
-      #about-card p {
-
-          font-size: 1.1rem;
-
-      }
-
-    }
-
-
-
-    /* SECTION STYLING */
-
-    section {
-
-      min-height: 100vh;
-
-      box-sizing: border-box;
-
-      padding: 50px 40px; 
-
-      display: flex;
-
-      flex-direction: column; 
-
-      justify-content: center;
-
-      opacity: 0;
-
-      transform: translateY(40px);
-
-      transition: opacity 0.8s ease, transform 0.8s ease;
-
-      color: #FFFFFF; 
-
-      scroll-snap-align: start;
-
-    }
-
-    section.active {
-
-      opacity: 1;
-
-      transform: translateY(0);
-
-    }
-
-    /* Section background colors */
-
-    #about { 
-
-        background: #332830; 
-
-        color: #FFFFFF; 
-
-        gap: 25px;
-
-        padding-top: 100px;
-
-    } 
-
-    #skills { background: #3C2F3E; color: #FFFFFF; } 
-
-    #experience { background: #45364B; color: #FFFFFF; } 
-
-    #education { background: #543E5B; color: #FFFFFF; } 
-
-    #projects { background: #62466B; color: #FFFFFF; } 
-
-    #awards { background: #6D5A7B; color: #FFFFFF; } 
-
-    #contact { background: #776D8A; color: #FFFFFF; } 
-
-    
-
-    /* CARD STYLING (Shared/Desktop Defaults) */
-
-    .card {
-
-      background: #3C2F3E; 
-
-      padding: 30px;
-
-      border-radius: 12px;
-
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    }
-
-
-
-    /* ABOUT SECTION HEADINGS (Shared/Desktop Defaults) */
-
-    #about h1 {
-
-        font-size: 4rem; 
-
-        font-weight: 700;
-
-        line-height: 1.1;
-
-        margin-bottom: 0px; 
-
-        color: white; 
-
-    }
-
-    #about-header h2 {
-
-        font-size: 2rem; 
-
-        font-weight: 600;
-
-        color: #A1ABB0; 
-
-        margin-top: 5px;
-
-        margin-bottom: 10px; 
-
-        border-bottom: none;
-
-        display: block;
-
-    }
-
-    #about-contact-summary {
-
-        display: flex;
-
-        gap: 30px;
-
-        font-size: 1.1rem;
-
-        color: #A1ABB0; 
-
-        margin-bottom: 0;
-
-        align-items: center; /* Vertically align icon and text */
-
-    }
-
-    #about-contact-summary span {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 8px; /* Space between icon and text */
-
-    }
-
-
-
-
-
-    /* SOCIAL LINKS STYLING */
-
-    #social-links {
-
-        display: flex;
-
-        gap: 15px;
-
-        margin-bottom: 0;
-
-    }
-
-    #social-links a {
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-
-        width: 50px;
-
-        height: 50px;
-
-        border-radius: 50%;
-
-        background-color: #543E5B; 
-
-        color: #FFFFFF;
-
-        font-size: 1.5rem;
-
-        text-decoration: none;
-
-        transition: background-color 0.3s ease, transform 0.3s ease;
-
-    }
-
-    #social-links a:hover {
-
-        background-color: #62466B; 
-
-        transform: translateY(-3px);
-
-    }
-
-
-
-    /* TEXT STYLING for other sections */
-
-    h1, h2 { 
-
-      font-family: 'Montserrat', sans-serif;
-
-      margin-bottom: 15px; 
-
-    }
-
-    h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
-
-    p, ul { line-height: 1.6; }
-
-    strong { font-weight: 700; }
-
-    em { font-style: italic; }
-
-
-
-
-
-    /* --- MOBILE / PORTRAIT-SPECIFIC TWEAKS (Max-width 768px) --- */
-
-    @media (max-width: 768px) {
-
-      
-
-      /* --- GLOBAL MOBILE LAYOUT --- */
-
-      section {
-
-        padding: 50px 20px;
-
-        align-items: center;
-
-      }
-
-      .card, #about-header {
-
-        width: 100%; /* Maximize card width within section padding */
-
-        min-width: unset;
-
-        max-width: unset;
-
-        box-sizing: border-box;
-
-      }
-
-      #about {
-
-        padding-top: 50px;
-
-        flex-direction: column; /* Stack elements vertically for mobile */
-
-        align-items: center; /* Center content horizontally */
-
-        gap: 25px; /* Space between stacked elements */
-
-      }
-
-      #about-left-column { /* Ensure this new container also stacks */
-
-          width: 100%;
-
-          align-items: center;
-
-      }
-
-      #about-header {
-
-        text-align: center;
-
-      }
-
-      #about h1 {
-
-        font-size: 2.5rem;
-
-      }
-
-      #about-header h2 {
-
-        font-size: 1.5rem;
-
-      }
-
-      #about-card {
-
-        padding: 30px; 
-
-        order: 4; /* KEY FIX: Place about card below everything else on mobile */
-
-      }
-
-      #about-card p {
-
-        font-size: 1rem;
-
-      }
-
-      #about-contact-summary {
-
-        flex-direction: column;
-
-        gap: 5px;
-
-        margin-bottom: 10px;
-
-        text-align: center; /* Center text if stacked */
-
-      }
-
-      #social-links {
-
-        justify-content: center;
-
-        width: 100%;
-
-        order: 3; /* Place social links after contact summary */
-
-      }
-
-      #about-header {
-
-          order: 1;
-
-      }
-
-      #about-contact-summary {
-
-          order: 2;
-
-      }
-
-
-
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top Bar) --- */
-
-      @media (orientation: portrait) {
-
-          .sidebar {
-
-            position: fixed; top: 0; left: 0;
-
-            flex-direction: row; 
-
-            justify-content: space-around;
-
-            width: 100%; 
-
-            height: 60px;
-
-            padding: 0 10px;
-
-            overflow-x: auto;
-
-          }
-
-          .sidebar img { 
-
-            display: none;
-
-          }
-
-          .sidebar a {
-
-            margin: 0;
-
-            padding: 0 10px;
-
-            line-height: 60px;
-
-            font-size: 0.9rem;
-
-          }
-
-          .content { 
-
-            margin-top: 60px;
-
-            margin-left: 0;
-
-          }
-
-          #about {
-
-            padding-top: 30px;
-
-          }
-
-      }
-
-      
-
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav) --- */
-
-      @media (orientation: landscape) {
-
-         .sidebar {
-
-            width: 120px;
-
-            padding: 10px 5px;
-
-         }
-
-         .sidebar img {
-
-            width: 80px; height: 80px;
-
-            margin-bottom: 15px;
-
-         }
-
-         .sidebar a { font-size: 0.9rem; margin: 8px 0; }
-
-         .content { 
-
-            margin-left: 120px; 
-
-            width: calc(100% - 120px); 
-
-         }
-
-         /* For landscape, about section should behave like desktop's row layout */
-
-         #about {
-
-            flex-direction: row;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 50px;
-
-         }
-
-         #about-left-column {
-
-             width: 40%;
-
-             min-width: unset; /* Remove min-width for smaller landscape screens */
-
-             max-width: unset;
-
-             align-items: flex-start;
-
-         }
-
-         #about-header {
-
-             text-align: left;
-
-         }
-
-         #about-card {
-
-             width: 60%;
-
-             max-width: unset; /* Remove max-width for smaller landscape screens */
-
-             min-width: unset;
-
-             order: unset; /* Revert order */
-
-         }
-
-         #social-links {
-
-             justify-content: flex-start;
-
-             order: unset; /* Revert order */
-
-         }
-
-         #about-header {
-
-            order: unset;
-
-         }
-
-         #about-contact-summary {
-
-            order: unset;
-
-         }
-
-      }
-
-    }
-
-  </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hannah Susan Mathew</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Setting Open Sans as the base font for the entire body */
+    html, body { 
+        height: 100%; 
+        font-family: 'Open Sans', sans-serif;
+        overflow-x: hidden; 
+        margin: 0; 
+    }
+    body { display: flex; }
+
+    /* --- SIDEBAR (DESKTOP DEFAULT) --- */
+    .sidebar {
+      position: fixed; top: 0; left: 0;
+      width: 220px; height: 100%;
+      background: #332830;
+      color: white;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.5s;
+    }
+    .sidebar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 25px;
+      border: 5px solid #A1ABB0;
+    }
+    .sidebar a {
+      display: block; margin: 12px 0;
+      text-decoration: none; color: white;
+      font-weight: 600; 
+      font-size: 1.1rem; 
+      transition: color 0.3s;
+      text-transform: uppercase; 
+      font-family: 'Montserrat', sans-serif;
+      white-space: nowrap;
+    }
+    .sidebar a.active-link { 
+      color: #A1ABB0; 
+      font-weight: 700; 
+    } 
+
+    /* --- CONTENT CONTAINER (DESKTOP DEFAULT) --- */
+    .content {
+      margin-left: 0; width: 100%; height: 100%;
+      overflow-y: auto; scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      transition: margin-left 0.3s, width 0.3s;
+    }
+    
+    /* --- DESKTOP/LANDSCAPE VIEW (>768px) --- */
+    @media (min-width: 769px) {
+      .content { 
+        margin-left: 220px; 
+        width: calc(100% - 220px); 
+      }
+      section {
+          padding: 50px 40px;
+      }
+
+      /* ABOUT SECTION DESKTOP LAYOUT */
+      #about {
+          flex-direction: row; /* Arrange items in a row */
+          justify-content: center;
+          align-items: center;
+          gap: 50px;
+          padding-top: 50px;
+      }
+      #about-left-column {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 40%;
+          min-width: 300px;
+          max-width: 500px;
+          gap: 20px; /* NEW: Added vertical gap here for desktop/landscape */
+      }
+      #about-header {
+          width: 100%;
+          text-align: left;
+      }
+      #about-card {
+          width: 60%;
+          max-width: 700px;
+          min-width: 400px;
+          padding: 40px;
+      }
+      #social-links {
+          justify-content: flex-start; /* Align social links to the left */
+      }
+
+      /* Reverting general card and header size to desktop default */
+      .card {
+          padding: 30px;
+      }
+      #about-card p {
+          font-size: 1.1rem;
+      }
+    }
+
+    /* SECTION STYLING */
+    section {
+      min-height: 100vh;
+      box-sizing: border-box;
+      padding: 50px 40px; 
+      display: flex;
+      flex-direction: column; 
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      color: #FFFFFF; 
+      scroll-snap-align: start;
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Section background colors */
+    #about { 
+        background: #332830; 
+        color: #FFFFFF; 
+        gap: 25px;
+        padding-top: 100px;
+    } 
+    #skills { background: #3C2F3E; color: #FFFFFF; } 
+    #experience { background: #45364B; color: #FFFFFF; } 
+    #education { background: #543E5B; color: #FFFFFF; } 
+    #projects { background: #62466B; color: #FFFFFF; } 
+    #awards { background: #6D5A7B; color: #FFFFFF; } 
+    #contact { background: #776D8A; color: #FFFFFF; } 
+    
+    /* CARD STYLING (Shared/Desktop Defaults) */
+    .card {
+      background: #3C2F3E; 
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ABOUT SECTION HEADINGS (Shared/Desktop Defaults) */
+    #about h1 {
+        font-size: 4rem; 
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 0px; 
+        color: white; 
+    }
+    #about-header h2 {
+        font-size: 2rem; 
+        font-weight: 600;
+        color: #A1ABB0; 
+        margin-top: 5px;
+        margin-bottom: 10px; 
+        border-bottom: none;
+        display: block;
+    }
+    #about-contact-summary {
+        display: flex;
+        gap: 30px;
+        font-size: 1.1rem;
+        color: #A1ABB0; 
+        margin-bottom: 0;
+        align-items: center; /* Vertically align icon and text */
+        flex-wrap: wrap; /* Allow wrapping on narrow screens */
+        justify-content: center; /* Center items when they wrap on mobile */
+    }
+    #about-contact-summary span {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Space between icon and text */
+    }
+
+
+    /* SOCIAL LINKS STYLING */
+    #social-links {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 0;
+    }
+    #social-links a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #543E5B; 
+        color: #FFFFFF;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    #social-links a:hover {
+        background-color: #62466B; 
+        transform: translateY(-3px);
+    }
+
+    /* TEXT STYLING for other sections */
+    h1, h2 { 
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 15px; 
+    }
+    h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
+    p, ul { line-height: 1.6; }
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+
+    /* --- MOBILE / PORTRAIT-SPECIFIC TWEAKS (Max-width 768px) --- */
+    @media (max-width: 768px) {
+      
+      /* --- GLOBAL MOBILE LAYOUT --- */
+      section {
+        padding: 50px 20px;
+        align-items: center;
+      }
+      .card, #about-header {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+        box-sizing: border-box;
+      }
+      #about {
+        padding-top: 50px;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+      #about-left-column {
+          width: 100%;
+          align-items: center;
+          gap: 15px; /* Mobile gap remains small */
+      }
+      #about-header {
+        text-align: center;
+      }
+      #about h1 {
+        font-size: 2.5rem;
+      }
+      #about-header h2 {
+        font-size: 1.5rem;
+      }
+      #about-card {
+        padding: 30px; 
+        order: 4; /* Place about card below everything else on mobile */
+      }
+      #about-card p {
+        font-size: 1rem;
+      }
+      #about-contact-summary {
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      #social-links {
+        justify-content: center;
+        width: 100%;
+        order: 3;
+      }
+      #about-header {
+          order: 1;
+      }
+      #about-contact-summary {
+          order: 2;
+      }
+
+      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top Bar) --- */
+      @media (orientation: portrait) {
+          .sidebar {
+            position: fixed; top: 0; left: 0;
+            flex-direction: row; 
+            justify-content: space-around;
+            width: 100%; 
+            height: 60px;
+            padding: 0 10px;
+            overflow-x: auto;
+          }
+          .sidebar img { 
+            display: none;
+          }
+          .sidebar a {
+            margin: 0;
+            padding: 0 10px;
+            line-height: 60px;
+            font-size: 0.9rem;
+          }
+          .content { 
+            margin-top: 60px;
+            margin-left: 0;
+          }
+          #about {
+            padding-top: 30px;
+          }
+      }
+      
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav & Desktop Layout) --- */
+      @media (orientation: landscape) {
+         .sidebar {
+            width: 120px;
+            padding: 10px 5px;
+         }
+         .sidebar img {
+            width: 80px; height: 80px;
+            margin-bottom: 15px;
+         }
+         .sidebar a { font-size: 0.9rem; margin: 8px 0; }
+         .content { 
+            margin-left: 120px; 
+            width: calc(100% - 120px); 
+         }
+         /* Re-apply desktop-like row layout for landscape */
+         #about {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+         }
+         #about-left-column {
+             width: 40%;
+             min-width: unset;
+             max-width: unset;
+             align-items: flex-start;
+             gap: 20px; /* NEW: Landscape gap restored */
+         }
+         #about-header {
+             text-align: left;
+         }
+         #about-card {
+             width: 60%;
+             max-width: unset;
+             min-width: unset;
+             order: unset;
+         }
+         #social-links {
+             justify-content: flex-start;
+             order: unset;
+         }
+         #about-header, #about-contact-summary {
+            order: unset;
+         }
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-
-
-  <div class="sidebar" id="sidebar">
-
-    <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
-
-    <a href="#about">About</a>
-
-    <a href="#skills">Skills</a>
-
-    <a href="#experience">Experience</a>
-
-    <a href="#education">Education</a>
-
-    <a href="#projects">Projects</a>
-
-    <a href="#awards">Awards</a>
-
-    <a href="#contact">Contact</a>
-
-  </div>
-
-
-
-  <div class="content" id="content">
-
-
-
-    <section id="about" class="active">
-
-        
-
-        <div id="about-left-column"> <div id="about-header">
-
-                <h1>Hannah Susan Mathew</h1>
-
-                <h2>Data Analyst</h2>
-
-                <p id="about-contact-summary">
-
-                    <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001</span> 
-
-                    | 
-
-                    <span><i class="fas fa-phone"></i> +91 99999 99999</span>
-
-                </p>
-
-            </div>
-
-            
-
-            <div id="social-links">
-
-                <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-
-                <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-
-                <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card" id="about-card">
-
-            <p>
-
-                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
-
-            </p>
-
-        </div>
-
-        
-
-    </section>
-
-
-
-    <section id="skills">
-
-      <div class="card" id="skills-card">
-
-        <h2>Skills</h2>
-
-        <p>Languages, libraries, platforms, and soft skills I use:</p>
-
-        <ul>
-
-          <li><strong>Programming:</strong> Python, R, Scala, SQL, Bash</li>
-
-          <li><strong>Libraries:</strong> Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
-
-          <li><strong>Cloud/Big Data:</strong> AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
-
-          <li><strong>Tools/Visualization:</strong> Tableau, Power BI, Git, Jupyter, VS Code</li>
-
-          <li><strong>Soft Skills:</strong> Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
-
-        </ul>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="experience">
-
-      <div class="card" id="experience-card">
-
-        <h2>Professional Experience</h2>
-
-        <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present)</p>
-
-        <ul>
-
-          <li>Built and deployed 10+ interactive Tableau dashboards used globally</li>
-
-          <li>Analyzed telecom data (100M+ rows) to derive key KPIs</li>
-
-          <li>Designed ETL pipelines on AWS + Spark for scalable data processing</li>
-
-          <li>Worked cross-functionally with analytics teams and business units</li>
-
-          <li>Implemented churn models with high precision</li>
-
-        </ul>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="education">
-
-      <div class="card" id="education-card">
-
-        <h2>Education & Certifications</h2>
-
-        <ul>
-
-          <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
-
-          <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
-
-          <li>Associate Data Practitioner – Google Cloud (2025)</li>
-
-          <li>Cloud Digital Leader – Google Cloud (2025)</li>
-
-          <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
-
-        </ul>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="projects">
-
-      <div class="card" id="projects-card">
-
-        <h2>Projects</h2>
-
-        <ul>
-
-          <li>Telecom Churn Prediction using ML models</li>
-
-          <li>Airline Passenger Satisfaction (published IEEE paper)</li>
-
-          <li>Sentiment Analysis on political speeches</li>
-
-        </ul>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="awards">
-
-      <div class="card" id="awards-card">
-
-        <h2>Awards & Achievements</h2>
-
-        <ul>
-
-          <li><strong>Spot Award for Q4 2023</strong> - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
-
-          <li><strong>Best Paper Award</strong> - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
-
-          <li><strong>Top Performer in Data Analytics</strong> - Accenture, FY23.</li>
-
-        </ul>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="contact">
-
-      <div class="card" id="contact-card">
-
-        <h2>Contact</h2>
-
-        <p>📧 Email: hannahsusan.mathew@example.com</p>
-
-        <p>🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a></p>
-
-        <p>💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a></p>
-
-      </div>
-
-    </section>
-
-
-
-  </div>
-
-
-
-  <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-      const sections = document.querySelectorAll('.content section');
-
-      const links = document.querySelectorAll('.sidebar a');
-
-      const sidebar = document.getElementById('sidebar');
-
-      let currentIndex = 0;
-
-      let isScrolling = false;
-
-      
-
-      // Color maps remain the same as previous iterations
-
-      const sidebarColorMap = {
-
-        'about': '#332830',
-
-        'skills': '#3C2F3E',
-
-        'experience': '#45364B',
-
-        'education': '#543E5B',
-
-        'projects': '#62466B',
-
-        'awards': '#6D5A7B',
-
-        'contact': '#776D8A'
-
-      };
-
-
-
-      const cardColorMap = {
-
-        'about': '#3C2F3E',
-
-        'skills': '#45364B',
-
-        'experience': '#543E5B',
-
-        'education': '#62466B',
-
-        'projects': '#6D5A7B',
-
-        'awards': '#776D8A',
-
-        'contact': '#828099'
-
-      };
-
-      
-
-      const cardTextColorMap = {
-
-        'about': '#FFFFFF',
-
-        'skills': '#FFFFFF',
-
-        'experience': '#FFFFFF',
-
-        'education': '#FFFFFF',
-
-        'projects': '#FFFFFF',
-
-        'awards': '#FFFFFF',
-
-        'contact': '#FFFFFF' 
-
-      };
-
-      
-
-      const sectionBgMap = {
-
-        'about': '#332830',
-
-        'skills': '#3C2F3E',
-
-        'experience': '#45364B',
-
-        'education': '#543E5B',
-
-        'projects': '#62466B',
-
-        'awards': '#6D5A7B',
-
-        'contact': '#776D8A'
-
-      };
-
-
-
-
-
-      function applySectionStyles(sectionId, index) {
-
-        // 1. Update Sidebar Background
-
-        if (sidebarColorMap[sectionId]) {
-
-          sidebar.style.background = sidebarColorMap[sectionId];
-
-        }
-
-
-
-        // 2. Update Section Background
-
-        sections[index].style.backgroundColor = sectionBgMap[sectionId];
-
-        
-
-        // 3. Update Card Colors
-
-        const cardElement = document.getElementById(sectionId + '-card');
-
-        if (cardElement && cardColorMap[sectionId]) {
-
-            cardElement.style.backgroundColor = cardColorMap[sectionId];
-
-            cardElement.style.color = cardTextColorMap[sectionId];
-
-        }
-
-      }
-
-
-
-      function activateSection(index) {
-
-        if (index < 0) index = 0;
-
-        if (index > sections.length - 1) index = sections.length - 1;
-
-
-
-        sections.forEach((sec, i) => sec.classList.toggle('active', i === index));
-
-        links.forEach(link => link.classList.remove('active-link'));
-
-        if (links[index]) links[index].classList.add('active-link');
-
-
-
-        currentIndex = index;
-
-
-
-        const activeSectionId = sections[index].id;
-
-        applySectionStyles(activeSectionId, index);
-
-      }
-
-
-
-      function scrollToSection(index) {
-
-        if (index < 0 || index > sections.length - 1) return;
-
-        if (isScrolling) return;
-
-        isScrolling = true;
-
-        sections[index].scrollIntoView({ behavior: 'smooth' });
-
-        activateSection(index);
-
-        setTimeout(() => { isScrolling = false; }, 800);
-
-      }
-
-
-
-      // Initial activation and styling
-
-      activateSection(0);
-
-
-
-      window.addEventListener('wheel', e => {
-
-        if (isScrolling) return;
-
-        if (e.deltaY > 0 && currentIndex < sections.length - 1) {
-
-          scrollToSection(currentIndex + 1);
-
-        } else if (e.deltaY < 0 && currentIndex > 0) {
-
-          scrollToSection(currentIndex - 1);
-
-        }
-
-      }, { passive: false });
-
-
-
-      links.forEach((link, idx) => {
-
-        link.addEventListener('click', (e) => {
-
-          e.preventDefault();
-
-          scrollToSection(idx);
-
-        });
-
-      });
-
-
-
-      window.addEventListener('keydown', e => {
-
-        if (isScrolling) return;
-
-        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-
-          if (currentIndex < sections.length - 1) scrollToSection(currentIndex + 1);
-
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-
-          if (currentIndex > 0) scrollToSection(currentIndex - 1);
-
-        }
-
-      });
-
-
-
-      const observer = new IntersectionObserver((entries) => {
-
-        entries.forEach(entry => {
-
-          if (entry.isIntersecting && !isScrolling) {
-
-            const idx = Array.from(sections).indexOf(entry.target);
-
-            if (idx !== -1) activateSection(idx);
-
-          }
-
-        });
-
-      }, { threshold: 0.55 });
-
-
-
-      sections.forEach(sec => observer.observe(sec));
-
-    });
-
-  </script>
-
-
+  <div class="sidebar" id="sidebar">
+    <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="content" id="content">
+
+    <section id="about" class="active">
+        
+        <div id="about-left-column">
+            <div id="about-header">
+                <h1>Hannah Susan Mathew</h1>
+                <h2>Data Analyst</h2>
+                <p id="about-contact-summary">
+                    <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001</span> 
+                    <span><i class="fas fa-phone"></i> +91 99999 99999</span>
+                </p>
+            </div>
+            
+            <div id="social-links">
+                <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <div class="card" id="about-card">
+            <p>
+                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying **machine learning models** to drive predictive decisions.
+            </p>
+        </div>
+        
+    </section>
+
+    <section id="skills">
+      <div class="card" id="skills-card">
+        <h2>Skills</h2>
+        <p>Languages, libraries, platforms, and soft skills I use:</p>
+        <ul>
+          <li><strong>Programming:</strong> Python, R, Scala, SQL, Bash</li>
+          <li><strong>Libraries:</strong> Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
+          <li><strong>Cloud/Big Data:</strong> AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
+          <li><strong>Tools/Visualization:</strong> Tableau, Power BI, Git, Jupyter, VS Code</li>
+          <li><strong>Soft Skills:</strong> Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="card" id="experience-card">
+        <h2>Professional Experience</h2>
+        <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present)</p>
+        <ul>
+          <li>Built and deployed 10+ interactive Tableau dashboards used globally</li>
+          <li>Analyzed telecom data (100M+ rows) to derive key KPIs</li>
+          <li>Designed ETL pipelines on AWS + Spark for scalable data processing</li>
+          <li>Worked cross-functionally with analytics teams and business units</li>
+          <li>Implemented churn models with high precision</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="card" id="education-card">
+        <h2>Education & Certifications</h2>
+        <ul>
+          <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
+          <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
+          <li>Associate Data Practitioner – Google Cloud (2025)</li>
+          <li>Cloud Digital Leader – Google Cloud (2025)</li>
+          <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="card" id="projects-card">
+        <h2>Projects</h2>
+        <ul>
+          <li>Telecom Churn Prediction using ML models</li>
+          <li>Airline Passenger Satisfaction (published IEEE paper)</li>
+          <li>Sentiment Analysis on political speeches</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="card" id="awards-card">
+        <h2>Awards & Achievements</h2>
+        <ul>
+          <li><strong>Spot Award for Q4 2023</strong> - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
+          <li><strong>Best Paper Award</strong> - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
+          <li><strong>Top Performer in Data Analytics</strong> - Accenture, FY23.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card" id="contact-card">
+        <h2>Contact</h2>
+        <p>📧 Email: hannahsusan.mathew@example.com</p>
+        <p>🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a></p>
+        <p>💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.content section');
+      const links = document.querySelectorAll('.sidebar a');
+      const sidebar = document.getElementById('sidebar');
+      let currentIndex = 0;
+      let isScrolling = false;
+      
+      // Color maps remain the same as previous iterations
+      const sidebarColorMap = {
+        'about': '#332830',
+        'skills': '#3C2F3E',
+        'experience': '#45364B',
+        'education': '#543E5B',
+        'projects': '#62466B',
+        'awards': '#6D5A7B',
+        'contact': '#776D8A'
+      };
+
+      const cardColorMap = {
+        'about': '#3C2F3E',
+        'skills': '#45364B',
+        'experience': '#543E5B',
+        'education': '#62466B',
+        'projects': '#6D5A7B',
+        'awards': '#776D8A',
+        'contact': '#828099'
+      };
+      
+      const cardTextColorMap = {
+        'about': '#FFFFFF',
+        'skills': '#FFFFFF',
+        'experience': '#FFFFFF',
+        'education': '#FFFFFF',
+        'projects': '#FFFFFF',
+        'awards': '#FFFFFF',
+        'contact': '#FFFFFF' 
+      };
+      
+      const sectionBgMap = {
+        'about': '#332830',
+        'skills': '#3C2F3E',
+        'experience': '#45364B',
+        'education': '#543E5B',
+        'projects': '#62466B',
+        'awards': '#6D5A7B',
+        'contact': '#776D8A'
+      };
+
+
+      function applySectionStyles(sectionId, index) {
+        // 1. Update Sidebar Background
+        if (sidebarColorMap[sectionId]) {
+          sidebar.style.background = sidebarColorMap[sectionId];
+        }
+
+        // 2. Update Section Background
+        sections[index].style.backgroundColor = sectionBgMap[sectionId];
+        
+        // 3. Update Card Colors
+        const cardElement = document.getElementById(sectionId + '-card');
+        if (cardElement && cardColorMap[sectionId]) {
+            cardElement.style.backgroundColor = cardColorMap[sectionId];
+            cardElement.style.color = cardTextColorMap[sectionId];
+        }
+      }
+
+      function activateSection(index) {
+        if (index < 0) index = 0;
+        if (index > sections.length - 1) index = sections.length - 1;
+
+        sections.forEach((sec, i) => sec.classList.toggle('active', i === index));
+        links.forEach(link => link.classList.remove('active-link'));
+        if (links[index]) links[index].classList.add('active-link');
+
+        currentIndex = index;
+
+        const activeSectionId = sections[index].id;
+        applySectionStyles(activeSectionId, index);
+      }
+
+      function scrollToSection(index) {
+        if (index < 0 || index > sections.length - 1) return;
+        if (isScrolling) return;
+        isScrolling = true;
+        sections[index].scrollIntoView({ behavior: 'smooth' });
+        activateSection(index);
+        setTimeout(() => { isScrolling = false; }, 800);
+      }
+
+      // Initial activation and styling
+      activateSection(0);
+
+      window.addEventListener('wheel', e => {
+        if (isScrolling) return;
+        if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+          scrollToSection(currentIndex + 1);
+        } else if (e.deltaY < 0 && currentIndex > 0) {
+          scrollToSection(currentIndex - 1);
+        }
+      }, { passive: false });
+
+      links.forEach((link, idx) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToSection(idx);
+        });
+      });
+
+      window.addEventListener('keydown', e => {
+        if (isScrolling) return;
+        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+          if (currentIndex < sections.length - 1) scrollToSection(currentIndex + 1);
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          if (currentIndex > 0) scrollToSection(currentIndex - 1);
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isScrolling) {
+            const idx = Array.from(sections).indexOf(entry.target);
+            if (idx !== -1) activateSection(idx);
+          }
+        });
+      }, { threshold: 0.55 });
+
+      sections.forEach(sec => observer.observe(sec));
+    });
+  </script>
 
 </body>
-
 </html>
