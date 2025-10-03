@@ -90,7 +90,10 @@
     #about { 
         background: #332830; 
         color: #FFFFFF; 
-        gap: 0; /* REMOVED DEFAULT GAP */
+        /* Resetting the default column layout for the two-part About section */
+        flex-direction: row; 
+        align-items: center;
+        gap: 40px; /* Space between the photo/header and the card */
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } /* Dark Purple */
     #experience { background: #45364B; color: #FFFFFF; } /* English Violet */
@@ -108,16 +111,40 @@
     }
     
     /* ABOUT SECTION SPECIFIC LAYOUT */
-    #about {
-      flex-direction: column;
-      align-items: flex-start; 
-      justify-content: center;
-      /* gap removed in element style above */
+
+    #about-image-container {
+        /* Left Column: Image and Sidebar Navigation (simulated) */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 150px; /* Width of the profile image */
+        min-width: 150px;
+        margin-right: 50px; /* Space between the image column and the main content */
+    }
+
+    #about-image-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #A1ABB0;
+    }
+    
+    #about-content-area {
+        /* This is the container for the Name/Title/Socials (left) and the About Card (right) */
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        gap: 50px;
     }
 
     #about-header {
-        width: 100%;
-        margin-bottom: 0; /* Rely on individual element margins */
+        /* Left-side Header Content (Name, Title, Socials) */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     #about h1 {
@@ -126,6 +153,7 @@
         font-weight: 700;
         line-height: 1.1;
         margin-bottom: 0px; 
+        color: white; /* Ensure name is white */
     }
     
     #about-header h2 {
@@ -134,7 +162,7 @@
         font-weight: 600;
         color: #A1ABB0; /* Cadet Gray for subtle accent */
         margin-top: 5px;
-        margin-bottom: 10px; /* Reduced space after title */
+        margin-bottom: 10px; 
         border-bottom: none;
         display: block;
     }
@@ -144,15 +172,15 @@
         display: flex;
         gap: 30px;
         font-size: 1.1rem;
-        color: #A1ABB0; /* Cadet Gray for subtle accent */
-        margin-bottom: 15px; /* Reduced space before social links */
+        color: #A1ABB0; 
+        margin-bottom: 15px; 
     }
 
     /* SOCIAL LINKS STYLING */
     #social-links {
         display: flex;
         gap: 15px;
-        margin-bottom: 40px; /* Space before the content wrapper, can be adjusted */
+        margin-bottom: 0; /* No margin here, as we removed the content wrapper */
     }
     #social-links a {
         display: flex;
@@ -161,50 +189,52 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: #543E5B; /* A middle shade from your palette for the buttons */
+        background-color: #543E5B; 
         color: #FFFFFF;
         font-size: 1.5rem;
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
     #social-links a:hover {
-        background-color: #62466B; /* Slightly lighter on hover */
+        background-color: #62466B; 
         transform: translateY(-3px);
     }
 
-    #about-content-wrapper {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: flex-start;
-        gap: 50px;
-    }
-
-    #about-content-wrapper .card {
-      /* Right side (Details) */
-      flex: 2;
+    #about-card {
+      /* Right side Card (About Me details) */
+      flex: 2; /* Card takes up more space than the header content */
       background: #3C2F3E; 
       padding: 40px;
     }
 
 
-    /* TEXT STYLING */
+    /* TEXT STYLING for other sections */
     h1, h2 { 
       font-family: 'Montserrat', sans-serif; 
       margin-bottom: 15px; 
     }
-    h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; /* Cadet Gray for the border */ display: inline-block; padding-bottom: 3px; }
-    #about .card h2 { border-bottom: none; display: block; } /* Remove border from H2 inside the card */
+    h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
 
     p, ul { line-height: 1.6; }
 
     /* Mobile / responsive tweaks */
     @media (max-width: 768px) {
-      /* Stack 'About' section elements vertically on mobile */
+      /* Revert to stacking for mobile */
       #about {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
+      }
+      #about-content-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      #about-header {
         text-align: center;
+      }
+      #about-image-container {
+        display: none; /* Hide image container in the section on small screens if it's already in the sidebar */
       }
       #about h1 {
         font-size: 2.5rem;
@@ -219,14 +249,8 @@
       }
       #social-links {
         justify-content: center;
-        margin-bottom: 20px;
-      }
-      #about-content-wrapper {
-        flex-direction: column;
-        gap: 20px;
       }
       .content { margin-top: 70px; }
-      /* Card styling for smaller screens */
       .card { width: 100%; }
     }
     @media (max-width: 768px) and (orientation: landscape) {
@@ -268,34 +292,41 @@
   <div class="content" id="content">
 
     <section id="about" class="active">
-      <div id="about-header">
-        <h1>Hannah Susan Mathew</h1>
-        <h2>Data Analyst</h2>
-        <p id="about-contact-summary">
-            <span>Bangalore, Karnataka, India - 560001</span> 
-            | 
-            <span>+91 99999 99999</span>
-        </p>
-        <div id="social-links">
-          <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        
+        <div id="about-image-container">
+            <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" style="margin-bottom: 0;" />
         </div>
-      </div>
+        
+        <div id="about-content-area">
+            
+            <div id="about-header">
+                <h1>Hannah Susan Mathew</h1>
+                <h2>Data Analyst</h2>
+                <p id="about-contact-summary">
+                    <span>Bangalore, Karnataka, India - 560001</span> 
+                    | 
+                    <span>+91 99999 99999</span>
+                </p>
+                <div id="social-links">
+                    <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
 
-      <div id="about-content-wrapper">
-        <div style="flex: 1;"></div> 
-        <div class="card" id="about-card">
-          <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
-          <ul>
-            <li>3 years of experience in transforming raw data into meaningful insights</li>
-            <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
-            <li>Background in Mathematics and Data Science</li>
-            <li>Applied machine learning models to drive predictive insights</li>
-            <li>Always learning, always exploring</li>
-          </ul>
+            <div class="card" id="about-card">
+                <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
+                <ul>
+                    <li>3 years of experience in transforming raw data into meaningful insights</li>
+                    <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
+                    <li>Background in Mathematics and Data Science</li>
+                    <li>Applied machine learning models to drive predictive insights</li>
+                    <li>Always learning, always exploring</li>
+                </ul>
+            </div>
+            
         </div>
-      </div>
+        
     </section>
 
     <section id="skills">
