@@ -117,14 +117,18 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 60%; /* Using a percentage width */
-      min-width: 500px; 
+      /* Use fit-content to collapse the card width to the minimum necessary */
+      width: fit-content; 
+      max-width: 700px; /* Prevents card from getting too wide on huge screens */
+      min-width: 500px; /* Ensures card doesn't get too small for readability */
     }
 
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        width: 60%; /* Consistent width with the card */
+        /* Use fit-content to collapse the header width to the minimum necessary */
+        width: fit-content; 
+        max-width: 700px;
         display: block; 
     }
     
@@ -133,7 +137,7 @@
         display: flex;
         align-items: center; 
         margin-top: 10px; 
-        flex-wrap: wrap; /* Added for safety on narrow screens */
+        flex-wrap: wrap; 
     }
 
     #about h1 {
