@@ -77,6 +77,8 @@
     #technologies { background: #16a085; }
     #experience { background: #3498db; }
     #projects { background: #9b59b6; }
+    /* New color for Awards */
+    #awards { background: #f39c12; } 
     #education { background: #e67e22; }
     #contact { background: #e74c3c; }
 
@@ -119,7 +121,7 @@
     <a href="#technologies">Technologies</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
+    <a href="#awards">Awards</a> <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -169,7 +171,15 @@
         <li>Sentiment Analysis on political speeches</li>
       </ul>
     </section>
-
+    
+    <section id="awards">
+      <h2>Awards & Achievements</h2>
+      <ul>
+        <li>**Spot Award for Q4 2023** - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
+        <li>**Best Paper Award** - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
+        <li>**Top Performer in Data Analytics** - Accenture, FY23.</li>
+      </ul>
+    </section>
     <section id="education">
       <h2>Education & Certifications</h2>
       <ul>
@@ -237,7 +247,9 @@
       links.forEach((link, idx) => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          scrollToSection(idx);
+          // The click event handler now correctly uses the index of the clicked link
+          // to determine which section to scroll to.
+          scrollToSection(idx); 
         });
       });
 
