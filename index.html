@@ -14,17 +14,17 @@
     /* Setting Open Sans as the base font for the entire body */
     html, body { 
         height: 100%; 
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Open Sans', sans-serif; /* KEY CHANGE: Body font changed to Open Sans */
         overflow-x: hidden; 
         margin: 0; 
     }
     body { display: flex; }
 
-    /* Sidebar (Desktop Default) */
+    /* Sidebar */
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #332830;
+      background: #332830; /* Raisin black - Darkest shade */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -40,7 +40,7 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 25px;
-      border: 5px solid #A1ABB0;
+      border: 5px solid #A1ABB0; /* Cadet Gray for border contrast */
     }
     .sidebar a {
       display: block; margin: 12px 0;
@@ -49,9 +49,9 @@
       font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
-      font-family: 'Montserrat', sans-serif;
-      white-space: nowrap; /* Prevent menu items from wrapping */
+      font-family: 'Montserrat', sans-serif; /* Headings font retained */
     }
+    /* Active link color set to the lightest shade (Cadet Gray) and bolded for visibility */
     .sidebar a.active-link { 
       color: #A1ABB0; 
       font-weight: 700; 
@@ -62,7 +62,7 @@
       margin-left: 0; width: 100%; height: 100%;
       overflow-y: auto; scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
-      transition: margin-left 0.3s, width 0.3s; /* Transition for desktop margin change */
+      transition: background 0.5s;
     }
     
     /* Responsive rule for wider screens (769px+) */
@@ -98,7 +98,7 @@
         flex-direction: column; 
         align-items: flex-start;
         gap: 25px;
-        padding-top: 100px; /* Desktop padding */
+        padding-top: 100px;
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } 
     #experience { background: #45364B; color: #FFFFFF; } 
@@ -107,13 +107,13 @@
     #awards { background: #6D5A7B; color: #FFFFFF; } 
     #contact { background: #776D8A; color: #FFFFFF; } 
     
-    /* CARD STYLING (Desktop Defaults) */
+    /* CARD STYLING */
     .card {
       background: #3C2F3E; 
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 70%; 
+      width: 70%;
       min-width: 500px;
     }
 
@@ -186,31 +186,30 @@
 
     /* TEXT STYLING for other sections */
     h1, h2 { 
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', sans-serif; /* Headings font retained */
       margin-bottom: 15px; 
     }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
 
     p, ul { line-height: 1.6; }
     
-    /* Ensure bold and italics work well */
+    /* Ensure bold and italics work well across all text */
     strong { font-weight: 700; }
     em { font-style: italic; }
 
 
-    /* --- MOBILE / RESPONSIVE TWEAKS (Max-width 768px) --- */
+    /* Mobile / responsive tweaks */
     @media (max-width: 768px) {
-      
-      /* --- GLOBAL MOBILE CARD/HEADER SIZING --- */
-      .card, #about-header {
-        width: 100%;
-        min-width: unset;
-        max-width: 90%; /* Use a max-width to keep some padding from edge */
-        padding: 20px;
-      }
+      /* General mobile stack */
       #about {
         align-items: center;
         padding-top: 50px; 
+      }
+      .card, #about-header {
+        width: 100%;
+        min-width: unset;
+        max-width: 90%;
+        padding: 20px;
       }
       #about-header {
         text-align: center;
@@ -230,53 +229,22 @@
         justify-content: center;
         width: 100%;
       }
+      .content { margin-top: 70px; }
       
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX --- */
       @media (orientation: portrait) {
+          /* Specific mobile portrait adjustments */
           .sidebar {
-            /* Transform vertical sidebar into a fixed horizontal top nav */
-            position: fixed; top: 0; left: 0;
-            flex-direction: row; 
-            justify-content: space-around;
-            width: 100%; 
-            height: 60px; /* Reduced height for top bar */
+            flex-direction: row; justify-content: space-around;
+            width: 100%; height: 70px;
             padding: 0 10px;
-            overflow-x: auto; /* Allow scrolling if links exceed width */
           }
-          .sidebar img { 
-            display: none; /* Hide profile image in mobile top bar */
-          }
-          .sidebar a {
-            margin: 0;
-            padding: 0 10px;
-            line-height: 60px; /* Vertically center text in the bar */
-            font-size: 0.9rem; /* Smaller font for menu items */
-          }
-          .content { 
-            margin-top: 60px; /* Push content down below the fixed top nav */
-            margin-left: 0; /* Ensure content starts at left edge */
-          }
-          #about {
-            padding-top: 30px; /* Adjust padding since the top bar is now covering the original top space */
-          }
+          .sidebar img { display: none; }
+          .content { margin-top: 70px; }
       }
-      
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Keep vertical nav, but smaller) --- */
-      @media (orientation: landscape) {
-         .sidebar {
-            width: 120px; /* Narrower sidebar for landscape */
-            padding: 10px 5px;
-         }
-         .sidebar img {
-            width: 80px; height: 80px;
-            margin-bottom: 15px;
-         }
-         .sidebar a { font-size: 0.9rem; margin: 8px 0; }
-         .content { 
-            margin-left: 120px; 
-            width: calc(100% - 120px); 
-         }
-      }
+    }
+    @media (max-width: 768px) and (orientation: landscape) {
+      /* Specific mobile landscape adjustments */
+      .content { margin-left: 240px; width: calc(100% - 240px); }
     }
   </style>
 </head>
@@ -403,17 +371,18 @@
       let currentIndex = 0;
       let isScrolling = false;
       
-      // Color maps remain the same as previous iterations
+      // MAPPING FOR SIDEBAR (Darker Background for Contrast)
       const sidebarColorMap = {
-        'about': '#332830',
-        'skills': '#3C2F3E',
-        'experience': '#45364B',
-        'education': '#543E5B',
-        'projects': '#62466B',
-        'awards': '#6D5A7B',
-        'contact': '#776D8A'
+        'about': '#332830',      // Raisin black
+        'skills': '#3C2F3E',     // Adjusted dark purple for contrast
+        'experience': '#45364B', // English Violet
+        'education': '#543E5B',  // English Violet lighter
+        'projects': '#62466B',   // English Violet
+        'awards': '#6D5A7B',     // Chinese Violet
+        'contact': '#776D8A'     // Chinese Violet
       };
 
+      // MAPPING FOR CARD (Lighter Background for Card)
       const cardColorMap = {
         'about': '#3C2F3E',
         'skills': '#45364B',
@@ -421,9 +390,10 @@
         'education': '#62466B',
         'projects': '#6D5A7B',
         'awards': '#776D8A',
-        'contact': '#828099'
+        'contact': '#828099' // Slightly lighter shade
       };
       
+      // MAPPING FOR TEXT COLOR (White text for dark cards)
       const cardTextColorMap = {
         'about': '#FFFFFF',
         'skills': '#FFFFFF',
@@ -434,6 +404,7 @@
         'contact': '#FFFFFF' 
       };
       
+      // MAPPING FOR SECTION BACKGROUND (Section color will match the sidebar map for the "sunken" effect)
       const sectionBgMap = {
         'about': '#332830',
         'skills': '#3C2F3E',
