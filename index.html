@@ -17,7 +17,7 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #332830; /* Default: Raisin Black background */
+      background: #332830; /* Darkest shade from the palette for default/fallback */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -44,7 +44,7 @@
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif; 
     }
-    /* Active link color set to the lightest shade (Cadet Gray) and bolded */
+    /* Active link color set to the lightest shade (Cadet Gray) and bolded for visibility */
     .sidebar a.active-link { 
       color: #A1ABB0; 
       font-weight: 700; 
@@ -233,13 +233,13 @@
       
       // Define the mapping of section IDs to their corresponding darker sidebar background color
       const sidebarColorMap = {
-        'about': '#332830',      // Raisin Black (darkest)
-        'skills': '#3C2F3E',     // Dark Purple
-        'experience': '#45364B', // English Violet
-        'education': '#543E5B',  // English Violet
-        'projects': '#62466B',   // English Violet
-        'awards': '#6D5A7B',     // Chinese Violet
-        'contact': '#776D8A'     // Chinese Violet
+        'about': '#332830',      // Raisin Black (darkest for contrast with #3C2F3E)
+        'skills': '#3C2F3E',     // Dark Purple (darker than #45364B)
+        'experience': '#45364B', // English Violet (darker than #543E5B)
+        'education': '#543E5B',  // English Violet (darker than #62466B)
+        'projects': '#62466B',   // English Violet (darker than #6D5A7B)
+        'awards': '#6D5A7B',     // Chinese Violet (darker than #776D8A)
+        'contact': '#776D8A'     // Chinese Violet (darker than #828099)
       };
 
       function activateSection(index) {
