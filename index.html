@@ -102,8 +102,8 @@
         display: flex; 
         flex-direction: row; 
         /* CRITICAL: Center content vertically */
-        align-items: center; /* Aligns content to the center of the cross-axis (vertically for flex-direction: row) */
-        justify-content: center; /* Aligns content to the center of the main-axis (horizontally for flex-direction: row) */
+        align-items: center; 
+        justify-content: center; 
         gap: 40px; 
         padding: 50px 40px; 
         min-height: 100vh;
@@ -124,7 +124,6 @@
       width: 60%; 
       max-width: 700px;
       min-width: 500px; 
-      /* Removed margin-top as the parent flex container handles alignment */
     }
     
     /* ABOUT SECTION SPECIFIC LAYOUT */
@@ -132,10 +131,9 @@
     #about-header {
         width: 40%; 
         max-width: 500px; 
-        display: flex; /* Make header itself a flex container */
-        flex-direction: column; /* Stack its children vertically */
-        justify-content: center; /* Vertically center content within header column */
-        /* Removed margin-top as the parent flex container handles alignment */
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
     }
     
     /* Contact and Social Links Container */
@@ -144,7 +142,7 @@
         align-items: center; 
         margin-top: 10px; 
         flex-wrap: wrap; 
-        gap: 15px; /* Applies horizontal gap on desktop */
+        gap: 15px; 
     }
 
     #about h1 {
@@ -172,7 +170,8 @@
         font-size: 1.1rem;
         color: #A1ABB0; 
         line-height: 1; 
-        margin-bottom: 10px; /* Space below the location/phone line */
+        /* INCREASED SPACE */
+        margin-bottom: 20px; 
     }
     #about-contact-summary span {
         white-space: nowrap; 
@@ -195,12 +194,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40px; 
-        height: 40px;
+        /* INCREASED SIZE */
+        width: 50px; 
+        height: 50px;
         border-radius: 50%;
         background-color: #543E5B; 
         color: #FFFFFF;
-        font-size: 1.2rem; 
+        font-size: 1.5rem; /* INCREASED FONT SIZE */
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
@@ -243,10 +243,10 @@
         padding: 20px;
       }
       #about {
-        flex-direction: column; /* Stack header and card vertically */
-        justify-content: center; /* Center horizontally for the column */
-        align-items: center; /* Keep children horizontally centered */
-        padding-top: 50px; /* Adjusted padding for mobile */
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        padding-top: 50px; 
       }
       
       /* Reset desktop properties for mobile header */
@@ -259,8 +259,8 @@
       
       /* Mobile adjustment for the single bar */
       #contact-social-bar {
-          flex-direction: column; /* Stack contact summary and social links vertically */
-          gap: 10px; /* Adjusted gap for mobile */
+          flex-direction: column; 
+          gap: 10px; 
       }
       
       #about-header h1 {
@@ -270,9 +270,9 @@
           font-size: 1.5rem;
       }
       #about-contact-summary {
-        margin-right: 0; /* Remove desktop margin */
-        margin-bottom: 0; /* Let the flex gap handle spacing */
-        flex-direction: column; /* Stack location and phone vertically */
+        margin-right: 0; 
+        margin-bottom: 0; /* Handled by flex gap on mobile */
+        flex-direction: column; 
         gap: 5px;
       }
       #social-links {
