@@ -17,7 +17,7 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #332830; /* Raisin Black background */
+      background: #332830; /* Default: Raisin Black background */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -42,12 +42,12 @@
       font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
-      font-family: 'Montserrat', sans-serif; /* Using Montserrat for sidebar links */
+      font-family: 'Montserrat', sans-serif; 
     }
-    /* FIX: Reverting active link color to Cadet Gray and increasing weight for better contrast */
+    /* Active link color set to the lightest shade (Cadet Gray) and bolded */
     .sidebar a.active-link { 
-      color: #A1ABB0; /* Cadet Gray */
-      font-weight: 700; /* Extra bold to help it stand out */
+      color: #A1ABB0; 
+      font-weight: 700; 
     } 
 
     /* Content container */
@@ -230,6 +230,17 @@
       const sidebar = document.getElementById('sidebar');
       let currentIndex = 0;
       let isScrolling = false;
+      
+      // Define the mapping of section IDs to their corresponding darker sidebar background color
+      const sidebarColorMap = {
+        'about': '#332830',      // Raisin Black (darkest)
+        'skills': '#332830',     // Raisin Black
+        'experience': '#45364B', // Darker English Violet
+        'education': '#62466B',  // English Violet
+        'projects': '#776D8A',   // Chinese Violet
+        'awards': '#8C93A8',     // Cool Gray
+        'contact': '#959CAB'     // Darker Cadet Gray
+      };
 
       function activateSection(index) {
         if (index < 0) index = 0;
@@ -241,9 +252,12 @@
 
         currentIndex = index;
 
-        const bgColor = window.getComputedStyle(sections[index]).backgroundColor;
-        if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)') {
-          sidebar.style.background = bgColor;
+        // Get the ID of the active section
+        const activeSectionId = sections[index].id;
+        
+        // Use the map to set the darker sidebar color
+        if (sidebarColorMap[activeSectionId]) {
+          sidebar.style.background = sidebarColorMap[activeSectionId];
         }
       }
 
