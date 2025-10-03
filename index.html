@@ -90,11 +90,18 @@
           width: 40%;
           min-width: 300px;
           max-width: 500px;
-          gap: 20px; /* NEW: Added vertical gap here for desktop/landscape */
+          gap: 20px; /* Vertical gap between contact and social links line (as requested) */
       }
       #about-header {
           width: 100%;
           text-align: left;
+      }
+      /* KEY FIX: Force contact information to stack on desktop/web view */
+      #about-contact-summary {
+          display: flex; 
+          flex-direction: column; /* Stack the location and phone spans */
+          gap: 5px; /* Small vertical gap between location and phone */
+          justify-content: flex-start; /* Align to the left */
       }
       #about-card {
           width: 60%;
@@ -172,15 +179,16 @@
         border-bottom: none;
         display: block;
     }
+    /* Default/Mobile setting for contact summary (column stack) */
     #about-contact-summary {
         display: flex;
-        gap: 30px;
+        gap: 5px; /* Vertical gap is 5px for mobile/default */
         font-size: 1.1rem;
         color: #A1ABB0; 
         margin-bottom: 0;
         align-items: center; /* Vertically align icon and text */
-        flex-wrap: wrap; /* Allow wrapping on narrow screens */
-        justify-content: center; /* Center items when they wrap on mobile */
+        flex-direction: column; /* Default to column stack for mobile/narrow screens */
+        justify-content: center;
     }
     #about-contact-summary span {
         display: flex;
@@ -234,9 +242,6 @@
       }
       .card, #about-header {
         width: 100%;
-        min-width: unset;
-        max-width: unset;
-        box-sizing: border-box;
       }
       #about {
         padding-top: 50px;
@@ -252,77 +257,22 @@
       #about-header {
         text-align: center;
       }
-      #about h1 {
-        font-size: 2.5rem;
-      }
-      #about-header h2 {
-        font-size: 1.5rem;
-      }
-      #about-card {
-        padding: 30px; 
-        order: 4; /* Place about card below everything else on mobile */
-      }
-      #about-card p {
-        font-size: 1rem;
-      }
+      
+      /* #about-contact-summary is already set to flex-direction: column by default/mobile first design */
       #about-contact-summary {
-        flex-direction: column;
+        /* This is the column stack for mobile, kept explicitly here for clarity */
+        flex-direction: column; 
         gap: 5px;
         margin-bottom: 10px;
         text-align: center;
       }
-      #social-links {
-        justify-content: center;
-        width: 100%;
-        order: 3;
-      }
-      #about-header {
-          order: 1;
-      }
-      #about-contact-summary {
-          order: 2;
-      }
 
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top Bar) --- */
-      @media (orientation: portrait) {
-          .sidebar {
-            position: fixed; top: 0; left: 0;
-            flex-direction: row; 
-            justify-content: space-around;
-            width: 100%; 
-            height: 60px;
-            padding: 0 10px;
-            overflow-x: auto;
-          }
-          .sidebar img { 
-            display: none;
-          }
-          .sidebar a {
-            margin: 0;
-            padding: 0 10px;
-            line-height: 60px;
-            font-size: 0.9rem;
-          }
-          .content { 
-            margin-top: 60px;
-            margin-left: 0;
-          }
-          #about {
-            padding-top: 30px;
-          }
-      }
-      
       /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav & Desktop Layout) --- */
       @media (orientation: landscape) {
          .sidebar {
             width: 120px;
             padding: 10px 5px;
          }
-         .sidebar img {
-            width: 80px; height: 80px;
-            margin-bottom: 15px;
-         }
-         .sidebar a { font-size: 0.9rem; margin: 8px 0; }
          .content { 
             margin-left: 120px; 
             width: calc(100% - 120px); 
@@ -330,32 +280,20 @@
          /* Re-apply desktop-like row layout for landscape */
          #about {
             flex-direction: row;
-            justify-content: center;
-            align-items: center;
             gap: 30px;
          }
          #about-left-column {
              width: 40%;
-             min-width: unset;
-             max-width: unset;
              align-items: flex-start;
-             gap: 20px; /* NEW: Landscape gap restored */
+             gap: 20px; /* Landscape gap for space between contact and social links */
          }
-         #about-header {
-             text-align: left;
-         }
-         #about-card {
-             width: 60%;
-             max-width: unset;
-             min-width: unset;
-             order: unset;
+         /* FIX: Apply column stack for contact summary on landscape as well, to maintain two lines */
+         #about-contact-summary {
+            flex-direction: column;
+            justify-content: flex-start;
          }
          #social-links {
              justify-content: flex-start;
-             order: unset;
-         }
-         #about-header, #about-contact-summary {
-            order: unset;
          }
       }
     }
