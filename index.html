@@ -6,6 +6,7 @@
   <title>Hannah Susan Mathew</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
@@ -18,7 +19,7 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #332830; /* Darkest shade from the palette for default/fallback */
+      background: #332830; /* Raisin black - Darkest shade */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -86,7 +87,11 @@
       transform: translateY(0);
     }
     /* Section background colors (These colors are the darker background) */
-    #about { background: #332830; color: #FFFFFF; } /* Raisin Black */
+    #about { 
+        background: #332830; 
+        color: #FFFFFF; 
+        gap: 0; /* REMOVED DEFAULT GAP */
+    } 
     #skills { background: #3C2F3E; color: #FFFFFF; } /* Dark Purple */
     #experience { background: #45364B; color: #FFFFFF; } /* English Violet */
     #education { background: #543E5B; color: #FFFFFF; } /* English Violet */
@@ -107,12 +112,12 @@
       flex-direction: column;
       align-items: flex-start; 
       justify-content: center;
-      gap: 20px;
+      /* gap removed in element style above */
     }
 
     #about-header {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 0; /* Rely on individual element margins */
     }
 
     #about h1 {
@@ -120,7 +125,7 @@
         font-size: 4rem; 
         font-weight: 700;
         line-height: 1.1;
-        margin-bottom: 0px; /* Adjusted to fit the subtitle right after */
+        margin-bottom: 0px; 
     }
     
     #about-header h2 {
@@ -129,7 +134,7 @@
         font-weight: 600;
         color: #A1ABB0; /* Cadet Gray for subtle accent */
         margin-top: 5px;
-        margin-bottom: 15px; /* Space before contact details */
+        margin-bottom: 10px; /* Reduced space after title */
         border-bottom: none;
         display: block;
     }
@@ -140,14 +145,14 @@
         gap: 30px;
         font-size: 1.1rem;
         color: #A1ABB0; /* Cadet Gray for subtle accent */
-        margin-bottom: 20px; /* Space before social links */
+        margin-bottom: 15px; /* Reduced space before social links */
     }
 
     /* SOCIAL LINKS STYLING */
     #social-links {
         display: flex;
         gap: 15px;
-        margin-bottom: 40px; /* Space before the content wrapper */
+        margin-bottom: 40px; /* Space before the content wrapper, can be adjusted */
     }
     #social-links a {
         display: flex;
@@ -210,7 +215,7 @@
       #about-contact-summary {
         flex-direction: column;
         gap: 5px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
       #social-links {
         justify-content: center;
@@ -275,7 +280,7 @@
           <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
           <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          </div>
+        </div>
       </div>
 
       <div id="about-content-wrapper">
@@ -377,13 +382,13 @@
       
       // MAPPING FOR SIDEBAR (Darker Background for Contrast)
       const sidebarColorMap = {
-        'about': '#332830',      // Sidebar color for About section
-        'skills': '#3C2F3E',     // Sidebar color for Skills section
-        'experience': '#45364B', // Sidebar color for Experience section
-        'education': '#543E5B',  // Sidebar color for Education section
-        'projects': '#62466B',   // Sidebar color for Projects section
-        'awards': '#6D5A7B',     // Sidebar color for Awards section
-        'contact': '#776D8A'     // Sidebar color for Contact section
+        'about': '#332830',      // Raisin black
+        'skills': '#3C2F3E',     // Adjusted dark purple for contrast
+        'experience': '#45364B', // English Violet
+        'education': '#543E5B',  // English Violet lighter
+        'projects': '#62466B',   // English Violet
+        'awards': '#6D5A7B',     // Chinese Violet
+        'contact': '#776D8A'     // Chinese Violet
       };
 
       // MAPPING FOR CARD (Lighter Background for Card)
@@ -394,7 +399,7 @@
         'education': '#62466B',
         'projects': '#6D5A7B',
         'awards': '#776D8A',
-        'contact': '#828099'
+        'contact': '#828099' // Slightly lighter shade
       };
       
       // MAPPING FOR TEXT COLOR (White text for dark cards)
