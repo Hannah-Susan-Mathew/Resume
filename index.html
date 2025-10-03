@@ -56,7 +56,7 @@
       padding: 50px 40px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -72,8 +72,6 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
 
-    p, ul { line-height: 1.6; }
-
     /* Section background colors */
     #about { background: #1abc9c; }
     #technologies { background: #16a085; }
@@ -82,24 +80,7 @@
     #education { background: #e67e22; }
     #contact { background: #e74c3c; }
 
-    /* About section split for Hero + Details */
-    .about-hero {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .about-details {
-      padding-top: 50px;
-      padding-bottom: 50px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    section.active .about-details {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    p, ul { line-height: 1.6; }
 
     /* Mobile / responsive tweaks */
     @media (max-width: 768px) and (orientation: landscape) {
@@ -127,6 +108,7 @@
         scroll-snap-type: y mandatory;
       }
     }
+
   </style>
 </head>
 <body>
@@ -144,20 +126,16 @@
   <div class="content" id="content">
 
     <section id="about" class="active">
-      <div class="about-hero">
-        <h1>Hi Folks, I’m Hannah</h1>
-        <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
-      </div>
-      <div class="about-details">
-        <h2>About Me</h2>
-        <ul>
-          <li>3 years of experience in transforming raw data into meaningful insights</li>
-          <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
-          <li>Background in Mathematics and Data Science</li>
-          <li>Applied machine learning models to drive predictive insights</li>
-          <li>Always learning, always exploring</li>
-        </ul>
-      </div>
+      <h1>Hi Folks, I’m Hannah</h1>
+      <h2>About Me</h2>
+      <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
+      <ul>
+        <li>3 years of experience in transforming raw data into meaningful insights</li>
+        <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
+        <li>Background in Mathematics and Data Science</li>
+        <li>Applied machine learning models to drive predictive insights</li>
+        <li>Always learning, always exploring</li>
+      </ul>
     </section>
 
     <section id="technologies">
