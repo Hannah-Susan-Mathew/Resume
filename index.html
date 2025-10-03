@@ -117,16 +117,14 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* Changed width to max-width to allow content to shrink/grow within limits */
-      max-width: 700px; /* Limit card width, can be adjusted */
-      min-width: 500px; /* Ensures card doesn't get too small */
+      width: 60%; /* Using a percentage width */
+      min-width: 500px; 
     }
 
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        /* Removed fixed width, will size to content or max-width */
-        max-width: 700px; /* Limit how wide it can get on very large screens */
+        width: 60%; /* Consistent width with the card */
         display: block; 
     }
     
@@ -134,8 +132,8 @@
     #contact-social-bar {
         display: flex;
         align-items: center; 
-        /* Removed gap to prevent elements from spacing out too much on wide screens */
         margin-top: 10px; 
+        flex-wrap: wrap; /* Added for safety on narrow screens */
     }
 
     #about h1 {
