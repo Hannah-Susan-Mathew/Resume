@@ -44,17 +44,18 @@
     .sidebar a {
       display: block; margin: 12px 0;
       text-decoration: none; 
-      color: #A1ABB0; /* Cadet Gray - DEFAULT/INACTIVE LINK COLOR (REVERSED) */
+      color: #A1ABB0; /* Cadet Gray - DEFAULT/INACTIVE LINK COLOR */
       font-weight: 600; 
-      font-size: 1.1rem; 
+      font-size: 1.1rem; /* Base font size */
       transition: color 0.3s;
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif;
       white-space: nowrap; 
     }
     .sidebar a.active-link { 
-      color: white; /* White - ACTIVE LINK COLOR (REVERSED) */
+      color: white; /* White - ACTIVE LINK COLOR */
       font-weight: 700; 
+      font-size: 1.2rem; /* Increased font size for active link */
     } 
 
     /* Content container */
@@ -287,6 +288,11 @@
             line-height: 60px; 
             font-size: 0.9rem; 
           }
+          .sidebar a.active-link { 
+            color: white; 
+            font-weight: 700; 
+            font-size: 1rem; /* Adjusting active link size slightly for mobile readability */
+          } 
           .content { 
             margin-top: 60px; 
             margin-left: 0;
