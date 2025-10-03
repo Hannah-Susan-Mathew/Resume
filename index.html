@@ -20,7 +20,7 @@
     }
     body { display: flex; }
 
-    /* Sidebar (Desktop Default) */
+    /* --- SIDEBAR (DESKTOP DEFAULT) --- */
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
@@ -57,7 +57,7 @@
       font-weight: 700; 
     } 
 
-    /* Content container */
+    /* --- CONTENT CONTAINER (DESKTOP DEFAULT) --- */
     .content {
       margin-left: 0; width: 100%; height: 100%;
       overflow-y: auto; scroll-behavior: smooth;
@@ -65,11 +65,25 @@
       transition: margin-left 0.3s, width 0.3s;
     }
     
-    /* Responsive rule for wider screens (769px+) */
+    /* DESKTOP VIEW (>768px): Sidebar visible, content shifted */
     @media (min-width: 769px) {
       .content { 
         margin-left: 220px; 
         width: calc(100% - 220px); 
+      }
+      /* Ensure sections have desktop padding */
+      section {
+          padding: 50px 40px;
+      }
+      /* Reverting card and header size to desktop default */
+      .card, #about-header {
+          width: 70%; 
+          min-width: 500px;
+          max-width: unset;
+      }
+      /* Desktop font size */
+      #about-card p {
+          font-size: 1.1rem;
       }
     }
 
@@ -77,7 +91,8 @@
     section {
       min-height: 100vh;
       box-sizing: border-box;
-      padding: 50px 40px; /* Desktop padding */
+      /* Default padding will be overridden by media queries */
+      padding: 50px 40px; 
       display: flex;
       flex-direction: column; 
       justify-content: center;
@@ -96,7 +111,7 @@
         background: #332830; 
         color: #FFFFFF; 
         flex-direction: column; 
-        align-items: flex-start;
+        align-items: flex-start; /* Desktop alignment */
         gap: 25px;
         padding-top: 100px;
     } 
@@ -107,22 +122,22 @@
     #awards { background: #6D5A7B; color: #FFFFFF; } 
     #contact { background: #776D8A; color: #FFFFFF; } 
     
-    /* CARD STYLING (Desktop Defaults) */
+    /* CARD STYLING (Shared/Desktop Defaults) */
     .card {
       background: #3C2F3E; 
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 70%; 
-      min-width: 500px;
+    }
+    #about-card {
+      background: #3C2F3E; 
+      padding: 40px;
+    }
+    #about-card p {
+        margin-bottom: 0;
     }
 
-    /* ABOUT SECTION SPECIFIC LAYOUT */
-
-    #about-header {
-        width: 70%;
-    }
-
+    /* ABOUT SECTION HEADINGS (Shared/Desktop Defaults) */
     #about h1 {
         font-size: 4rem; 
         font-weight: 700;
@@ -130,7 +145,6 @@
         margin-bottom: 0px; 
         color: white; 
     }
-    
     #about-header h2 {
         font-size: 2rem; 
         font-weight: 600;
@@ -140,7 +154,6 @@
         border-bottom: none;
         display: block;
     }
-
     #about-contact-summary {
         display: flex;
         gap: 30px;
@@ -173,27 +186,13 @@
         transform: translateY(-3px);
     }
 
-    #about-card {
-      background: #3C2F3E; 
-      padding: 40px; /* Desktop padding */
-    }
-    
-    #about-card p {
-        font-size: 1.1rem; /* Desktop font size */
-        margin-bottom: 0;
-    }
-
-
     /* TEXT STYLING for other sections */
     h1, h2 { 
       font-family: 'Montserrat', sans-serif;
       margin-bottom: 15px; 
     }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
-
     p, ul { line-height: 1.6; }
-    
-    /* Ensure bold and italics work well */
     strong { font-weight: 700; }
     em { font-style: italic; }
 
@@ -201,27 +200,18 @@
     /* --- MOBILE / RESPONSIVE TWEAKS (Max-width 768px) --- */
     @media (max-width: 768px) {
       
-      /* --- GLOBAL MOBILE CARD/HEADER SIZING FIX --- */
+      /* --- GLOBAL MOBILE LAYOUT --- */
       section {
-        padding: 50px 20px; /* Increased overall horizontal padding for breathing room */
+        padding: 50px 20px; /* NEW: Increased overall horizontal padding for breathing room */
+        align-items: center; /* Center content horizontally on mobile */
       }
       .card, #about-header {
-        width: 100%; /* Take up the full width allowed by the section padding */
+        width: 100%; /* KEY FIX: Maximize card width within section padding */
         min-width: unset;
-        max-width: unset; /* Remove max-width restriction */
-        box-sizing: border-box; /* Include padding in the width calculation */
-        padding: 25px; /* Slightly reduced internal card padding from 30px/40px to 25px */
+        max-width: unset;
+        box-sizing: border-box;
       }
-      #about-card {
-        padding: 30px; /* Keep about card slightly larger padding */
-      }
-      #about-card p {
-        font-size: 1rem; /* KEY CHANGE: Smaller font size for mobile text */
-      }
-
-      /* --- GENERAL MOBILE STYLES --- */
       #about {
-        align-items: center;
         padding-top: 50px; 
       }
       #about-header {
@@ -233,6 +223,12 @@
       #about-header h2 {
         font-size: 1.5rem;
       }
+      #about-card {
+        padding: 30px; 
+      }
+      #about-card p {
+        font-size: 1rem; /* KEY FIX: Smaller font size for mobile text */
+      }
       #about-contact-summary {
         flex-direction: column;
         gap: 5px;
@@ -243,7 +239,7 @@
         width: 100%;
       }
       
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX --- */
+      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top Bar) --- */
       @media (orientation: portrait) {
           .sidebar {
             position: fixed; top: 0; left: 0;
@@ -264,15 +260,15 @@
             font-size: 0.9rem;
           }
           .content { 
-            margin-top: 60px;
+            margin-top: 60px; /* Push content down */
             margin-left: 0;
           }
           #about {
-            padding-top: 30px;
+            padding-top: 30px; /* Adjust padding due to top bar */
           }
       }
       
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Keep vertical nav, but smaller) --- */
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav) --- */
       @media (orientation: landscape) {
          .sidebar {
             width: 120px;
@@ -286,6 +282,13 @@
          .content { 
             margin-left: 120px; 
             width: calc(100% - 120px); 
+         }
+         #about {
+            align-items: flex-start; /* Revert to desktop alignment for landscape */
+         }
+         .card, #about-header {
+            width: 70%; /* Revert to desktop width for landscape, but still responsive */
+            min-width: unset;
          }
       }
     }
@@ -320,7 +323,7 @@
 
         <div class="card" id="about-card">
             <p>
-                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
+                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying **machine learning models** to drive predictive decisions.
             </p>
         </div>
         
