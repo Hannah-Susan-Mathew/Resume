@@ -36,6 +36,7 @@
       text-decoration: none; color: white;
       font-weight: 600; font-size: 0.95rem;
       transition: color 0.3s;
+      text-transform: uppercase; /* ADJUSTMENT 3: Make sidebar links uppercase */
     }
     .sidebar a.active-link { color: #ffcc00; }
 
@@ -72,14 +73,13 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 3px; }
 
-    /* Section background colors */
+    /* Section background colors (Updated to use #skills instead of #technologies) */
     #about { background: #1abc9c; }
-    #technologies { background: #16a085; }
+    #skills { background: #16a085; } /* ADJUSTMENT 1: Renamed from #technologies */
     #experience { background: #3498db; }
+    #education { background: #e67e22; } /* ADJUSTMENT 2: Kept original color, position moved */
     #projects { background: #9b59b6; }
-    /* New color for Awards */
     #awards { background: #f39c12; } 
-    #education { background: #e67e22; }
     #contact { background: #e74c3c; }
 
     p, ul { line-height: 1.6; }
@@ -118,10 +118,9 @@
   <div class="sidebar" id="sidebar">
     <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
     <a href="#about">About</a>
-    <a href="#technologies">Technologies</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#awards">Awards</a> <a href="#education">Education</a>
+    <a href="#skills">Skills</a> <a href="#experience">Experience</a>
+    <a href="#education">Education</a> <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -140,15 +139,13 @@
       </ul>
     </section>
 
-    <section id="technologies">
-      <h2>Technologies & Tools</h2>
-      <p>Languages, libraries, and platforms I use:</p>
+    <section id="skills"> <h2>Skills</h2> <p>Languages, libraries, platforms, and soft skills I use:</p>
       <ul>
-        <li>Python, R, Scala, SQL, Bash</li>
-        <li>Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
-        <li>AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
-        <li>Tableau, Power BI, Git, Jupyter, VS Code, etc.</li>
-      </ul>
+        <li>**Programming:** Python, R, Scala, SQL, Bash</li>
+        <li>**Libraries:** Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
+        <li>**Cloud/Big Data:** AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
+        <li>**Tools/Visualization:** Tableau, Power BI, Git, Jupyter, VS Code</li>
+        <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li> </ul>
     </section>
 
     <section id="experience">
@@ -162,7 +159,17 @@
         <li>Implemented churn models with high precision</li>
       </ul>
     </section>
-
+    
+    <section id="education">
+      <h2>Education & Certifications</h2>
+      <ul>
+        <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
+        <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
+        <li>Associate Data Practitioner – Google Cloud (2025)</li>
+        <li>Cloud Digital Leader – Google Cloud (2025)</li>
+        <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
+      </ul>
+    </section>
     <section id="projects">
       <h2>Projects</h2>
       <ul>
@@ -178,16 +185,6 @@
         <li>**Spot Award for Q4 2023** - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
         <li>**Best Paper Award** - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
         <li>**Top Performer in Data Analytics** - Accenture, FY23.</li>
-      </ul>
-    </section>
-    <section id="education">
-      <h2>Education & Certifications</h2>
-      <ul>
-        <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
-        <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
-        <li>Associate Data Practitioner – Google Cloud (2025)</li>
-        <li>Cloud Digital Leader – Google Cloud (2025)</li>
-        <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
       </ul>
     </section>
 
@@ -247,8 +244,6 @@
       links.forEach((link, idx) => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          // The click event handler now correctly uses the index of the clicked link
-          // to determine which section to scroll to.
           scrollToSection(idx); 
         });
       });
