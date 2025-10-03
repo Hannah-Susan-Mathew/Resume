@@ -5,14 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hannah Susan Mathew</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    /* Setting Roboto as the base font for the entire body */
-    html, body { height: 100%; font-family: 'Roboto', sans-serif; overflow-x: hidden; margin: 0; }
+    /* Setting Lato as the base font for the entire body */
+    html, body { 
+        height: 100%; 
+        font-family: 'Lato', sans-serif; /* KEY CHANGE: Body font changed to Lato */
+        overflow-x: hidden; 
+        margin: 0; 
+    }
     body { display: flex; }
 
     /* Sidebar */
@@ -44,7 +49,7 @@
       font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
-      font-family: 'Montserrat', sans-serif; 
+      font-family: 'Montserrat', sans-serif; /* Headings font retained */
     }
     /* Active link color set to the lightest shade (Cadet Gray) and bolded for visibility */
     .sidebar a.active-link { 
@@ -74,7 +79,6 @@
       box-sizing: border-box;
       padding: 50px 40px;
       display: flex;
-      /* Defaulted to column, will be overridden by #about */
       flex-direction: column; 
       justify-content: center;
       opacity: 0;
@@ -91,11 +95,10 @@
     #about { 
         background: #332830; 
         color: #FFFFFF; 
-        /* --- KEY CHANGE: STACKING ELEMENTS --- */
         flex-direction: column; 
-        align-items: flex-start; /* Aligns content to the left */
-        gap: 25px; /* Spacing between the stacked elements */
-        padding-top: 100px; /* Give some extra room at the top */
+        align-items: flex-start;
+        gap: 25px;
+        padding-top: 100px;
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } 
     #experience { background: #45364B; color: #FFFFFF; } 
@@ -110,19 +113,17 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 70%; /* Give the card a defined width in the column layout */
+      width: 70%;
       min-width: 500px;
     }
 
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        /* This div contains Name, Title, Contact Info (Red Box Content) */
-        width: 70%; /* Matches the card width */
+        width: 70%;
     }
 
     #about h1 {
-        /* NAME: Big and impactful */
         font-size: 4rem; 
         font-weight: 700;
         line-height: 1.1;
@@ -131,7 +132,6 @@
     }
     
     #about-header h2 {
-        /* TITLE: Data Analyst */
         font-size: 2rem; 
         font-weight: 600;
         color: #A1ABB0; 
@@ -142,19 +142,18 @@
     }
 
     #about-contact-summary {
-        /* Location and Phone Number on one line */
         display: flex;
         gap: 30px;
         font-size: 1.1rem;
         color: #A1ABB0; 
-        margin-bottom: 0; /* No margin here, we rely on the main section gap */
+        margin-bottom: 0;
     }
 
-    /* SOCIAL LINKS STYLING (Blue Box Content) */
+    /* SOCIAL LINKS STYLING */
     #social-links {
         display: flex;
         gap: 15px;
-        margin-bottom: 0; /* No margin, relies on main section gap */
+        margin-bottom: 0;
     }
     #social-links a {
         display: flex;
@@ -175,27 +174,29 @@
     }
 
     #about-card {
-      /* Orange Box Card (About Me details) */
-      /* Width defined in .card and is 70% of parent width */
       background: #3C2F3E; 
       padding: 40px;
     }
     
     #about-card p {
-        /* Styling for the new intro paragraph */
         font-size: 1.1rem;
-        margin-bottom: 0; /* Removed bottom margin as the list is removed */
+        margin-bottom: 0;
     }
 
 
     /* TEXT STYLING for other sections */
     h1, h2 { 
-      font-family: 'Montserrat', sans-serif; 
+      font-family: 'Montserrat', sans-serif; /* Headings font retained */
       margin-bottom: 15px; 
     }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 3px; }
 
     p, ul { line-height: 1.6; }
+    
+    /* Ensure bold and italics work well across all text */
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
 
     /* Mobile / responsive tweaks */
     @media (max-width: 768px) {
@@ -229,9 +230,22 @@
         width: 100%;
       }
       .content { margin-top: 70px; }
+      
+      @media (orientation: portrait) {
+          /* Specific mobile portrait adjustments */
+          .sidebar {
+            flex-direction: row; justify-content: space-around;
+            width: 100%; height: 70px;
+            padding: 0 10px;
+          }
+          .sidebar img { display: none; }
+          .content { margin-top: 70px; }
+      }
     }
-    /* ... other responsive media queries (omitted for brevity but kept in original) ... */
-
+    @media (max-width: 768px) and (orientation: landscape) {
+      /* Specific mobile landscape adjustments */
+      .content { margin-left: 240px; width: calc(100% - 240px); }
+    }
   </style>
 </head>
 <body>
@@ -265,7 +279,7 @@
             <p>
                 <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
             </p>
-            </div>
+        </div>
         
         <div id="social-links">
             <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -280,11 +294,11 @@
         <h2>Skills</h2>
         <p>Languages, libraries, platforms, and soft skills I use:</p>
         <ul>
-          <li>**Programming:** Python, R, Scala, SQL, Bash</li>
-          <li>**Libraries:** Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
-          <li>**Cloud/Big Data:** AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
-          <li>**Tools/Visualization:** Tableau, Power BI, Git, Jupyter, VS Code</li>
-          <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
+          <li><strong>Programming:</strong> Python, R, Scala, SQL, Bash</li>
+          <li><strong>Libraries:</strong> Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
+          <li><strong>Cloud/Big Data:</strong> AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
+          <li><strong>Tools/Visualization:</strong> Tableau, Power BI, Git, Jupyter, VS Code</li>
+          <li><strong>Soft Skills:</strong> Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
         </ul>
       </div>
     </section>
@@ -331,9 +345,9 @@
       <div class="card" id="awards-card">
         <h2>Awards & Achievements</h2>
         <ul>
-          <li>**Spot Award for Q4 2023** - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
-          <li>**Best Paper Award** - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
-          <li>**Top Performer in Data Analytics** - Accenture, FY23.</li>
+          <li><strong>Spot Award for Q4 2023</strong> - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
+          <li><strong>Best Paper Award</strong> - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
+          <li><strong>Top Performer in Data Analytics</strong> - Accenture, FY23.</li>
         </ul>
       </div>
     </section>
