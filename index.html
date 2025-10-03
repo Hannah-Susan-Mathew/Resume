@@ -15,7 +15,7 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #111822; /* Dark Navy background */
+      background: #332830; /* Raisin Black background */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -26,12 +26,12 @@
       transition: background 0.5s;
     }
     .sidebar img {
-      width: 150px; /* ADJUSTMENT: Increased image width */
-      height: 150px; /* ADJUSTMENT: Increased image height */
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 25px;
-      border: 5px solid #F38699; /* ADJUSTMENT: Thicker border and changed color to light peach */
+      border: 5px solid #A1ABB0; /* Cadet Gray for border contrast */
     }
     .sidebar a {
       display: block; margin: 12px 0;
@@ -41,7 +41,7 @@
       transition: color 0.3s;
       text-transform: uppercase; 
     }
-    .sidebar a.active-link { color: #F38699; } /* Light peach for active link */
+    .sidebar a.active-link { color: #A1ABB0; } /* Cadet Gray for active link */
 
     /* Content container */
     .content {
@@ -51,14 +51,13 @@
       transition: background 0.5s;
     }
     
-    /* FIX: Corrected rule for wider screens (769px+) */
+    /* Responsive rule for wider screens (769px+) */
     @media (min-width: 769px) {
       .content { 
         margin-left: 220px; 
         width: calc(100% - 220px); 
       }
     }
-    /* END FIX */
 
     section {
       min-height: 100vh;
@@ -70,7 +69,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      color: #FFFFFF;
+      color: #FFFFFF; /* Default to white for dark backgrounds */
       scroll-snap-align: start;
     }
     section.active {
@@ -80,16 +79,16 @@
 
     h1, h2 { margin-bottom: 15px; }
     h1 { font-size: 2rem; }
-    h2 { font-size: 1.6rem; border-bottom: 2px solid #F38699; /* Light peach for the border */ display: inline-block; padding-bottom: 3px; }
+    h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; /* Cadet Gray for the border */ display: inline-block; padding-bottom: 3px; }
 
-    /* Section background colors and specific text colors */
-    #about { background: #111822; color: #FFFFFF; } 
-    #skills { background: #333740; color: #FFFFFF; } 
-    #experience { background: #6C6A6A; color: #FFFFFF; } 
-    #education { background: #4F362A; color: #FFFFFF; } 
-    #projects { background: #745850; color: #FFFFFF; } 
-    #awards { background: #745850; color: #FFFFFF; } 
-    #contact { background: #111822; color: #FFFFFF; } 
+    /* Section background colors and specific text colors for contrast */
+    #about { background: #332830; color: #FFFFFF; } /* Raisin Black, White text */
+    #skills { background: #45364B; color: #FFFFFF; } /* English Violet, White text */
+    #experience { background: #62466B; color: #FFFFFF; } /* English Violet, White text */
+    #education { background: #776D8A; color: #FFFFFF; } /* Chinese Violet, White text */
+    #projects { background: #8C93A8; color: #332830; } /* Cool Gray, Raisin Black text */
+    #awards { background: #959CAB; color: #332830; } /* Cadet Gray, Raisin Black text */
+    #contact { background: #A1ABB0; color: #332830; } /* Cadet Gray, Raisin Black text */
 
 
     p, ul { line-height: 1.6; }
@@ -110,7 +109,7 @@
         width: 100%; height: 70px;
         flex-direction: row; justify-content: space-around;
         padding: 0 10px;
-        background: #111822; 
+        background: #332830; 
         z-index: 10;
       }
       .sidebar img { display: none; }
