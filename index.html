@@ -66,6 +66,7 @@
       }
     }
 
+    /* SECTION STYLING */
     section {
       min-height: 100vh;
       box-sizing: border-box;
@@ -83,8 +84,45 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* Section background colors (These colors are now the darker background) */
+    #about { background: #332830; color: #FFFFFF; } /* Raisin Black */
+    #skills { background: #3C2F3E; color: #FFFFFF; } /* Dark Purple */
+    #experience { background: #45364B; color: #FFFFFF; } /* English Violet */
+    #education { background: #543E5B; color: #FFFFFF; } /* English Violet */
+    #projects { background: #62466B; color: #FFFFFF; } /* English Violet */
+    #awards { background: #6D5A7B; color: #FFFFFF; } /* Chinese Violet */
+    #contact { background: #776D8A; color: #FFFFFF; } /* Chinese Violet */
+    
+    /* CARD STYLING */
+    .card {
+      background: #3C2F3E; /* Default card color, will be overridden by JS */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* ABOUT SECTION SPECIFIC LAYOUT */
+    #about {
+      /* Overriding default flex-direction to row for two-column layout */
+      flex-direction: row; 
+      align-items: center;
+      gap: 50px;
+    }
+    #about h1 {
+      /* Left side (Name/Greeting) */
+      flex: 1;
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+    #about .card {
+      /* Right side (Details) */
+      flex: 2;
+      background: #3C2F3E; /* Same as the old #about background for the card */
+      padding: 40px;
+    }
 
-    /* Setting Montserrat for headers */
+
+    /* TEXT STYLING */
     h1, h2 { 
       font-family: 'Montserrat', sans-serif; 
       margin-bottom: 15px; 
@@ -92,25 +130,23 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; /* Cadet Gray for the border */ display: inline-block; padding-bottom: 3px; }
 
-    /* Section background colors and specific text colors for contrast */
-    #about { background: #3C2F3E; color: #FFFFFF; } /* Dark Purple, White text */
-    #skills { background: #45364B; color: #FFFFFF; } /* English Violet, White text */
-    #experience { background: #543E5B; color: #FFFFFF; } /* English Violet, White text */
-    #education { background: #62466B; color: #FFFFFF; } /* English Violet, White text */
-    #projects { background: #6D5A7B; color: #FFFFFF; } /* Chinese Violet, White text */
-    #awards { background: #776D8A; color: #FFFFFF; } /* Chinese Violet, White text */
-    #contact { background: #828099; color: #FFFFFF; } /* Cool Gray, White text */
-
-
     p, ul { line-height: 1.6; }
 
     /* Mobile / responsive tweaks */
-    @media (max-width: 768px) and (orientation: landscape) {
-      body { flex-direction: column; }
-      .sidebar {
-        position: fixed; width: 220px; height: 100%;
-        flex-direction: column; justify-content: center;
+    @media (max-width: 768px) {
+      /* Stack 'About' section elements vertically on mobile */
+      #about {
+        flex-direction: column;
+        text-align: center;
       }
+      #about h1 {
+        margin-bottom: 20px;
+      }
+      .content { margin-top: 70px; }
+      /* Card styling for smaller screens */
+      .card { width: 100%; }
+    }
+    @media (max-width: 768px) and (orientation: landscape) {
       .content { margin-left: 240px; width: calc(100% - 240px); }
     }
     @media (orientation: portrait) {
@@ -150,75 +186,89 @@
 
     <section id="about" class="active">
       <h1>Hi Folks, I’m Hannah</h1>
-      <h2>About Me</h2>
-      <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
-      <ul>
-        <li>3 years of experience in transforming raw data into meaningful insights</li>
-        <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
-        <li>Background in Mathematics and Data Science</li>
-        <li>Applied machine learning models to drive predictive insights</li>
-        <li>Always learning, always exploring</li>
-      </ul>
+      <div class="card" id="about-card">
+        <h2>About Me</h2>
+        <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
+        <ul>
+          <li>3 years of experience in transforming raw data into meaningful insights</li>
+          <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
+          <li>Background in Mathematics and Data Science</li>
+          <li>Applied machine learning models to drive predictive insights</li>
+          <li>Always learning, always exploring</li>
+        </ul>
+      </div>
     </section>
 
     <section id="skills">
-      <h2>Skills</h2>
-      <p>Languages, libraries, platforms, and soft skills I use:</p>
-      <ul>
-        <li>**Programming:** Python, R, Scala, SQL, Bash</li>
-        <li>**Libraries:** Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
-        <li>**Cloud/Big Data:** AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
-        <li>**Tools/Visualization:** Tableau, Power BI, Git, Jupyter, VS Code</li>
-        <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
-      </ul>
+      <div class="card" id="skills-card">
+        <h2>Skills</h2>
+        <p>Languages, libraries, platforms, and soft skills I use:</p>
+        <ul>
+          <li>**Programming:** Python, R, Scala, SQL, Bash</li>
+          <li>**Libraries:** Pandas, NumPy, scikit-learn, GeoPandas, Matplotlib, Seaborn</li>
+          <li>**Cloud/Big Data:** AWS (S3, Glue, EMR, Athena), GCP (BigQuery, Vertex AI)</li>
+          <li>**Tools/Visualization:** Tableau, Power BI, Git, Jupyter, VS Code</li>
+          <li>**Soft Skills:** Data Storytelling, Problem Solving, Cross-functional Collaboration</li>
+        </ul>
+      </div>
     </section>
 
     <section id="experience">
-      <h2>Professional Experience</h2>
-      <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present)</p>
-      <ul>
-        <li>Built and deployed 10+ interactive Tableau dashboards used globally</li>
-        <li>Analyzed telecom data (100M+ rows) to derive key KPIs</li>
-        <li>Designed ETL pipelines on AWS + Spark for scalable data processing</li>
-        <li>Worked cross-functionally with analytics teams and business units</li>
-        <li>Implemented churn models with high precision</li>
-      </ul>
+      <div class="card" id="experience-card">
+        <h2>Professional Experience</h2>
+        <p><strong>Data Analyst at Accenture</strong> (Dec 2022 – Present)</p>
+        <ul>
+          <li>Built and deployed 10+ interactive Tableau dashboards used globally</li>
+          <li>Analyzed telecom data (100M+ rows) to derive key KPIs</li>
+          <li>Designed ETL pipelines on AWS + Spark for scalable data processing</li>
+          <li>Worked cross-functionally with analytics teams and business units</li>
+          <li>Implemented churn models with high precision</li>
+        </ul>
+      </div>
     </section>
 
     <section id="education">
-      <h2>Education & Certifications</h2>
-      <ul>
-        <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
-        <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
-        <li>Associate Data Practitioner – Google Cloud (2025)</li>
-        <li>Cloud Digital Leader – Google Cloud (2025)</li>
-        <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
-      </ul>
+      <div class="card" id="education-card">
+        <h2>Education & Certifications</h2>
+        <ul>
+          <li>M.Sc. in Computer Science (Data Analytics), Rajagiri School of Social Sciences (2022)</li>
+          <li>B.Sc. in Mathematics, Mar Thoma College (2020)</li>
+          <li>Associate Data Practitioner – Google Cloud (2025)</li>
+          <li>Cloud Digital Leader – Google Cloud (2025)</li>
+          <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
+        </ul>
+      </div>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li>Telecom Churn Prediction using ML models</li>
-        <li>Airline Passenger Satisfaction (published IEEE paper)</li>
-        <li>Sentiment Analysis on political speeches</li>
-      </ul>
+      <div class="card" id="projects-card">
+        <h2>Projects</h2>
+        <ul>
+          <li>Telecom Churn Prediction using ML models</li>
+          <li>Airline Passenger Satisfaction (published IEEE paper)</li>
+          <li>Sentiment Analysis on political speeches</li>
+        </ul>
+      </div>
     </section>
 
     <section id="awards">
-      <h2>Awards & Achievements</h2>
-      <ul>
-        <li>**Spot Award for Q4 2023** - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
-        <li>**Best Paper Award** - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
-        <li>**Top Performer in Data Analytics** - Accenture, FY23.</li>
-      </ul>
+      <div class="card" id="awards-card">
+        <h2>Awards & Achievements</h2>
+        <ul>
+          <li>**Spot Award for Q4 2023** - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
+          <li>**Best Paper Award** - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
+          <li>**Top Performer in Data Analytics** - Accenture, FY23.</li>
+        </ul>
+      </div>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <p>📧 Email: hannahsusan.mathew@example.com</p>
-      <p>🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a></p>
-      <p>💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a></p>
+      <div class="card" id="contact-card">
+        <h2>Contact</h2>
+        <p>📧 Email: hannahsusan.mathew@example.com</p>
+        <p>🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a></p>
+        <p>💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a></p>
+      </div>
     </section>
 
   </div>
@@ -231,16 +281,68 @@
       let currentIndex = 0;
       let isScrolling = false;
       
-      // Define the mapping of section IDs to their corresponding darker sidebar background color
+      // MAPPING FOR SIDEBAR (Darker Background for Contrast)
       const sidebarColorMap = {
-        'about': '#332830',      // Raisin Black (darkest for contrast with #3C2F3E)
-        'skills': '#3C2F3E',     // Dark Purple (darker than #45364B)
-        'experience': '#45364B', // English Violet (darker than #543E5B)
-        'education': '#543E5B',  // English Violet (darker than #62466B)
-        'projects': '#62466B',   // English Violet (darker than #6D5A7B)
-        'awards': '#6D5A7B',     // Chinese Violet (darker than #776D8A)
-        'contact': '#776D8A'     // Chinese Violet (darker than #828099)
+        'about': '#332830',      // Sidebar color for About section
+        'skills': '#3C2F3E',     // Sidebar color for Skills section
+        'experience': '#45364B', // Sidebar color for Experience section
+        'education': '#543E5B',  // Sidebar color for Education section
+        'projects': '#62466B',   // Sidebar color for Projects section
+        'awards': '#6D5A7B',     // Sidebar color for Awards section
+        'contact': '#776D8A'     // Sidebar color for Contact section
       };
+
+      // MAPPING FOR CARD (Lighter Background for Card)
+      const cardColorMap = {
+        'about': '#3C2F3E',
+        'skills': '#45364B',
+        'experience': '#543E5B',
+        'education': '#62466B',
+        'projects': '#6D5A7B',
+        'awards': '#776D8A',
+        'contact': '#828099'
+      };
+      
+      // MAPPING FOR TEXT COLOR (White text for dark cards, Black text for light cards)
+      const cardTextColorMap = {
+        'about': '#FFFFFF',
+        'skills': '#FFFFFF',
+        'experience': '#FFFFFF',
+        'education': '#FFFFFF',
+        'projects': '#FFFFFF',
+        'awards': '#FFFFFF',
+        'contact': '#FFFFFF' // Sticking with white for now as the 'contact' card is still a medium-dark shade
+      };
+      
+      // MAPPING FOR SECTION BACKGROUND (Section color will match the sidebar map for the "sunken" effect)
+      const sectionBgMap = {
+        'about': '#332830',
+        'skills': '#3C2F3E',
+        'experience': '#45364B',
+        'education': '#543E5B',
+        'projects': '#62466B',
+        'awards': '#6D5A7B',
+        'contact': '#776D8A'
+      };
+
+
+      function applySectionStyles(sectionId, index) {
+        // 1. Update Sidebar Background
+        if (sidebarColorMap[sectionId]) {
+          sidebar.style.background = sidebarColorMap[sectionId];
+        }
+
+        // 2. Update Section Background
+        sections[index].style.backgroundColor = sectionBgMap[sectionId];
+        sections[index].style.color = cardTextColorMap[sectionId]; // Use card text color here for the name/greeting side
+        
+        // 3. Update Card Colors
+        const cardElement = document.getElementById(sectionId + '-card');
+        if (cardElement && cardColorMap[sectionId]) {
+            cardElement.style.backgroundColor = cardColorMap[sectionId];
+            cardElement.style.color = cardTextColorMap[sectionId];
+        }
+      }
 
       function activateSection(index) {
         if (index < 0) index = 0;
@@ -252,13 +354,8 @@
 
         currentIndex = index;
 
-        // Get the ID of the active section
         const activeSectionId = sections[index].id;
-        
-        // Use the map to set the darker sidebar color
-        if (sidebarColorMap[activeSectionId]) {
-          sidebar.style.background = sidebarColorMap[activeSectionId];
-        }
+        applySectionStyles(activeSectionId, index);
       }
 
       function scrollToSection(index) {
@@ -270,6 +367,7 @@
         setTimeout(() => { isScrolling = false; }, 800);
       }
 
+      // Initial activation and styling
       activateSection(0);
 
       window.addEventListener('wheel', e => {
