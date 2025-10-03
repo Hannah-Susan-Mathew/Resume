@@ -43,7 +43,8 @@
     }
     .sidebar a {
       display: block; margin: 12px 0;
-      text-decoration: none; color: white;
+      text-decoration: none; 
+      color: #A1ABB0; /* Cadet Gray - DEFAULT/INACTIVE LINK COLOR (REVERSED) */
       font-weight: 600; 
       font-size: 1.1rem; 
       transition: color 0.3s;
@@ -52,7 +53,7 @@
       white-space: nowrap; 
     }
     .sidebar a.active-link { 
-      color: #A1ABB0; 
+      color: white; /* White - ACTIVE LINK COLOR (REVERSED) */
       font-weight: 700; 
     } 
 
@@ -130,7 +131,7 @@
     #contact-social-bar {
         display: flex;
         align-items: center; 
-        gap: 30px; /* INCREASED GAP for more space between phone/location and social buttons */
+        gap: 30px; 
         margin-top: 10px; 
     }
 
@@ -167,7 +168,7 @@
     /* ICON STYLING */
     #about-contact-summary i {
         margin-right: 5px;
-        color: #A1ABB0; /* Match text color */
+        color: #A1ABB0; 
     }
 
 
@@ -244,7 +245,7 @@
       
       /* Mobile adjustment for the single bar */
       #contact-social-bar {
-          flex-direction: column; /* Stack contact info and social icons vertically on mobile */
+          flex-direction: column; 
           margin-top: 10px;
           gap: 10px;
           align-items: center;
