@@ -79,26 +79,25 @@
       #about {
           flex-direction: row; /* Arrange items in a row */
           justify-content: center;
-          align-items: center;
-          gap: 50px;
-          padding-top: 50px;
+          align-items: center; /* Vertically center main items */
+          gap: 50px; /* Space between the two columns */
+          padding-top: 50px; /* Adjust padding if needed for desktop */
       }
-      #about-left-column {
+      #about-left-column { /* New container for name, contact, social */
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          width: 40%;
-          min-width: 300px;
-          max-width: 500px;
-          gap: 20px; /* NEW: Added vertical gap here for desktop/landscape */
+          width: 40%; /* Allocate width for the left column */
+          min-width: 300px; /* Ensure a minimum width */
+          max-width: 500px; /* Prevent it from getting too wide */
       }
       #about-header {
-          width: 100%;
-          text-align: left;
+          width: 100%; /* Make header take full width of its column */
+          text-align: left; /* Align text left */
       }
       #about-card {
-          width: 50%;
-          max-width: 700px;
+          width: 60%; /* Allocate width for the right column */
+          max-width: 700px; /* Prevent it from getting too wide */
           min-width: 400px;
           padding: 40px;
       }
@@ -179,8 +178,6 @@
         color: #A1ABB0; 
         margin-bottom: 0;
         align-items: center; /* Vertically align icon and text */
-        flex-wrap: wrap; /* Allow wrapping on narrow screens */
-        justify-content: center; /* Center items when they wrap on mobile */
     }
     #about-contact-summary span {
         display: flex;
@@ -233,21 +230,20 @@
         align-items: center;
       }
       .card, #about-header {
-        width: 100%;
+        width: 100%; /* Maximize card width within section padding */
         min-width: unset;
         max-width: unset;
         box-sizing: border-box;
       }
       #about {
         padding-top: 50px;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
+        flex-direction: column; /* Stack elements vertically for mobile */
+        align-items: center; /* Center content horizontally */
+        gap: 25px; /* Space between stacked elements */
       }
-      #about-left-column {
+      #about-left-column { /* Ensure this new container also stacks */
           width: 100%;
           align-items: center;
-          gap: 15px; /* Mobile gap remains small */
       }
       #about-header {
         text-align: center;
@@ -260,7 +256,7 @@
       }
       #about-card {
         padding: 30px; 
-        order: 4; /* Place about card below everything else on mobile */
+        order: 4; /* KEY FIX: Place about card below everything else on mobile */
       }
       #about-card p {
         font-size: 1rem;
@@ -269,12 +265,12 @@
         flex-direction: column;
         gap: 5px;
         margin-bottom: 10px;
-        text-align: center;
+        text-align: center; /* Center text if stacked */
       }
       #social-links {
         justify-content: center;
         width: 100%;
-        order: 3;
+        order: 3; /* Place social links after contact summary */
       }
       #about-header {
           order: 1;
@@ -312,7 +308,7 @@
           }
       }
       
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav & Desktop Layout) --- */
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow Vertical Nav) --- */
       @media (orientation: landscape) {
          .sidebar {
             width: 120px;
@@ -327,34 +323,36 @@
             margin-left: 120px; 
             width: calc(100% - 120px); 
          }
-         /* Re-apply desktop-like row layout for landscape */
+         /* For landscape, about section should behave like desktop's row layout */
          #about {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 50px;
          }
          #about-left-column {
              width: 40%;
-             min-width: unset;
+             min-width: unset; /* Remove min-width for smaller landscape screens */
              max-width: unset;
              align-items: flex-start;
-             gap: 20px; /* NEW: Landscape gap restored */
          }
          #about-header {
              text-align: left;
          }
          #about-card {
-             width: 50%;
-             max-width: unset;
+             width: 60%;
+             max-width: unset; /* Remove max-width for smaller landscape screens */
              min-width: unset;
-             order: unset;
+             order: unset; /* Revert order */
          }
          #social-links {
              justify-content: flex-start;
-             order: unset;
+             order: unset; /* Revert order */
          }
-         #about-header, #about-contact-summary {
+         #about-header {
+            order: unset;
+         }
+         #about-contact-summary {
             order: unset;
          }
       }
@@ -378,13 +376,13 @@
 
     <section id="about" class="active">
         
-        <div id="about-left-column">
-            <div id="about-header">
+        <div id="about-left-column"> <div id="about-header">
                 <h1>Hannah Susan Mathew</h1>
                 <h2>Data Analyst</h2>
                 <p id="about-contact-summary">
-                    <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001 <i class="fas fa-phone"></i> +91-99999 99999</span> 
-                    <span><i class="fas fa-phone"></i> +91-99999 99999</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001</span> 
+                    | 
+                    <span><i class="fas fa-phone"></i> +91 99999 99999</span>
                 </p>
             </div>
             
@@ -397,7 +395,7 @@
 
         <div class="card" id="about-card">
             <p>
-                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying **machine learning models** to drive predictive decisions.
+                <strong>Accomplished Data Analyst with 3 years of experience</strong> turning raw data into meaningful, actionable business insights. Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong> for scalable Big Data processing, advanced visualization, and reporting. Leveraging a background in Mathematics and Data Science, I specialize in applying <strong>machine learning models</strong> to drive predictive decisions.
             </p>
         </div>
         
