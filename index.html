@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hannah Susan Mathew</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; }
+    /* Setting Roboto as the base font for the entire body */
+    html, body { height: 100%; font-family: 'Roboto', sans-serif; overflow-x: hidden; margin: 0; }
     body { display: flex; }
 
     /* Sidebar */
@@ -40,6 +42,7 @@
       font-size: 1.1rem; 
       transition: color 0.3s;
       text-transform: uppercase; 
+      font-family: 'Montserrat', sans-serif; /* Using Montserrat for sidebar links */
     }
     .sidebar a.active-link { color: #A1ABB0; } /* Cadet Gray for active link */
 
@@ -69,7 +72,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      color: #FFFFFF; /* Default to white for dark backgrounds */
+      color: #FFFFFF; 
       scroll-snap-align: start;
     }
     section.active {
@@ -77,7 +80,11 @@
       transform: translateY(0);
     }
 
-    h1, h2 { margin-bottom: 15px; }
+    /* Setting Montserrat for headers */
+    h1, h2 { 
+      font-family: 'Montserrat', sans-serif; 
+      margin-bottom: 15px; 
+    }
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; /* Cadet Gray for the border */ display: inline-block; padding-bottom: 3px; }
 
