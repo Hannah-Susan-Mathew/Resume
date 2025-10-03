@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hannah Susan Mathew</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,7 +44,11 @@
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif; /* Using Montserrat for sidebar links */
     }
-    .sidebar a.active-link { color: #A1ABB0; } /* Cadet Gray for active link */
+    /* FIX: Reverting active link color to Cadet Gray and increasing weight for better contrast */
+    .sidebar a.active-link { 
+      color: #A1ABB0; /* Cadet Gray */
+      font-weight: 700; /* Extra bold to help it stand out */
+    } 
 
     /* Content container */
     .content {
