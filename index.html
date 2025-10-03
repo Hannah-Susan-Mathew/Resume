@@ -15,7 +15,7 @@
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 220px; height: 100%;
-      background: #111822; /* Navy background */
+      background: #111822; /* Dark Navy background */
       color: white;
       padding: 20px 10px;
       display: flex;
@@ -30,14 +30,14 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 25px;
-      border: 3px solid #6C6A6A; /* Using one of the grays from the palette */
+      border: 3px solid #6C6A6A; 
     }
     .sidebar a {
       display: block; margin: 12px 0;
       text-decoration: none; color: white;
       font-weight: 600; font-size: 0.95rem;
       transition: color 0.3s;
-      text-transform: uppercase;
+      text-transform: uppercase; /* Uppercase links */
     }
     .sidebar a.active-link { color: #F38699; } /* Light peach for active link */
 
@@ -48,9 +48,15 @@
       scroll-snap-type: y mandatory;
       transition: background 0.5s;
     }
+    
+    /* FIX: Corrected rule for wider screens (769px+) */
     @media (min-width: 769px) {
-      .content { margin-left: 240px; width: auto; }
+      .content { 
+        margin-left: 220px; /* Needs to match sidebar width */
+        width: calc(100% - 220px); /* Fill the remaining width */
+      }
     }
+    /* END FIX */
 
     section {
       min-height: 100vh;
@@ -62,7 +68,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      color: #FFFFFF; /* Default to white for most sections */
+      color: #FFFFFF;
       scroll-snap-align: start;
     }
     section.active {
@@ -75,13 +81,13 @@
     h2 { font-size: 1.6rem; border-bottom: 2px solid #F38699; /* Light peach for the border */ display: inline-block; padding-bottom: 3px; }
 
     /* Section background colors and specific text colors */
-    #about { background: #111822; color: #FFFFFF; } /* Navy background, white text */
-    #skills { background: #333740; color: #FFFFFF; } /* Dark Gray background, white text */
-    #experience { background: #6C6A6A; color: #FFFFFF; } /* Gray background, white text */
-    #education { background: #4F362A; color: #FFFFFF; } /* Brown background, white text */
-    #projects { background: #745850; color: #FFFFFF; } /* Taupe background, white text */
-    #awards { background: #745850; color: #FFFFFF; } /* ADJUSTMENT: Taupe background, white text */
-    #contact { background: #111822; color: #FFFFFF; } /* Navy background, white text */
+    #about { background: #111822; color: #FFFFFF; } /* Navy */
+    #skills { background: #333740; color: #FFFFFF; } /* Dark Gray */
+    #experience { background: #6C6A6A; color: #FFFFFF; } /* Gray */
+    #education { background: #4F362A; color: #FFFFFF; } /* Brown (Moved below experience) */
+    #projects { background: #745850; color: #FFFFFF; } /* Taupe */
+    #awards { background: #745850; color: #FFFFFF; } /* Taupe (Changed from light peach) */
+    #contact { background: #111822; color: #FFFFFF; } /* Navy */
 
 
     p, ul { line-height: 1.6; }
