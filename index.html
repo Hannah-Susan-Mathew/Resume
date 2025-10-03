@@ -70,9 +70,8 @@
         margin-left: 220px; 
         width: calc(100% - 220px); 
       }
-      /* Desktop-only adjustment for the social links */
       #social-links {
-          margin-top: 5px; /* Add a little space below the contact info */
+          margin-top: 5px; 
       }
     }
 
@@ -124,17 +123,15 @@
 
     #about-header {
         width: 70%;
-        /* Resetting previous flex logic for the desired layout */
         display: block; 
     }
     
     /* Contact and Social Links Container */
     #contact-social-bar {
-        /* KEY CHANGE for the desired single-line layout on desktop */
         display: flex;
-        align-items: center; /* Vertically align contact summary and social icons */
-        gap: 15px; /* Space between phone/location and the social buttons */
-        margin-top: 10px; /* Space below the Data Analyst title */
+        align-items: center; 
+        gap: 30px; /* INCREASED GAP for more space between phone/location and social buttons */
+        margin-top: 10px; 
     }
 
     #about h1 {
@@ -150,22 +147,27 @@
         font-weight: 600;
         color: #A1ABB0; 
         margin-top: 5px;
-        margin-bottom: 0px; /* Removed margin-bottom */
+        margin-bottom: 0px; 
         border-bottom: none;
         display: block;
     }
 
     #about-contact-summary {
         display: flex;
-        gap: 15px; /* Reduced gap to fit everything on one line better */
+        gap: 15px; 
         font-size: 1.1rem;
         color: #A1ABB0; 
         margin-bottom: 0;
-        /* Ensure it remains aligned with social icons */
         line-height: 1; 
     }
     #about-contact-summary span {
-        white-space: nowrap; /* Prevent contact info from wrapping */
+        white-space: nowrap; 
+    }
+    
+    /* ICON STYLING */
+    #about-contact-summary i {
+        margin-right: 5px;
+        color: #A1ABB0; /* Match text color */
     }
 
 
@@ -179,12 +181,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40px; /* Slightly smaller buttons for the new layout */
+        width: 40px; 
         height: 40px;
         border-radius: 50%;
         background-color: #543E5B; 
         color: #FFFFFF;
-        font-size: 1.2rem; /* Smaller icon size */
+        font-size: 1.2rem; 
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
@@ -233,7 +235,7 @@
       
       /* Reset desktop properties for mobile header */
       #about-header {
-          display: flex; /* Re-enable flex to center items */
+          display: flex; 
           flex-direction: column;
           align-items: center;
           text-align: center;
@@ -335,9 +337,9 @@
             
             <div id="contact-social-bar">
                 <p id="about-contact-summary">
-                    <span>Bangalore, Karnataka, India - 560001</span> 
+                    <span><i class="fas fa-map-marker-alt"></i>Bangalore, Karnataka, India - 560001</span> 
                     | 
-                    <span>+91 99999 99999</span>
+                    <span><i class="fas fa-phone-alt"></i>+91 99999 99999</span>
                 </p>
                 <div id="social-links">
                     <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
