@@ -100,7 +100,7 @@
         background: #332830; 
         color: #FFFFFF; 
         flex-direction: column; 
-        align-items: flex-start;
+        align-items: flex-start; /* Ensures content aligns to the left */
         gap: 25px;
         padding-top: 100px; 
     } 
@@ -117,14 +117,16 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 70%; 
-      min-width: 500px;
+      /* Changed width to max-width to allow content to shrink/grow within limits */
+      max-width: 700px; /* Limit card width, can be adjusted */
+      min-width: 500px; /* Ensures card doesn't get too small */
     }
 
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        width: 70%;
+        /* Removed fixed width, will size to content or max-width */
+        max-width: 700px; /* Limit how wide it can get on very large screens */
         display: block; 
     }
     
@@ -355,7 +357,7 @@
                 </p>
                 <div id="social-links">
                     <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com="Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
