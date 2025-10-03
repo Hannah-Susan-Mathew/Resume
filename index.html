@@ -70,6 +70,10 @@
         margin-left: 220px; 
         width: calc(100% - 220px); 
       }
+      /* Desktop-only adjustment for the social links */
+      #social-links {
+          margin-top: 5px; /* Add a little space below the contact info */
+      }
     }
 
     /* SECTION STYLING */
@@ -120,17 +124,17 @@
 
     #about-header {
         width: 70%;
-        /* --- KEY CHANGES HERE FOR LAYOUT --- */
-        display: flex; /* Enable flexbox */
-        flex-wrap: wrap; /* Allow items to wrap if space is limited */
-        justify-content: space-between; /* Push contact info to left, social links to right */
-        align-items: flex-end; /* Align items to the bottom if they have different heights */
+        /* Resetting previous flex logic for the desired layout */
+        display: block; 
     }
-
-    #about-main-info { /* New div to group name and title */
+    
+    /* Contact and Social Links Container */
+    #contact-social-bar {
+        /* KEY CHANGE for the desired single-line layout on desktop */
         display: flex;
-        flex-direction: column;
-        margin-bottom: 20px; /* Space between name/title and contact/social */
+        align-items: center; /* Vertically align contact summary and social icons */
+        gap: 15px; /* Space between phone/location and the social buttons */
+        margin-top: 10px; /* Space below the Data Analyst title */
     }
 
     #about h1 {
@@ -146,25 +150,24 @@
         font-weight: 600;
         color: #A1ABB0; 
         margin-top: 5px;
-        margin-bottom: 10px; 
+        margin-bottom: 0px; /* Removed margin-bottom */
         border-bottom: none;
         display: block;
     }
 
-    #about-contact-social { /* New div to group contact and social links */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end; /* Align social links to the right */
-        gap: 10px; /* Space between contact summary and social links */
-    }
-
     #about-contact-summary {
         display: flex;
-        gap: 30px;
+        gap: 15px; /* Reduced gap to fit everything on one line better */
         font-size: 1.1rem;
         color: #A1ABB0; 
         margin-bottom: 0;
+        /* Ensure it remains aligned with social icons */
+        line-height: 1; 
     }
+    #about-contact-summary span {
+        white-space: nowrap; /* Prevent contact info from wrapping */
+    }
+
 
     /* SOCIAL LINKS STYLING */
     #social-links {
@@ -176,12 +179,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 50px;
+        width: 40px; /* Slightly smaller buttons for the new layout */
+        height: 40px;
         border-radius: 50%;
         background-color: #543E5B; 
         color: #FFFFFF;
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Smaller icon size */
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
@@ -228,38 +231,40 @@
         padding-top: 50px; 
       }
       
-      /* Reset desktop flex properties for mobile header */
+      /* Reset desktop properties for mobile header */
       #about-header {
+          display: flex; /* Re-enable flex to center items */
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 15px; /* Space between name block and contact/social */
+          gap: 15px; 
       }
-      #about-main-info { /* Ensure name and title are centered */
+      
+      /* Mobile adjustment for the single bar */
+      #contact-social-bar {
+          flex-direction: column; /* Stack contact info and social icons vertically on mobile */
+          margin-top: 10px;
+          gap: 10px;
           align-items: center;
-          margin-bottom: 0; /* No extra margin here */
       }
+      
       #about-header h1 {
           font-size: 2.5rem;
       }
       #about-header h2 {
           font-size: 1.5rem;
       }
-      #about-contact-social {
-          align-items: center; /* Center contact info and social links on mobile */
-          gap: 10px;
-      }
       #about-contact-summary {
         flex-direction: column;
         gap: 5px;
-        margin-bottom: 0;
+        font-size: 1rem;
       }
       #social-links {
         justify-content: center;
         width: 100%;
       }
       
-      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX --- */
+      /* --- PORTRAIT-SPECIFIC NAVIGATION FIX (Top bar) --- */
       @media (orientation: portrait) {
           .sidebar {
             position: fixed; top: 0; left: 0;
@@ -288,7 +293,7 @@
           }
       }
       
-      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Keep vertical nav, but smaller) --- */
+      /* --- LANDSCAPE-SPECIFIC ADJUSTMENTS (Narrow vertical nav) --- */
       @media (orientation: landscape) {
          .sidebar {
             width: 120px; 
@@ -325,10 +330,11 @@
     <section id="about" class="active">
         
         <div id="about-header">
-            <div id="about-main-info"> <h1>Hannah Susan Mathew</h1>
-                <h2>Data Analyst</h2>
-            </div>
-            <div id="about-contact-social"> <p id="about-contact-summary">
+            <h1>Hannah Susan Mathew</h1>
+            <h2>Data Analyst</h2>
+            
+            <div id="contact-social-bar">
+                <p id="about-contact-summary">
                     <span>Bangalore, Karnataka, India - 560001</span> 
                     | 
                     <span>+91 99999 99999</span>
@@ -431,7 +437,6 @@
       let currentIndex = 0;
       let isScrolling = false;
       
-      // Color maps remain the same as previous iterations
       const sidebarColorMap = {
         'about': '#332830',
         'skills': '#3C2F3E',
@@ -474,15 +479,12 @@
 
 
       function applySectionStyles(sectionId, index) {
-        // 1. Update Sidebar Background
         if (sidebarColorMap[sectionId]) {
           sidebar.style.background = sidebarColorMap[sectionId];
         }
 
-        // 2. Update Section Background
         sections[index].style.backgroundColor = sectionBgMap[sectionId];
         
-        // 3. Update Card Colors
         const cardElement = document.getElementById(sectionId + '-card');
         if (cardElement && cardColorMap[sectionId]) {
             cardElement.style.backgroundColor = cardColorMap[sectionId];
@@ -513,7 +515,6 @@
         setTimeout(() => { isScrolling = false; }, 800);
       }
 
-      // Initial activation and styling
       activateSection(0);
 
       window.addEventListener('wheel', e => {
