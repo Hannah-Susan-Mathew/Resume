@@ -132,7 +132,7 @@
     #contact-social-bar {
         display: flex;
         align-items: center; 
-        gap: 30px; 
+        /* Removed gap to prevent elements from spacing out too much on wide screens */
         margin-top: 10px; 
     }
 
@@ -156,8 +156,10 @@
 
     #about-contact-summary {
         display: flex;
-        /* Increased gap for separation without the pipe symbol */
+        /* Space between location and phone number */
         gap: 30px; 
+        /* Margin to create space between contact info and social links */
+        margin-right: 40px; 
         font-size: 1.1rem;
         color: #A1ABB0; 
         margin-bottom: 0;
@@ -177,7 +179,7 @@
     /* SOCIAL LINKS STYLING */
     #social-links {
         display: flex;
-        /* Increased gap between social buttons */
+        /* Space between social buttons */
         gap: 20px; 
         margin-bottom: 0;
     }
@@ -262,6 +264,8 @@
       }
       #about-contact-summary {
         flex-direction: column;
+        /* Reset desktop margin on mobile */
+        margin-right: 0; 
         gap: 5px;
         font-size: 1rem;
       }
