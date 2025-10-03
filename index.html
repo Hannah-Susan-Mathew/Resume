@@ -84,7 +84,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Section background colors (These colors are now the darker background) */
+    /* Section background colors (These colors are the darker background) */
     #about { background: #332830; color: #FFFFFF; } /* Raisin Black */
     #skills { background: #3C2F3E; color: #FFFFFF; } /* Dark Purple */
     #experience { background: #45364B; color: #FFFFFF; } /* English Violet */
@@ -104,16 +104,53 @@
     /* ABOUT SECTION SPECIFIC LAYOUT */
     #about {
       /* Overriding default flex-direction to row for two-column layout */
-      flex-direction: row; 
-      align-items: center;
-      gap: 50px;
+      flex-direction: column; /* Temporarily change back to column to structure the header */
+      align-items: flex-start; /* Align header content to the left */
+      justify-content: center;
+      gap: 20px;
     }
+
+    #about-header {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
     #about h1 {
-      /* Left side (Name/Greeting) */
-      flex: 1;
-      font-size: 3rem;
-      line-height: 1.2;
+        /* NAME: Big and impactful */
+        font-size: 4rem; /* Increased font size for prominence */
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 10px;
     }
+
+    #about-contact-summary {
+        /* Location and Phone Number on one line */
+        display: flex;
+        gap: 30px;
+        font-size: 1.1rem;
+        color: #A1ABB0; /* Cadet Gray for subtle accent */
+        margin-bottom: 40px; /* Space between header and card */
+    }
+
+    #about-content-wrapper {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: flex-start;
+        gap: 50px;
+    }
+
+    #about-content-wrapper h2 {
+        /* H2 on the left side of the card layout */
+        flex: 1;
+        font-size: 1.8rem;
+        line-height: 1.3;
+        color: #A1ABB0; /* Cadet Gray to stand out against the main name */
+        margin-top: 15px;
+        border-bottom: none;
+        display: block;
+    }
+
     #about .card {
       /* Right side (Details) */
       flex: 2;
@@ -127,8 +164,8 @@
       font-family: 'Montserrat', sans-serif; 
       margin-bottom: 15px; 
     }
-    h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; border-bottom: 2px solid #A1ABB0; /* Cadet Gray for the border */ display: inline-block; padding-bottom: 3px; }
+    #about .card h2 { border-bottom: none; display: block; } /* Remove border from H2 inside the card */
 
     p, ul { line-height: 1.6; }
 
@@ -137,10 +174,22 @@
       /* Stack 'About' section elements vertically on mobile */
       #about {
         flex-direction: column;
+        align-items: center;
         text-align: center;
       }
       #about h1 {
-        margin-bottom: 20px;
+        font-size: 2.5rem;
+      }
+      #about-contact-summary {
+        flex-direction: column;
+        gap: 5px;
+      }
+      #about-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+      }
+      #about-content-wrapper h2 {
+        text-align: center;
       }
       .content { margin-top: 70px; }
       /* Card styling for smaller screens */
@@ -185,17 +234,27 @@
   <div class="content" id="content">
 
     <section id="about" class="active">
-      <h1>Hi Folks, I’m Hannah</h1>
-      <div class="card" id="about-card">
-        <h2>About Me</h2>
-        <p>A Data Analyst passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
-        <ul>
-          <li>3 years of experience in transforming raw data into meaningful insights</li>
-          <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
-          <li>Background in Mathematics and Data Science</li>
-          <li>Applied machine learning models to drive predictive insights</li>
-          <li>Always learning, always exploring</li>
-        </ul>
+      <div id="about-header">
+        <h1>Hannah Susan Mathew</h1>
+        <p id="about-contact-summary">
+            <span>Bangalore, Karnataka, India - 560001</span> 
+            | 
+            <span>+91 99999 99999</span>
+        </p>
+      </div>
+
+      <div id="about-content-wrapper">
+        <h2>Data Analyst</h2>
+        <div class="card" id="about-card">
+          <p>A **Data Analyst** passionate about turning data into insights. I work with data pipelines, dashboards, and cloud tools to help businesses make smarter decisions. ✨</p>
+          <ul>
+            <li>3 years of experience in transforming raw data into meaningful insights</li>
+            <li>Working across Python, SQL, Tableau, Power BI, AWS & more</li>
+            <li>Background in Mathematics and Data Science</li>
+            <li>Applied machine learning models to drive predictive insights</li>
+            <li>Always learning, always exploring</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -303,7 +362,7 @@
         'contact': '#828099'
       };
       
-      // MAPPING FOR TEXT COLOR (White text for dark cards, Black text for light cards)
+      // MAPPING FOR TEXT COLOR (White text for dark cards)
       const cardTextColorMap = {
         'about': '#FFFFFF',
         'skills': '#FFFFFF',
@@ -311,7 +370,7 @@
         'education': '#FFFFFF',
         'projects': '#FFFFFF',
         'awards': '#FFFFFF',
-        'contact': '#FFFFFF' // Sticking with white for now as the 'contact' card is still a medium-dark shade
+        'contact': '#FFFFFF' 
       };
       
       // MAPPING FOR SECTION BACKGROUND (Section color will match the sidebar map for the "sunken" effect)
@@ -334,7 +393,8 @@
 
         // 2. Update Section Background
         sections[index].style.backgroundColor = sectionBgMap[sectionId];
-        sections[index].style.color = cardTextColorMap[sectionId]; // Use card text color here for the name/greeting side
+        // Note: Section text color is set in CSS, but you can uncomment below if needed
+        // sections[index].style.color = cardTextColorMap[sectionId]; 
         
         // 3. Update Card Colors
         const cardElement = document.getElementById(sectionId + '-card');
