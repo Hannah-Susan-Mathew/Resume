@@ -99,10 +99,12 @@
     #about { 
         background: #332830; 
         color: #FFFFFF; 
-        flex-direction: column; 
-        align-items: flex-start; /* Ensures content aligns to the left */
-        gap: 25px;
-        padding-top: 100px; 
+        /* CRITICAL: Use flexbox to enable side-by-side layout */
+        flex-direction: row; /* Layout children horizontally */
+        align-items: flex-start; /* Aligns content to the top */
+        gap: 40px; /* Space between the two columns (Header and Card) */
+        padding: 100px 40px 50px 40px; /* Adjusted padding for better fit */
+        min-height: 100vh; /* Keep it full height */
     } 
     #skills { background: #3C2F3E; color: #FFFFFF; } 
     #experience { background: #45364B; color: #FFFFFF; } 
@@ -117,19 +119,19 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* Use fit-content to collapse the card width to the minimum necessary */
-      width: fit-content; 
-      max-width: 700px; /* Prevents card from getting too wide on huge screens */
-      min-width: 500px; /* Ensures card doesn't get too small for readability */
+      width: 60%; /* Card takes up 60% of the space beside the header */
+      max-width: 700px;
+      min-width: 500px; 
+      margin-top: 50px; /* Align with the name/title in the header column */
     }
-
+    
     /* ABOUT SECTION SPECIFIC LAYOUT */
 
     #about-header {
-        /* Use fit-content to collapse the header width to the minimum necessary */
-        width: fit-content; 
-        max-width: 700px;
+        width: 40%; /* Header column takes up 40% of the space */
+        max-width: 500px; 
         display: block; 
+        margin-top: 50px; /* Align with the top of the content area */
     }
     
     /* Contact and Social Links Container */
@@ -237,10 +239,14 @@
         min-width: unset;
         max-width: 90%; 
         padding: 20px;
+        margin-top: 0; /* Reset desktop margin for mobile */
       }
       #about {
         align-items: center;
         padding-top: 50px; 
+        /* CRITICAL: Revert to column for mobile stacking */
+        flex-direction: column; 
+        gap: 25px;
       }
       
       /* Reset desktop properties for mobile header */
@@ -359,7 +365,7 @@
                 </p>
                 <div id="social-links">
                     <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com="Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/Hannah-Susan-Mathew" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="mailto:hannahsusan.mathew@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
