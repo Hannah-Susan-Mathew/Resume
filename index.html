@@ -264,6 +264,24 @@
       .skills-grid { grid-template-columns: 1fr; }
       #skills .card > div[style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: 1fr !important; }
     }
+    
+    /* --- NEW CSS FOR CERTIFICATION BADGE ROW --- */
+    .cert-badge-row {
+        display: flex; /* Enable flexible arrangement */
+        flex-direction: row; /* Arrange items horizontally */
+        gap: 20px; /* Space between the badges */
+        justify-content: center; /* Center the badges within the card */
+        flex-wrap: wrap; /* Allow badges to wrap to the next line on small screens */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Ensure the iframe itself is centered if possible */
+    .cert-badge-row > div {
+        display: flex;
+        justify-content: center;
+    }
+    /* --- END NEW CSS --- */
 
 
     /* --- MOBILE / PORTRAIT-SPECIFIC TWEAKS (Max-width 768px) --- */
@@ -634,15 +652,25 @@
           </div>
         </div>
       </div>
+      
       <div class="card" id="certifications-card" style="margin-top: 30px;">
         <h2>📜 Certifications & Publications</h2>
-        <ul style="padding-left: 20px; line-height: 1.8;">
-          <li>Associate Data Practitioner – Google Cloud (2025)</li>
-          <li>Cloud Digital Leader – Google Cloud (2025)</li>
+        
+        <div class="cert-badge-row">
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fa9240cf-d50e-4f1e-b63b-fb9e5b3e7e8a" data-share-badge-host="https://www.credly.com"></div>
+
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="0c214652-0a5c-4cea-8afb-852ab169716d" data-share-badge-host="https://www.credly.com"></div>
+
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b3efbcf3-89f5-4043-9b52-16f45af95172" data-share-badge-host="https://www.credly.com"></div>
+        </div>
+        
+        <ul style="padding-left: 20px; line-height: 1.8; margin-top: 20px;">
           <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
         </ul>
+        
+        <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
       </div>
-    </section>
+      </section>
 
     <section id="projects">
       <div class="card" id="projects-card">
