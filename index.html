@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hannah Susan Mathew</title>
+  <title>Hannah Susan Mathew - Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23543E5B'/><stop offset='100%25' style='stop-color:%236D5A7B'/></linearGradient></defs><circle cx='50' cy='50' r='48' fill='url(%23grad)'/><text x='50' y='58' font-family='Brush Script MT,cursive' font-size='80' font-weight='400' fill='white' text-anchor='middle' dominant-baseline='middle'>H</text></svg>">
   
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
@@ -16,9 +17,13 @@
         height: 100%; 
         font-family: 'Open Sans', sans-serif;
         overflow-x: hidden; 
-        margin: 0; 
+        margin: 0;
     }
-    body { display: flex; }
+    body { 
+        display: flex;
+        background: linear-gradient(to bottom, #332830 0%, #776D8A 100%);
+        background-attachment: fixed;
+    }
 
     /* --- SIDEBAR (DESKTOP DEFAULT) --- */
     .sidebar {
@@ -238,13 +243,19 @@
     .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
     .skill-category { padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; font-family: 'Open Sans', sans-serif; border-left: 5px solid #332830; }
     .skill-category p:first-child { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(161,171,176,0.3); }
-    .skill-category p:not(:first-child) { margin: 8px 0; line-height: 1.8; font-size: 0.9rem; }
+    .skill-category p:not(:first-child) { margin: 8px 0; line-height: 1.8; font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-category img { vertical-align: middle; width: 20px; height: 20px; }
-    .skill-category span { white-space: nowrap; }
+    .skill-category img.icon-bg { background: white; border-radius: 50%; padding: 4px; }
+    .skill-category span { white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; position: relative; cursor: help; }
+    .skill-category span[data-tooltip]:hover::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #332830; color: white; padding: 8px 12px; border-radius: 6px; white-space: normal; width: 200px; font-size: 0.85rem; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.3); margin-bottom: 8px; }
+    .skill-category span[data-tooltip]:hover::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #332830; margin-bottom: 2px; z-index: 1000; }
     #skills { min-height: auto; padding-bottom: 150px; }
     #skills .card { background: #45364B !important; }
     #skills .card + .card { margin-top: 30px; margin-bottom: 50px; }
     #experience { padding-bottom: 150px; }
+    #education { padding-bottom: 150px; }
+    #projects { padding-bottom: 150px; }
+    #awards { padding-bottom: 150px; }
 
     /* EXPERIENCE SECTION STYLING */
     #experience-card ul li { margin-bottom: 10px; padding-left: 5px; border-left: 3px solid transparent; transition: all 0.3s ease; font-size: 0.95rem; }
@@ -264,24 +275,6 @@
       .skills-grid { grid-template-columns: 1fr; }
       #skills .card > div[style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: 1fr !important; }
     }
-    
-    /* --- NEW CSS FOR CERTIFICATION BADGE ROW --- */
-    .cert-badge-row {
-        display: flex; /* Enable flexible arrangement */
-        flex-direction: row; /* Arrange items horizontally */
-        gap: 20px; /* Space between the badges */
-        justify-content: center; /* Center the badges within the card */
-        flex-wrap: wrap; /* Allow badges to wrap to the next line on small screens */
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    /* Ensure the iframe itself is centered if possible */
-    .cert-badge-row > div {
-        display: flex;
-        justify-content: center;
-    }
-    /* --- END NEW CSS --- */
 
 
     /* --- MOBILE / PORTRAIT-SPECIFIC TWEAKS (Max-width 768px) --- */
@@ -425,14 +418,13 @@
 <body>
 
   <div class="sidebar" id="sidebar">
-    <img src="https://github.com/Hannah-Susan-Mathew/Resume/blob/0b424d7dac96bc944da18b05c3532e44b60b7638/Hannah_Susan_Mathew_Image.jpg?raw=true" alt="Profile Image" />
+    <img src="https://media.licdn.com/dms/image/v2/D5603AQHsnhZNjTXkDg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726428494637?e=1762992000&v=beta&t=rxYK96yf3pJgD4pd6RlwrrjnKmP2-hUm8AZf6Flc_9w" alt="Profile Image" />
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#awards">Awards</a>
-    <a href="#contact">Contact</a>
   </div>
 
   <div class="content" id="content">
@@ -441,10 +433,17 @@
         
         <div id="about-left-column"> <div id="about-header">
                 <h1>Hannah Susan Mathew</h1>
-                <h2>Data Analyst</h2>
-                <p id="about-contact-summary">
-                    <span><i class="fas fa-phone"></i> +91 99999 99999</span>
+                <h2>Full Stack Data Analyst</h2>
+                <p id="about-contact-summary" style="margin-bottom: 15px;">
                     <span><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India - 560001</span>
+                </p>
+                <p id="about-contact-summary" style="margin-bottom: 15px;">
+                    <span><i class="fas fa-venus"></i> Female</span>
+                </p>
+                <p id="about-contact-summary">
+                    <span><strong>A</strong> English (Professional)</span>
+                    <span><strong>മ</strong> Malayalam (Native)</span>
+                    <span><strong>हि</strong> Hindi (Conversational)</span>
                 </p>
             </div>
           
@@ -456,12 +455,12 @@
         </div>
 
         <div class="card" id="about-card">
-            <ul style="padding-left: 20px;">
-                <li>📊 <strong>3 years of experience</strong> as Data Analyst turning raw data into actionable insights</li>
-                <li>💻 Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong></li>
-                <li>☁️ Expertise in scalable <strong>Big Data processing</strong> and advanced visualization</li>
-                <li>🎓 Background in <strong>Mathematics and Data Science</strong></li>
-                <li>🤖 Specialized in <strong>machine learning models</strong> for predictive decisions</li>
+            <ul style="padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 12px; display: flex; align-items: flex-start;"><i class="fas fa-chart-bar" style="color: #A1ABB0; margin-right: 10px; margin-top: 3px; flex-shrink: 0;"></i> <span><strong>3 years of experience</strong> as Data Analyst turning raw data into actionable insights</span></li>
+                <li style="margin-bottom: 12px; display: flex; align-items: flex-start;"><i class="fas fa-laptop-code" style="color: #A1ABB0; margin-right: 10px; margin-top: 3px; flex-shrink: 0;"></i> <span>Proficient in <strong>Python, SQL, AWS, Tableau, and Power BI</strong></span></li>
+                <li style="margin-bottom: 12px; display: flex; align-items: flex-start;"><i class="fas fa-cloud" style="color: #A1ABB0; margin-right: 10px; margin-top: 3px; flex-shrink: 0;"></i> <span>Expertise in scalable <strong>Big Data processing</strong> and advanced visualization</span></li>
+                <li style="margin-bottom: 12px; display: flex; align-items: flex-start;"><i class="fas fa-graduation-cap" style="color: #A1ABB0; margin-right: 10px; margin-top: 3px; flex-shrink: 0;"></i> <span>Background in <strong>Mathematics and Data Science</strong></span></li>
+                <li style="margin-bottom: 12px; display: flex; align-items: flex-start;"><i class="fas fa-robot" style="color: #A1ABB0; margin-right: 10px; margin-top: 3px; flex-shrink: 0;"></i> <span>Specialized in <strong>machine learning models</strong> for predictive decisions</span></li>
             </ul>
         </div>
         
@@ -469,63 +468,84 @@
 
     <section id="skills">
       <div class="card" id="skills-card">
-        <h2>🛠️ Technologies & Tools</h2>
+        <h2><i class="fas fa-tools"></i> Technical Skills</h2>
         <div class="skills-grid">
           <div class="skill-category">
-            <p><b>💻 Programming Languages</b></p>
+            <p><b><i class="fas fa-laptop-code"></i> Core Technical Skills</b></p>
             <p>
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="30"/> Python</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg" width="30"/> Scala</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" width="30"/> R</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" width="30"/> Bash</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="30"/> SQL</span>
+              <span data-tooltip="High-level programming language for data analysis and automation"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="30"/> Python</span> &nbsp;&nbsp;
+              <span data-tooltip="Structured Query Language for database management"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="20" class="icon-bg"/> SQL</span> &nbsp;&nbsp;
+              <span data-tooltip="Statistical programming language for data analysis"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" width="30"/> R</span> &nbsp;&nbsp;
+              <span data-tooltip="JVM language for big data processing"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg" width="30"/> Scala</span> &nbsp;&nbsp;
+              <span data-tooltip="Unix shell scripting for automation"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" width="20" class="icon-bg"/> Bash</span> &nbsp;&nbsp;
+              <span data-tooltip="Amazon Web Services cloud platform"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="20" class="icon-bg"/> AWS</span> &nbsp;&nbsp;
+              <span data-tooltip="Google Cloud Platform for cloud computing"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" width="30"/> GCP</span> &nbsp;&nbsp;
+              <span data-tooltip="Distributed data processing engine"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg" width="30"/> Spark</span> &nbsp;&nbsp;
+              <span data-tooltip="Python API for Apache Spark"><img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" width="30"/> PySpark</span>
             </p>
           </div>
           <div class="skill-category">
-            <p><b><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="25" /> Python Libraries</b></p>
+            <p><b><i class="fas fa-flask"></i> Data Science Stack</b></p>
             <p>
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="30"/> Pandas</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" width="30"/> NumPy</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Geopandas_icon.webp" width="30"/> GeoPandas</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="30"/> Matplotlib</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Logo-seaborn.png" width="30"/> Seaborn</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" width="30"/> Sklearn</span>
+              <span data-tooltip="Data manipulation library for Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="30"/> Pandas</span> &nbsp;&nbsp;
+              <span data-tooltip="Numerical computing library for Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" width="30"/> NumPy</span> &nbsp;&nbsp;
+              <span data-tooltip="Machine learning library for Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" width="30"/> Sklearn</span> &nbsp;&nbsp;
+              <span data-tooltip="Data visualization library for Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="30"/> Matplotlib</span> &nbsp;&nbsp;
+              <span data-tooltip="Statistical data visualization library"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Logo-seaborn.png" width="30"/> Seaborn</span> &nbsp;&nbsp;
+              <span data-tooltip="Geospatial data analysis library"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Geopandas_icon.webp" width="30"/> GeoPandas</span> &nbsp;&nbsp;
+              <span data-tooltip="Hexagonal hierarchical geospatial indexing"><img src="https://uber.github.io/img/h3Logo-color.svg" width="30"/> H3</span> &nbsp;&nbsp;
+              <span data-tooltip="Visual programming tool for data mining"><img src="https://raw.githubusercontent.com/biolab/orange3/master/distribute/icon-48.png" width="30"/> Orange</span> &nbsp;&nbsp;
+              <span data-tooltip="Categorizing data into predefined classes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;"><rect x="3" y="3" width="8" height="8" fill="#4CAF50" rx="1"/><rect x="13" y="3" width="8" height="8" fill="#2196F3" rx="1"/><rect x="3" y="13" width="8" height="8" fill="#FF9800" rx="1"/><rect x="13" y="13" width="8" height="8" fill="#9C27B0" rx="1"/></svg> Classification</span> &nbsp;&nbsp;
+              <span data-tooltip="Predicting continuous numerical values"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;"><path d="M3 20 L8 15 L12 17 L16 10 L21 12" stroke="#2196F3" stroke-width="2" fill="none"/><circle cx="3" cy="20" r="1.5" fill="#2196F3"/><circle cx="8" cy="15" r="1.5" fill="#2196F3"/><circle cx="12" cy="17" r="1.5" fill="#2196F3"/><circle cx="16" cy="10" r="1.5" fill="#2196F3"/><circle cx="21" cy="12" r="1.5" fill="#2196F3"/></svg> Regression</span> &nbsp;&nbsp;
+              <span data-tooltip="Grouping similar data points together"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;"><circle cx="6" cy="6" r="2" fill="#FF5722"/><circle cx="8" cy="8" r="2" fill="#FF5722"/><circle cx="18" cy="6" r="2" fill="#4CAF50"/><circle cx="16" cy="8" r="2" fill="#4CAF50"/><circle cx="6" cy="18" r="2" fill="#2196F3"/><circle cx="8" cy="16" r="2" fill="#2196F3"/></svg> Clustering</span>
             </p>
           </div>
           <div class="skill-category">
-            <p><b>🧑‍💻 IDEs & Dev Tools</b></p>
+            <p><b><i class="fas fa-code-branch"></i> Development & Version Control</b></p>
             <p>
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" width="30"/> Jupyter</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="30"/> VS Code</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" width="30"/> PyCharm</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30"/> Git</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" width="30" /> GitLab</span>
+              <span data-tooltip="Interactive notebook for data science"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" width="30"/> Jupyter</span> &nbsp;&nbsp;
+              <span data-tooltip="Lightweight code editor by Microsoft"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="30"/> VS Code</span> &nbsp;&nbsp;
+              <span data-tooltip="Python IDE by JetBrains"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" width="30"/> PyCharm</span> &nbsp;&nbsp;
+              <span data-tooltip="Java IDE by JetBrains"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" width="30"/> IntelliJ</span> &nbsp;&nbsp;
+              <span data-tooltip="Cloud-based Jupyter notebook environment"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" width="30"/> Google Colab</span> &nbsp;&nbsp;
+              <span data-tooltip="Distributed version control system"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30"/> Git</span> &nbsp;&nbsp;
+              <span data-tooltip="DevOps platform with Git repository"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" width="30" /> GitLab</span> &nbsp;&nbsp;
+              <span data-tooltip="Visual Git client by Atlassian"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/SOURCETREE.png" width="30"/> SourceTree</span>
             </p>
           </div>
           <div class="skill-category">
-            <p><b>📊 Visualization Tools</b></p>
+            <p><b><i class="fas fa-chart-line"></i> Analytics & Visualization</b></p>
             <p>
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Tableau_image.png" width="30"/> Tableau</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="30"/> Power BI</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="30"/> Matplotlib</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Logo-seaborn.png" width="30"/> Seaborn</span>
+              <span data-tooltip="Business intelligence and data visualization platform"><img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Tableau_image.png" width="20" class="icon-bg"/> Tableau (Desktop, Prep, Server)</span> &nbsp;&nbsp;
+              <span data-tooltip="Microsoft business analytics service"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="30"/> Power BI</span> &nbsp;&nbsp;
+              <span data-tooltip="Open-source geographic information system"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/QGIS_logo_new.svg" width="30"/> QGIS</span> &nbsp;&nbsp;
+              <span data-tooltip="AWS object storage service"><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/AWS_S3.png" width="30"/> S3</span> &nbsp;&nbsp;
+              <span data-tooltip="AWS managed Hadoop framework"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/AWS_Emr.png" width="30"/> EMR</span> &nbsp;&nbsp;
+              <span data-tooltip="AWS serverless ETL service"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/AWS_Glue.png" width="30"/> Glue</span> &nbsp;&nbsp;
+              <span data-tooltip="AWS interactive query service"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AWS_Athena.png" width="30"/> Athena</span> &nbsp;&nbsp;
+              <span data-tooltip="Google Cloud data warehouse"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Bigquery.png" width="30"/> BigQuery</span> &nbsp;&nbsp;
+              <span data-tooltip="Google Cloud ML platform"><img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Vertex_ai.png" width="30"/> Vertex AI</span>
             </p>
           </div>
           <div class="skill-category">
-            <p><b>☁️ Cloud & Big Data</b></p>
+            <p><b><i class="fas fa-users"></i> Productivity & Collaboration</b></p>
             <p>
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="30"/> AWS</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/AWS_S3.png" width="30"/> S3</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/AWS_Emr.png" width="30"/> EMR</span> &nbsp;&nbsp;
-              <span><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/AWS_Glue.png" width="30"/> Glue</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" width="30"/> GCP</span> &nbsp;&nbsp;
-              <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg" width="30"/> Spark</span>
+              <span data-tooltip="Spreadsheet software for data analysis"><img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" width="30"/> Excel</span> &nbsp;&nbsp;
+              <span data-tooltip="Presentation software by Microsoft"><img src="https://img.icons8.com/color/48/microsoft-powerpoint-2019--v1.png" width="30"/> PowerPoint</span> &nbsp;&nbsp;
+              <span data-tooltip="Word processing software by Microsoft"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v1.png" width="30"/> Word</span> &nbsp;&nbsp;
+              <span data-tooltip="Project management and issue tracking tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" width="30"/> Jira</span> &nbsp;&nbsp;
+              <span data-tooltip="Team collaboration and documentation tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/confluence/confluence-original.svg" width="30"/> Confluence</span>
             </p>
+          </div>
+          <div class="skill-category" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-left: 5px solid #332830;">
+            <i class="fas fa-lightbulb" style="font-size: 3rem; color: #FFFFFF; margin-bottom: 15px;"></i>
+            <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">What's Next?</p>
+            <p style="font-size: 0.9rem; color: #A1ABB0; line-height: 1.6;">I'm always exploring new tools and technologies. If your team uses something I haven't listed, I'm excited to learn and master it—quickly!</p>
           </div>
         </div>
       </div>
       <div class="card">
-        <h2>💡 Soft Skills</h2>
+        <h2><i class="fas fa-user-friends"></i> Soft Skills</h2>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px;">
           <div>
             <p><b>Communication & Presentation</b></p>
@@ -560,7 +580,6 @@
               <li>✓ Quick learning</li>
               <li>✓ Innovation</li>
               <li>✓ Adaptability</li>
-              <li>✓ Time management</li>
               <li>✓ Multitasking</li>
               <li>✓ Attention to detail</li>
             </ul>
@@ -571,11 +590,11 @@
 
     <section id="experience">
       <div class="card" id="experience-card">
-        <h2>🏬 Professional Experience</h2>
+        <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
         <div class="company-header">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
             <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white;"><img src="https://brandlogo.org/wp-content/uploads/2025/05/Accenture-Icon-2020.png" width="35" height="35" style="object-fit: contain;"/></span> <strong>Accenture</strong></p>
-            <p style="margin: 0; color: #A1ABB0; font-size: 0.9rem;"><strong>Bangalore, India | Hybrid</strong></p>
+            <p style="margin: 0; color: #A1ABB0; font-size: 0.9rem;"><strong>Bangalore, Karnataka, India | Hybrid</strong></p>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <p style="margin-bottom: 0; color: #A1ABB0;"><strong>Data Analyst</strong></p>
@@ -599,7 +618,7 @@
         </ul>
       </div>
       <div class="card" id="internships-card" style="margin-top: 30px;">
-        <h2>🎓 Internships</h2>
+        <h2><i class="fas fa-user-graduate"></i> Internships</h2>
         <div class="company-header">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
             <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white;"><img src="https://imgs.search.brave.com/jtZvRsWbUH5DYt_AOk7Xej7hVrqjrSfcuEYHe8rj84I/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/YnVpbHRpbi5jb20v/Y2RuLWNnaS9pbWFn/ZS9mPWF1dG8sZml0/PWNvbnRhaW4sdz0y/MDAsaD0yMDAscT0x/MDAvc2l0ZXMvd3d3/LmJ1aWx0aW4uY29t/L2ZpbGVzLzIwMjIt/MDgvV29ib3QlMjBh/aS5qcGc" width="35" height="35" style="object-fit: contain;"/></span> <strong>Wobot AI</strong></p>
@@ -632,96 +651,147 @@
 
     <section id="education">
       <div class="card" id="education-card">
-        <h2>🎓 Educational Background</h2>
+        <h2><i class="fas fa-university"></i> Educational Background</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-          <div class="company-header">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white; overflow: hidden;"><img src="https://imgs.search.brave.com/mnaaffg2oyEnOVWk8lG_VYcs5qTocfl_qUoZmcfd1HY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/amFncmFuam9zaC5j/b20vaW1hZ2VzLzIw/MjMvQXVndXN0LzMx/ODIwMjMvMzA3OTg1/ODMyXzQxODI3Mjk0/Mzc1NDA1N184MTQz/OTg5MjIxNjMxOTA2/Nzc3X24uanBn" width="50" height="50" style="object-fit: cover;"/></span> <strong><a href="https://rajagiri.edu/" target="_blank" class="college-link" style="color: inherit;">Rajagiri College of Social Sciences</a></strong></p>
+          <a href="https://rajagiri.edu/" target="_blank" style="text-decoration: none; display: block;">
+            <div class="company-header" style="cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; border-left: 5px solid #45364B;" onmouseover="this.style.background='rgba(255,255,255,0.08)'; this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(161,171,176,0.5)'; this.style.borderLeftColor='#45364B';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent'; this.style.borderLeftColor='#45364B';">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white; overflow: hidden;"><img src="https://imgs.search.brave.com/mnaaffg2oyEnOVWk8lG_VYcs5qTocfl_qUoZmcfd1HY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/amFncmFuam9zaC5j/b20vaW1hZ2VzLzIw/MjMvQXVndXN0LzMx/ODIwMjMvMzA3OTg1/ODMyXzQxODI3Mjk0/Mzc1NDA1N184MTQz/OTg5MjIxNjMxOTA2/Nzc3X24uanBn" width="50" height="50" style="object-fit: cover;"/></span> <strong style="color: #FFFFFF;">Rajagiri College of Social Sciences</strong></p>
+              </div>
+              <p style="margin: 0 0 5px 0; color: #FFFFFF; font-size: 0.85rem;"><strong>Kochi, Kerala</strong></p>
+              <p style="margin: 0; color: #FFFFFF; font-size: 0.9rem;"><strong>M.Sc. Computer Science</strong></p>
+              <p style="margin: 0; color: #FFFFFF; font-size: 0.85rem;">2020 - 2022 | CGPA: 7.84</p>
             </div>
-            <p style="margin: 0 0 5px 0; color: #FFFFFF; font-size: 0.85rem;"><strong>Kochi, Kerala</strong></p>
-            <p style="margin: 0; color: #FFFFFF; font-size: 0.9rem;"><strong>M.Sc. Computer Science</strong></p>
-            <p style="margin: 0; color: #FFFFFF; font-size: 0.85rem;">2020 - 2022 | CGPA: 7.84</p>
-          </div>
-          <div class="company-header">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white;"><img src="https://upload.wikimedia.org/wikipedia/en/6/63/Emblem_of_Mar_Thoma_College%2C_Tiruvalla.png" width="40" height="40" style="object-fit: contain;"/></span> <strong><a href="https://marthomacollege.org/" target="_blank" class="college-link" style="color: inherit;">Mar Thoma College</a></strong></p>
+          </a>
+          <a href="https://marthomacollege.org/" target="_blank" style="text-decoration: none; display: block;">
+            <div class="company-header" style="cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; border-left: 5px solid #45364B;" onmouseover="this.style.background='rgba(255,255,255,0.08)'; this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(161,171,176,0.5)'; this.style.borderLeftColor='#45364B';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent'; this.style.borderLeftColor='#45364B';">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <p style="display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.1rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: white;"><img src="https://upload.wikimedia.org/wikipedia/en/6/63/Emblem_of_Mar_Thoma_College%2C_Tiruvalla.png" width="40" height="40" style="object-fit: contain;"/></span> <strong style="color: #FFFFFF;">Mar Thoma College</strong></p>
+              </div>
+              <p style="margin: 0 0 5px 0; color: #FFFFFF; font-size: 0.85rem;"><strong>Thiruvalla, Kerala</strong></p>
+              <p style="margin: 0; color: #FFFFFF; font-size: 0.9rem;"><strong>B.Sc. Mathematics</strong></p>
+              <p style="margin: 0; color: #FFFFFF; font-size: 0.85rem;">2017 - 2020 | CGPA: 8.62</p>
             </div>
-            <p style="margin: 0 0 5px 0; color: #FFFFFF; font-size: 0.85rem;"><strong>Thiruvalla, Kerala</strong></p>
-            <p style="margin: 0; color: #FFFFFF; font-size: 0.9rem;"><strong>B.Sc. Mathematics</strong></p>
-            <p style="margin: 0; color: #FFFFFF; font-size: 0.85rem;">2017 - 2020 | CGPA: 8.62</p>
-          </div>
+          </a>
         </div>
       </div>
-      
-      <div class="card" id="certifications-card" style="margin-top: 30px;">
-    <h2>📜 Certifications & Publications</h2>
-    
-    <div class="cert-badge-row">
-        
-        <div class="cert-card cert-card-highlight">
-            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fa9240cf-d50e-4f1e-b63b-fb9e5b3e7e8a" data-share-badge-host="https://www.credly.com"></div>
-            <div class="cert-details">
-                <h3>Associate Data Practitioner Certification</h3>
-                <p>Google Cloud</p>
-                <p>Expires Apr 23, 2028</p>
+      <div class="card" id="certifications-card" style="margin-top: 30px; padding-bottom: 50px;">
+        <h2><i class="fas fa-award"></i> Certifications & Publications</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
+          <a href="https://www.credly.com/badges/fa9240cf-d50e-4f1e-b63b-fb9e5b3e7e8a/public_url" target="_blank" style="text-decoration: none; display: block;">
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-align: center; position: relative; cursor: pointer; transition: all 0.3s ease; height: 320px; display: flex; flex-direction: column; border: 2px solid transparent;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(161,171,176,0.5)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent';">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" width="30" height="30" style="position: absolute; top: 10px; right: 10px; object-fit: contain;">
+              <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+                <img src="https://images.credly.com/size/680x680/images/3e3f6d8b-b37e-4a3d-93d0-6f2bafa5f03c/blob" width="120" height="120" style="object-fit: contain;">
+              </div>
+              <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Associate Data Practitioner</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Google Cloud</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem; margin-top: 10px;">Issued: January 1, 2025</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Expires: January 1, 2028</p>
             </div>
-        </div>
-
-        <div class="cert-card">
-            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="0c214652-0a5c-4cea-8afb-852ab169716d" data-share-badge-host="https://www.credly.com"></div>
-            <div class="cert-details">
-                <h3>Cloud Digital Leader Certification</h3>
-                <p>Google Cloud</p>
-                <p>Expires Apr 19, 2028</p>
+          </a>
+          <a href="https://www.credly.com/badges/0c214652-0a5c-4cea-8afb-852ab169716d/public_url" target="_blank" style="text-decoration: none; display: block;">
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-align: center; position: relative; cursor: pointer; transition: all 0.3s ease; height: 320px; display: flex; flex-direction: column; border: 2px solid transparent;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(161,171,176,0.5)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent';">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" width="30" height="30" style="position: absolute; top: 10px; right: 10px; object-fit: contain;">
+              <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+                <img src="https://images.credly.com/size/680x680/images/44994cda-b5b0-44cb-9a6d-d29b57163073/image.png" width="120" height="120" style="object-fit: contain;">
+              </div>
+              <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Cloud Digital Leader</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Google Cloud</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem; margin-top: 10px;">Issued: January 1, 2025</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Expires: Does not expire</p>
             </div>
-        </div>
-
-        <div class="cert-card">
-            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b3efbcf3-89f5-4043-9b52-16f45af95172" data-share-badge-host="https://www.credly.com"></div>
-            <div class="cert-details">
-                <h3>Google Data Analytics Professional Certificate</h3>
-                <p>Coursera</p>
-                <p>Issued May 26, 2024</p>
+          </a>
+          <a href="https://www.credly.com/badges/b3efbcf3-89f5-4043-9b52-16f45af95172/public_url" target="_blank" style="text-decoration: none; display: block;">
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-align: center; position: relative; cursor: pointer; transition: all 0.3s ease; height: 320px; display: flex; flex-direction: column; border: 2px solid transparent;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(161,171,176,0.5)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent';">
+              <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; align-items: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="30" height="30" style="object-fit: contain;">
+                <span style="color: #FFFFFF; font-size: 20px;">|</span>
+                <img src="https://imgs.search.brave.com/qntb3zFuUPTSyqNwCxT-yp6ntCqBGgFWu7SerLikz3I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bGlibG9nby5jb20v/aW1nLWxvZ28vY284/NjY2ZzZkMy1jb3Vy/c2VyYS1sb2dvLWdv/b2dsZS1wcm9mZXNz/aW9uYWwtY2VydGlm/aWNhdGUtdHJhaW5p/bmctcHJvZ3JhbXMt/Y291cnNlcmEucG5n" width="30" height="30" style="object-fit: contain;">
+              </div>
+              <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+                <img src="https://images.credly.com/size/680x680/images/d41de2b7-cbc2-47ec-bcf1-ebecbe83872f/GCC_badge_DA_1000x1000.png" width="120" height="120" style="object-fit: contain;">
+              </div>
+              <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Google Data Analytics Professional Certificate</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Coursera (Offered by Google)</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem; margin-top: 10px;">Issued: January 1, 2025</p>
+              <p style="text-align: left; margin-left: 20px; color: #FFFFFF; font-size: 0.9rem;">Expires: Does not expire</p>
             </div>
+          </a>
         </div>
-    </div>
-    
-    <ul style="padding-left: 20px; line-height: 1.8; margin-top: 20px;">
-      <li>Publication: Feature Analysis on Airline Passenger Satisfaction (IEEE, 2022)</li>
-    </ul>
-    
-    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-</div>
-      </section>
+        <a href="https://www.credly.com/users/hannah-susan-mathew" target="_blank" style="text-decoration: none; display: block; margin-top: 20px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 20px; border: 2px solid transparent;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(161,171,176,0.5)'; this.querySelectorAll('i').forEach(icon => icon.style.color='#FFFFFF');" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'; this.style.borderColor='transparent'; this.querySelectorAll('i').forEach(icon => icon.style.color='#A1ABB0');">
+            <i class="fas fa-external-link-alt" style="font-size: 2.5rem; color: #A1ABB0; transition: color 0.3s ease;"></i>
+            <div style="text-align: left;">
+              <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: #FFFFFF;">View All Badges</p>
+              <p style="color: #A1ABB0; font-size: 0.9rem;">Explore my complete collection of professional certifications and achievements on Credly</p>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.5rem; color: #A1ABB0; margin-left: auto; transition: color 0.3s ease;"></i>
+          </div>
+        </a>
+        <h3 style="margin-top: 50px; font-size: 1.4rem; border-bottom: 2px solid #A1ABB0; display: inline-block; padding-bottom: 5px; color: #FFFFFF;"><i class="fas fa-book"></i> Publications</h3>
+        <div style="margin-top: 20px;">
+          <a href="https://ieeexplore.ieee.org/document/10009206" target="_blank" style="text-decoration: none; display: block;">
+            <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border-left: 5px solid #45364B; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(5px)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateX(0)';">
+              <p style="font-size: 1.15rem; font-weight: 700; margin-bottom: 15px; color: #FFFFFF; line-height: 1.4;">Feature Analysis on Airline Passenger Satisfaction using Orange Tool</p>
+              <p style="color: #FFFFFF; font-size: 0.95rem; margin-bottom: 12px; line-height: 1.6;">A S Keerthy, <strong>Hannah Susan Mathew</strong></p>
+              <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 8px; line-height: 1.6; font-style: italic;">2022 6th International Conference on Electronics, Communication and Aerospace Technology (ICECA)</p>
+              <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 15px;">December 2022 • Coimbatore, India • IEEE</p>
+              <p style="color: #FFFFFF; font-size: 0.88rem; margin-top: 12px; line-height: 1.6; text-align: justify;">Comparative analysis of classification algorithms to identify key factors contributing to US airline passenger satisfaction using 2015 survey data.</p>
+              <p style="color: #FFFFFF; font-size: 0.85rem; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(161,171,176,0.4);">DOI: 10.1109/ICECA55336.2022.10009206</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section id="projects">
       <div class="card" id="projects-card">
-        <h2>Projects</h2>
-        <ul>
-          <li>Telecom Churn Prediction using ML models</li>
-          <li>Airline Passenger Satisfaction (published IEEE paper)</li>
-          <li>Sentiment Analysis on political speeches</li>
-        </ul>
+        <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+        <div style="margin-top: 20px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border-left: 5px solid #543E5B; margin-bottom: 20px;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Regression Based Curve Fitting for Ultra Precise Waveguide Temperature Sensors</p>
+            <p style="color: #A1ABB0; font-size: 0.9rem;"><strong>Skills and Tools:</strong> Python, Google Colab, Machine Learning</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border-left: 5px solid #543E5B; margin-bottom: 20px;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Telecom Customer Churn – EDA and Classification</p>
+            <p style="color: #A1ABB0; font-size: 0.9rem;"><strong>Skills and Tools:</strong> R Programming, Power BI, Machine Learning</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border-left: 5px solid #543E5B; margin-bottom: 20px;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Sentimental Analysis on Donald Trump's Speeches (2019 – 2020)</p>
+            <p style="color: #A1ABB0; font-size: 0.9rem;"><strong>Skills and Tools:</strong> Python, Google Colab, Natural Language Processing</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border-left: 5px solid #543E5B;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">Feature Analysis on Airline Passenger Survey</p>
+            <p style="color: #A1ABB0; font-size: 0.9rem;"><strong>Skills and Tools:</strong> Orange Data Mining Tool, Machine Learning</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="awards">
-      <div class="card" id="awards-card">
-        <h2>Awards & Achievements</h2>
-        <ul>
-          <li><strong>Spot Award for Q4 2023</strong> - Recognized for exceptional delivery and client satisfaction on the Dashboard Modernization Project.</li>
-          <li><strong>Best Paper Award</strong> - National Data Science Conference, 2022, for research on Airline Passenger Satisfaction.</li>
-          <li><strong>Top Performer in Data Analytics</strong> - Accenture, FY23.</li>
-        </ul>
+      <div class="card" id="awards-card" style="padding-bottom: 50px;">
+        <h2><i class="fas fa-trophy"></i> Awards & Achievements</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; align-items: flex-start;">
+          <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; border-left: 5px solid #62466B; height: 100%;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: #FFFFFF;">Accenture Celebrates Excellence (ACE) Award</p>
+            <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 15px;">Accenture, FY25 – Q2</p>
+            <img src="https://media.licdn.com/dms/image/v2/D5622AQE13tvAPGD92w/feedshare-shrink_800/B56ZcvB2pHGoAs-/0/1748840705915?e=1762387200&v=beta&t=_U8toq5vzUSCcfmD9Sq3Y5sJv6dF6FnwaTlyZol-YPU" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+          </div>
+          <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; border-left: 5px solid #62466B; height: 100%;">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: #FFFFFF;">Toolsmith Champion Award</p>
+            <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 15px;">Accenture, FY25 – Q3</p>
+            <img src="https://media.licdn.com/dms/image/v2/D5622AQHMyfEKLocxZQ/feedshare-shrink_800/B56ZdQxL8pHUAg-/0/1749406763451?e=1762387200&v=beta&t=8R0ik1HsSqPPcW6-sI3KpJf4ldID75WA3VVcnx4Hm-k" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="contact">
-      <div class="card" id="contact-card">
-        <h2>Contact</h2>
-        <p>📧 Email: hannahsusan.mathew@example.com</p>
-        <p>🌐 GitHub: <a href="https://github.com/Hannah-Susan-Mathew" target="_blank">github.com/Hannah-Susan-Mathew</a></p>
-        <p>💼 LinkedIn: <a href="https://linkedin.com/in/hannah-susan-mathew" target="_blank">linkedin.com/in/hannah-susan-mathew</a></p>
+      <div class="card" id="contact-card" style="text-align: center; padding: 50px 30px;">
+        <i class="fas fa-heart" style="font-size: 3rem; color: #FFFFFF; margin-bottom: 20px;"></i>
+        <h2 style="font-size: 2rem; margin-bottom: 20px; border-bottom: none;">Thank You!</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #FFFFFF; max-width: 600px; margin: 0 auto;">Thank you for taking the time to review my profile. You've reached the end, but hopefully the beginning of a great collaboration. Let's talk—feel free to reach out through any of the links at the top!</p>
       </div>
     </section>
 
@@ -732,8 +802,23 @@
       const sections = document.querySelectorAll('.content section');
       const links = document.querySelectorAll('.sidebar a');
       const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
       let currentIndex = 0;
       let isScrolling = false;
+      
+      // Prevent scrolling beyond boundaries
+      content.addEventListener('scroll', () => {
+        const scrollTop = content.scrollTop;
+        const scrollHeight = content.scrollHeight;
+        const clientHeight = content.clientHeight;
+        
+        if (scrollTop <= 0) {
+          content.scrollTop = 0;
+        }
+        if (scrollTop + clientHeight >= scrollHeight) {
+          content.scrollTop = scrollHeight - clientHeight;
+        }
+      });
       
       // Color maps remain the same as previous iterations
       const sidebarColorMap = {
@@ -777,9 +862,9 @@
       };
 
 
-      function applySectionStyles(sectionId, index) {
+      function applySectionStyles(sectionId, index, updateSidebar = true) {
         // 1. Update Sidebar Background
-        if (sidebarColorMap[sectionId]) {
+        if (updateSidebar && sidebarColorMap[sectionId]) {
           sidebar.style.background = sidebarColorMap[sectionId];
         }
 
@@ -794,7 +879,7 @@
         }
       }
 
-      function activateSection(index) {
+      function activateSection(index, updateSidebar = true) {
         if (index < 0) index = 0;
         if (index > sections.length - 1) index = sections.length - 1;
 
@@ -805,7 +890,7 @@
         currentIndex = index;
 
         const activeSectionId = sections[index].id;
-        applySectionStyles(activeSectionId, index);
+        applySectionStyles(activeSectionId, index, updateSidebar);
       }
 
       function scrollToSection(index) {
@@ -836,16 +921,38 @@
         }
       });
 
-      const observer = new IntersectionObserver((entries) => {
+      // Observer for card/section colors (5% threshold)
+      const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const idx = Array.from(sections).indexOf(entry.target);
-            if (idx !== -1) activateSection(idx);
+            if (idx !== -1) activateSection(idx, false);
+          }
+        });
+      }, { threshold: 0.05 });
+
+      // Observer for sidebar background (50% threshold)
+      const sidebarObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = Array.from(sections).indexOf(entry.target);
+            if (idx !== -1) {
+              const sectionId = sections[idx].id;
+              if (sidebarColorMap[sectionId]) {
+                sidebar.style.background = sidebarColorMap[sectionId];
+              }
+            }
           }
         });
       }, { threshold: 0.5 });
 
-      sections.forEach(sec => observer.observe(sec));
+      sections.forEach(sec => {
+        cardObserver.observe(sec);
+        sidebarObserver.observe(sec);
+      });
+      
+      // Prevent overscroll
+      content.style.overscrollBehavior = 'none';
     });
   </script>
 
