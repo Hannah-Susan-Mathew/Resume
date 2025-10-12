@@ -145,7 +145,7 @@
       pointer-events: none;
     }
     #about::before { display: none; }
-    #skills::before { background: linear-gradient(to bottom, #332830, #3C2F3E); }
+    #skills::before { background: linear-gradient(to bottom, #332830, #3C2F3E); display: var(--before-display, block); top: 0; }
     #experience::before { background: linear-gradient(to bottom, #3C2F3E, #45364B); }
     #education::before { background: linear-gradient(to bottom, #45364B, #543E5B); }
     #projects::before { background: linear-gradient(to bottom, #543E5B, #62466B); }
@@ -251,6 +251,7 @@
     .skill-category span[data-tooltip]:hover::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #332830; margin-bottom: 2px; z-index: 1000; }
     #skills { min-height: auto; padding-bottom: 150px; }
     #skills .card { background: #45364B !important; }
+    #skills-card { margin-top: 100px; }
     #skills .card + .card { margin-top: 30px; margin-bottom: 50px; }
     #experience { padding-bottom: 150px; }
     #education { padding-bottom: 150px; }
@@ -806,7 +807,14 @@
       let currentIndex = 0;
       let isScrolling = false;
       
-      // Prevent scrolling beyond boundaries
+      const skillsSection = document.getElementById('skills');
+      
+      // Set initial state - hide gradient if at top
+      if (content.scrollTop === 0) {
+        skillsSection.style.setProperty('--before-display', 'none');
+      }
+      
+      // Prevent scrolling beyond boundaries and hide gradient at top
       content.addEventListener('scroll', () => {
         const scrollTop = content.scrollTop;
         const scrollHeight = content.scrollHeight;
@@ -817,6 +825,13 @@
         }
         if (scrollTop + clientHeight >= scrollHeight) {
           content.scrollTop = scrollHeight - clientHeight;
+        }
+        
+        // Hide Skills gradient when at very top
+        if (scrollTop === 0) {
+          skillsSection.style.setProperty('--before-display', 'none');
+        } else {
+          skillsSection.style.setProperty('--before-display', 'block');
         }
       });
       
