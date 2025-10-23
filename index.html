@@ -307,6 +307,9 @@
         width: 100%;
         text-align: left !important;
         margin: 4px 0 !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
       }
       
       /* --- EDUCATION SECTION MOBILE FORMATTING --- */
@@ -1151,29 +1154,35 @@
       // Prevent overscroll
       content.style.overscrollBehavior = 'none';
       
-      // Reorder company headers on mobile
+      // Mobile header reordering with safety checks
+      let headersReordered = false;
       function reorderCompanyHeaders() {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 && !headersReordered) {
           document.querySelectorAll('#experience-card .company-header, #internships-card .company-header').forEach(header => {
-            const firstDiv = header.children[0];
-            const secondDiv = header.children[1];
-            if (firstDiv && secondDiv) {
-              const companyName = firstDiv.children[0];
-              const location = firstDiv.children[1];
-              const role = secondDiv.children[0];
-              const duration = secondDiv.children[1];
-              
-              header.innerHTML = '';
-              if (companyName) header.appendChild(companyName);
-              if (role) header.appendChild(role);
-              if (location) header.appendChild(location);
-              if (duration) header.appendChild(duration);
+            if (header.children.length === 2) {
+              const firstDiv = header.children[0];
+              const secondDiv = header.children[1];
+              if (firstDiv && secondDiv && firstDiv.children.length >= 2 && secondDiv.children.length >= 2) {
+                const companyName = firstDiv.children[0].cloneNode(true);
+                const location = firstDiv.children[1].cloneNode(true);
+                const role = secondDiv.children[0].cloneNode(true);
+                const duration = secondDiv.children[1].cloneNode(true);
+                
+                header.innerHTML = '';
+                header.appendChild(companyName);
+                header.appendChild(role);
+                header.appendChild(location);
+                header.appendChild(duration);
+              }
             }
           });
+          headersReordered = true;
+        } else if (window.innerWidth > 768 && headersReordered) {
+          location.reload(); // Reload to restore original structure
         }
       }
       
-      reorderCompanyHeaders();
+      setTimeout(reorderCompanyHeaders, 100);
       window.addEventListener('resize', reorderCompanyHeaders);
     });
   </script>
