@@ -17,7 +17,11 @@
       --sidebar-threshold: 0.5;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    *:focus { outline: 3px solid #A1ABB0; outline-offset: 2px; }
+    *:focus { outline: 2px solid rgba(161, 171, 176, 0.6); outline-offset: 1px; }
+    a:focus { outline: none; box-shadow: 0 0 0 2px rgba(161, 171, 176, 0.4); border-radius: 4px; }
+    @media (max-width: 768px) {
+      *:focus, a:focus { outline: none !important; box-shadow: none !important; }
+    }
     html, body { 
         height: 100%; 
         font-family: 'Open Sans', sans-serif;
