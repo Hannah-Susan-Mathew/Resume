@@ -11,8 +11,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
+    :root {
+      --scroll-timeout: 1200;
+      --card-threshold: 0.05;
+      --sidebar-threshold: 0.5;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    /* Setting Open Sans as the base font for the entire body */
+    *:focus { outline: 3px solid #A1ABB0; outline-offset: 2px; }
     html, body { 
         height: 100%; 
         font-family: 'Open Sans', sans-serif;
@@ -56,6 +61,10 @@
       text-transform: uppercase; 
       font-family: 'Montserrat', sans-serif;
       white-space: nowrap;
+    }
+    .sidebar a:focus {
+      outline: 3px solid #FFFFFF;
+      outline-offset: 2px;
     }
     .sidebar a.active-link { 
       color: white; 
@@ -286,6 +295,161 @@
         padding: 50px 20px;
         align-items: center;
       }
+      
+      /* --- EXPERIENCE SECTION MOBILE FORMATTING --- */
+      #experience-card .company-header,
+      #internships-card .company-header {
+        display: flex;
+        flex-direction: column;
+      }
+      #experience-card .company-header > *,
+      #internships-card .company-header > * {
+        width: 100%;
+        text-align: left !important;
+        margin: 4px 0 !important;
+      }
+      
+      /* --- EDUCATION SECTION MOBILE FORMATTING --- */
+      #education-card > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* --- CERTIFICATIONS MOBILE FORMATTING --- */
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+      }
+      #certifications-card > a[href*="credly.com/users"] > div {
+        flex-direction: row !important;
+        text-align: left !important;
+        gap: 15px !important;
+        padding: 15px !important;
+        align-items: center !important;
+      }
+      #certifications-card > a[href*="credly.com/users"] > div > div {
+        text-align: left !important;
+      }
+      #certifications-card > a[href*="credly.com/users"] > div > i:last-child {
+        display: none !important;
+      }
+      #certifications-card > a[href*="credly.com/users"] > div > i:first-child {
+        font-size: 2rem !important;
+        flex-shrink: 0;
+      }
+      
+      /* --- AWARDS SECTION MOBILE FORMATTING --- */
+      #awards-card > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      
+
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div {
+        height: auto !important;
+        min-height: unset !important;
+        padding: 15px !important;
+        display: grid !important;
+        grid-template-columns: 80px 1fr !important;
+        grid-template-rows: auto auto 80px !important;
+        row-gap: 5px;
+        column-gap: 15px;
+        position: relative;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > p:nth-of-type(1) {
+        grid-column: 1 / 3;
+        grid-row: 1;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: 0.95rem !important;
+        font-weight: 700;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > p:nth-of-type(2) {
+        grid-column: 1 / 3;
+        grid-row: 2;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 10px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > div[style*="display: flex"] {
+        grid-column: 1;
+        grid-row: 3;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > div[style*="display: flex"] img {
+        width: 80px !important;
+        height: 80px !important;
+        border-radius: 50% !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > p:nth-of-type(3) {
+        grid-column: 2;
+        grid-row: 3;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: 0.8rem !important;
+        line-height: 1.1 !important;
+        align-self: start;
+        margin-top: 5px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > p:nth-of-type(4) {
+        grid-column: 2;
+        grid-row: 3;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: 0.8rem !important;
+        line-height: 1.1 !important;
+        align-self: start;
+        margin-top: 25px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] img[style*="position: absolute"] {
+        position: static !important;
+        grid-column: 2 !important;
+        grid-row: 3 !important;
+        justify-self: end !important;
+        align-self: end !important;
+        width: 20px !important;
+        height: 20px !important;
+        margin-bottom: 5px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > div[style*="position: absolute"] {
+        position: static !important;
+        grid-column: 2 !important;
+        grid-row: 3 !important;
+        justify-self: end !important;
+        align-self: end !important;
+        display: flex !important;
+        gap: 3px;
+        align-items: center;
+        margin-bottom: 5px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > div[style*="position: absolute"] img {
+        width: 15px !important;
+        height: 15px !important;
+      }
+      #certifications-card > div[style*="grid-template-columns: repeat(3, 1fr)"] > a > div > div[style*="position: absolute"] span {
+        font-size: 12px !important;
+      }
+      #education-card .company-header span[style*="width: 50px"] {
+        width: 50px !important;
+        height: 50px !important;
+        flex-shrink: 0;
+      }
+      #education-card .company-header span[style*="overflow: hidden"] {
+        padding: 0 !important;
+      }
+      #education-card .company-header span[style*="overflow: hidden"] img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+      #education-card .company-header span:not([style*="overflow"]) {
+        padding: 5px;
+      }
+      #education-card .company-header span:not([style*="overflow"]) img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
       .card, #about-header {
         width: 100%; /* Maximize card width within section padding */
         min-width: unset;
@@ -341,27 +505,32 @@
           .sidebar {
             position: fixed; top: 0; left: 0;
             flex-direction: row; 
-            justify-content: space-around;
+            justify-content: flex-start;
             width: 100%; 
             height: 60px;
             padding: 0 10px;
             overflow-x: auto;
+            scroll-behavior: smooth;
+          }
+          .sidebar::-webkit-scrollbar {
+            display: none;
           }
           .sidebar img { 
             display: none;
           }
           .sidebar a {
             margin: 0;
-            padding: 0 10px;
+            padding: 0 20px;
             line-height: 60px;
             font-size: 0.9rem;
+            flex-shrink: 0;
           }
           .content { 
             margin-top: 60px;
             margin-left: 0;
           }
           #about {
-            padding-top: 30px;
+            padding-top: 80px;
           }
       }
       
@@ -418,17 +587,17 @@
 </head>
 <body>
 
-  <div class="sidebar" id="sidebar">
-    <img src="https://media.licdn.com/dms/image/v2/D5603AQHsnhZNjTXkDg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726428494637?e=1762992000&v=beta&t=rxYK96yf3pJgD4pd6RlwrrjnKmP2-hUm8AZf6Flc_9w" alt="Profile Image" />
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#awards">Awards</a>
-  </div>
+  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <img src="https://media.licdn.com/dms/image/v2/D5603AQHsnhZNjTXkDg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726428494637?e=1762992000&v=beta&t=rxYK96yf3pJgD4pd6RlwrrjnKmP2-hUm8AZf6Flc_9w" alt="Hannah Susan Mathew profile photo" />
+    <a href="#about" aria-label="Navigate to About section">About</a>
+    <a href="#skills" aria-label="Navigate to Skills section">Skills</a>
+    <a href="#experience" aria-label="Navigate to Experience section">Experience</a>
+    <a href="#education" aria-label="Navigate to Education section">Education</a>
+    <a href="#projects" aria-label="Navigate to Projects section">Projects</a>
+    <a href="#awards" aria-label="Navigate to Awards section">Awards</a>
+  </nav>
 
-  <div class="content" id="content">
+  <main class="content" id="content" role="main">
 
     <section id="about" class="active">
         
@@ -777,12 +946,12 @@
           <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; border-left: 5px solid #62466B; height: 100%;">
             <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: #FFFFFF;">Accenture Celebrates Excellence (ACE) Award</p>
             <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 15px;">Accenture, FY25 – Q2</p>
-            <img src="https://media.licdn.com/dms/image/v2/D5622AQE13tvAPGD92w/feedshare-shrink_800/B56ZcvB2pHGoAs-/0/1748840705915?e=1762387200&v=beta&t=_U8toq5vzUSCcfmD9Sq3Y5sJv6dF6FnwaTlyZol-YPU" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+            <img src="https://raw.githubusercontent.com/Hannah-Susan-Mathew/Resume/3379a6b6a592cd1c23c2a9634fed330704d744ea/accenture%20ace.jpg" alt="Accenture Celebrates Excellence Award certificate" style="width: 100%; border-radius: 8px; margin-top: 10px;">
           </div>
           <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; border-left: 5px solid #62466B; height: 100%;">
             <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: #FFFFFF;">Toolsmith Champion Award</p>
             <p style="color: #FFFFFF; font-size: 0.9rem; margin-bottom: 15px;">Accenture, FY25 – Q3</p>
-            <img src="https://media.licdn.com/dms/image/v2/D5622AQHMyfEKLocxZQ/feedshare-shrink_800/B56ZdQxL8pHUAg-/0/1749406763451?e=1762387200&v=beta&t=8R0ik1HsSqPPcW6-sI3KpJf4ldID75WA3VVcnx4Hm-k" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+            <img src="https://raw.githubusercontent.com/Hannah-Susan-Mathew/Resume/3379a6b6a592cd1c23c2a9634fed330704d744ea/toolsmith%20award.jpg" alt="Toolsmith Champion Award certificate" style="width: 100%; border-radius: 8px; margin-top: 10px;">
           </div>
         </div>
       </div>
@@ -796,10 +965,14 @@
       </div>
     </section>
 
-  </div>
+  </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const SCROLL_TIMEOUT = 1200;
+      const CARD_THRESHOLD = 0.05;
+      const SIDEBAR_THRESHOLD = 0.5;
+      
       const sections = document.querySelectorAll('.content section');
       const links = document.querySelectorAll('.sidebar a');
       const sidebar = document.getElementById('sidebar');
@@ -906,6 +1079,17 @@
 
         const activeSectionId = sections[index].id;
         applySectionStyles(activeSectionId, index, updateSidebar);
+        
+        // Scroll sidebar to center active link on mobile portrait
+        if (window.innerWidth <= 768 && window.innerHeight > window.innerWidth) {
+          const activeLink = links[index];
+          if (activeLink) {
+            const linkLeft = activeLink.offsetLeft;
+            const linkWidth = activeLink.offsetWidth;
+            const sidebarWidth = sidebar.offsetWidth;
+            sidebar.scrollLeft = linkLeft - (sidebarWidth / 2) + (linkWidth / 2);
+          }
+        }
       }
 
       function scrollToSection(index) {
@@ -914,7 +1098,7 @@
         isScrolling = true;
         sections[index].scrollIntoView({ behavior: 'smooth' });
         activateSection(index);
-        setTimeout(() => { isScrolling = false; }, 1200);
+        setTimeout(() => { isScrolling = false; }, SCROLL_TIMEOUT);
       }
 
       // Initial activation and styling
@@ -936,7 +1120,6 @@
         }
       });
 
-      // Observer for card/section colors (5% threshold)
       const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -944,9 +1127,8 @@
             if (idx !== -1) activateSection(idx, false);
           }
         });
-      }, { threshold: 0.05 });
+      }, { threshold: CARD_THRESHOLD });
 
-      // Observer for sidebar background (50% threshold)
       const sidebarObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -959,7 +1141,7 @@
             }
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.1 });
 
       sections.forEach(sec => {
         cardObserver.observe(sec);
@@ -968,6 +1150,31 @@
       
       // Prevent overscroll
       content.style.overscrollBehavior = 'none';
+      
+      // Reorder company headers on mobile
+      function reorderCompanyHeaders() {
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll('#experience-card .company-header, #internships-card .company-header').forEach(header => {
+            const firstDiv = header.children[0];
+            const secondDiv = header.children[1];
+            if (firstDiv && secondDiv) {
+              const companyName = firstDiv.children[0];
+              const location = firstDiv.children[1];
+              const role = secondDiv.children[0];
+              const duration = secondDiv.children[1];
+              
+              header.innerHTML = '';
+              if (companyName) header.appendChild(companyName);
+              if (role) header.appendChild(role);
+              if (location) header.appendChild(location);
+              if (duration) header.appendChild(duration);
+            }
+          });
+        }
+      }
+      
+      reorderCompanyHeaders();
+      window.addEventListener('resize', reorderCompanyHeaders);
     });
   </script>
 
