@@ -460,6 +460,15 @@
         height: 100% !important;
         object-fit: contain !important;
       }
+      
+      /* Align company logos and names vertically in mobile */
+      #experience-card .company-header p[style*="display: flex"],
+      #internships-card .company-header p[style*="display: flex"],
+      #experience-card .company-header > p:first-child,
+      #internships-card .company-header > p:first-child {
+        display: flex !important;
+        align-items: center !important;
+      }
       .card, #about-header {
         width: 100%; /* Maximize card width within section padding */
         min-width: unset;
